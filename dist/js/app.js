@@ -26114,26 +26114,14 @@ var MessageBox = React.createClass({displayName: "MessageBox",
     });
   },
 
-  handleMessageSubmit: function ( formData, action ) {
-    $.ajax({
-      data: formData,
-      url: action,
-      type: "POST",
-      dataType: "json",
-      success: function ( data ) {
-        this.setState({ messages: data });
-      }.bind(this)
-    });
-  },
-
   render: function () {
     return (
       React.createElement("div", {className: "message-box"}, 
         React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
         React.createElement(MessageList, {messages:  this.state.messages}), 
         React.createElement("hr", null), 
-        React.createElement("h2", null, "post a message"), 
-        React.createElement(MessageForm, {form:  this.state.form, onMessageSubmit:  this.handleMessageSubmit})
+        React.createElement("h2", null, "talk to your roomies"), 
+        React.createElement(MessageForm, {form:  this.state.form})
       )
     );
   }
@@ -26169,23 +26157,20 @@ var Message = React.createClass({displayName: "Message",
 var MessageForm = React.createClass({displayName: "MessageForm",
   handleSubmit: function ( event ) {
     event.preventDefault();
-    var content = this.refs.content.getDOMNode().value.trim();
+    var content = this.refs.content.getDOMNode().value;
+    MessageActionCreators.createMessage(content);
 
     // validate
     if (!content) {
       return false;
     }
 
-    // submit
-    var formData = $( this.refs.form.getDOMNode() ).serialize();
-    this.props.onMessageSubmit( formData, this.props.form.action );
-
     // reset form
     this.refs.content.getDOMNode().value = "";
   },
   render: function () {
     return (
-      React.createElement("form", {ref: "form", className: "message-form", acceptCharset: "UTF-8", method: "post", onSubmit:  this.handleSubmit}, 
+      React.createElement("form", {ref: "form", className: "message-form", method: "post", onSubmit:  this.handleSubmit}, 
         React.createElement("p", null, React.createElement("textarea", {ref: "content", name: "message[content]", placeholder: "Say something..."})), 
         React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post message"))
       )

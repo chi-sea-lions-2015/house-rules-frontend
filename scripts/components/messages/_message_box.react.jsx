@@ -32,26 +32,14 @@ var MessageBox = React.createClass({
     });
   },
 
-  handleMessageSubmit: function ( formData, action ) {
-    $.ajax({
-      data: formData,
-      url: action,
-      type: "POST",
-      dataType: "json",
-      success: function ( data ) {
-        this.setState({ messages: data });
-      }.bind(this)
-    });
-  },
-
   render: function () {
     return (
       <div className="message-box">
         <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
         <MessageList messages={ this.state.messages } />
         <hr />
-        <h2>post a message</h2>
-        <MessageForm form={ this.state.form } onMessageSubmit={ this.handleMessageSubmit } />
+        <h2>talk to your roomies</h2>
+        <MessageForm form={ this.state.form } />
       </div>
     );
   }
@@ -87,23 +75,20 @@ var Message = React.createClass({
 var MessageForm = React.createClass({
   handleSubmit: function ( event ) {
     event.preventDefault();
-    var content = this.refs.content.getDOMNode().value.trim();
+    var content = this.refs.content.getDOMNode().value;
+    MessageActionCreators.createMessage(content);
 
     // validate
     if (!content) {
       return false;
     }
 
-    // submit
-    var formData = $( this.refs.form.getDOMNode() ).serialize();
-    this.props.onMessageSubmit( formData, this.props.form.action );
-
     // reset form
     this.refs.content.getDOMNode().value = "";
   },
   render: function () {
     return (
-      <form ref="form" className="message-form" acceptCharset="UTF-8" method="post" onSubmit={ this.handleSubmit }>
+      <form ref="form" className="message-form" method="post" onSubmit={ this.handleSubmit }>
         <p><textarea ref="content" name="message[content]" placeholder="Say something..." /></p>
         <p><button type="submit">Post message</button></p>
       </form>
