@@ -40,6 +40,10 @@ var MessagesPage = React.createClass({
         <div className="row">
           <MessagesList messages={this.state.messages} />
         </div>
+        <form ref="form" className="message-form" method="post" onSubmit={ this.handleSubmit }>
+        <p><textarea ref="content" name="message[content]" placeholder="Say something..." /></p>
+        <p><button type="submit">Post message</button></p>
+      </form>
       </div>
     );
   }

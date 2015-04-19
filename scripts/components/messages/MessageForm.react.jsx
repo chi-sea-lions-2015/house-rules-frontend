@@ -1,3 +1,5 @@
+var React = require('react');
+
 var MessageForm = React.createClass({
   handleSubmit: function ( event ) {
     event.preventDefault();
@@ -25,3 +27,5 @@ var MessageForm = React.createClass({
     )
   }
 });
+
+module.exports = MessageForm;

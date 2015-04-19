@@ -26042,7 +26042,11 @@ var MessagesPage = React.createClass({displayName: "MessagesPage",
         errors, 
         React.createElement("div", {className: "row"}, 
           React.createElement(MessagesList, {messages: this.state.messages})
-        )
+        ), 
+        React.createElement("form", {ref: "form", className: "message-form", method: "post", onSubmit:  this.handleSubmit}, 
+        React.createElement("p", null, React.createElement("textarea", {ref: "content", name: "message[content]", placeholder: "Say something..."})), 
+        React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post message"))
+      )
       )
     );
   }
