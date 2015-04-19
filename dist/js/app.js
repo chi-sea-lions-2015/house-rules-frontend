@@ -26216,7 +26216,7 @@ module.exports = SignupPage;
 },{"../../actions/SessionActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":213,"../../stores/SessionStore.react.jsx":224,"react":202}],219:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
-var APIRoot = "http://localhost:3000";
+var APIRoot = "http://localhost:3002";
 
 module.exports = {
 
