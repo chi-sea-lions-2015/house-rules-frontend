@@ -1,7 +1,7 @@
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var SessionStore = require('../stores/SessionStore.react.jsx');
-var StoryStore = require('../stores/StoryStore.react.jsx');
+var MessageStore = require('../stores/MessageStore.react.jsx');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
@@ -17,7 +17,7 @@ var ActionTypes = HouseRulesConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var RouteStore = assign({}, EventEmitter.prototype, {
-  
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -42,11 +42,11 @@ var RouteStore = assign({}, EventEmitter.prototype, {
 RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   HouseRulesAPIDispatcher.waitFor([
     SessionStore.dispatchToken,
-    StoryStore.dispatchToken
+    MessageStore.dispatchToken
   ]);
 
   var action = payload.action;
-  
+
   switch(action.type) {
 
     case ActionTypes.REDIRECT:
@@ -60,14 +60,14 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
         $(document).foundation();
       }
       break;
-    
-    case ActionTypes.RECEIVE_CREATED_STORY:
+
+    case ActionTypes.RECEIVE_CREATED_MESSAGE:
       router.transitionTo('app');
       break;
 
     default:
   }
-  
+
   return true;
 });
 

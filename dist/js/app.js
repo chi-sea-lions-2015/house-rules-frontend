@@ -7,7 +7,7 @@ router.run(function (Handler, state) {
   React.render(React.createElement(Handler, null), document.getElementById('content'));
 });
 
-},{"./stores/RouteStore.react.jsx":222,"react":202}],2:[function(require,module,exports){
+},{"./stores/RouteStore.react.jsx":223,"react":202}],2:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -2646,7 +2646,7 @@ var FakeNode = require('../mixins/FakeNode');
  *       <Route name="about" handler={About}/>
  *     </Route>
  *   ];
- *
+ *   
  *   Router.run(routes, function (Handler) {
  *     React.render(<Handler/>, document.body);
  *   });
@@ -3249,10 +3249,10 @@ var React = require('react');
  *     mixins: [ Router.State ],
  *     render: function () {
  *       var className = this.props.className;
- *
+ *   
  *       if (this.isActive('about'))
  *         className += ' is-active';
- *
+ *   
  *       return React.DOM.a({ className: className }, this.props.children);
  *     }
  *   });
@@ -4511,9 +4511,9 @@ var createRouter = require('./createRouter');
  *   Router.run(routes, function (Handler) {
  *     React.render(<Handler/>, document.body);
  *   });
- *
+ * 
  * Using HTML5 history and a custom "cursor" prop:
- *
+ * 
  *   Router.run(routes, Router.HistoryLocation, function (Handler) {
  *     React.render(<Handler cursor={cursor}/>, document.body);
  *   });
@@ -24558,8 +24558,8 @@ function Response(req, options) {
   options = options || {};
   this.req = req;
   this.xhr = this.req.xhr;
-  this.text = this.req.method !='HEAD'
-     ? this.xhr.responseText
+  this.text = this.req.method !='HEAD' 
+     ? this.xhr.responseText 
      : null;
   this.setStatusProperties(this.xhr.status);
   this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
@@ -24720,7 +24720,7 @@ function Request(method, url) {
     var res = null;
 
     try {
-      res = new Response(self);
+      res = new Response(self); 
     } catch(e) {
       err = new Error('Parser is unable to parse the response');
       err.parse = true;
@@ -25522,7 +25522,7 @@ Emitter.prototype.hasListeners = function(event){
  * TODO: combatible error handling?
  */
 
-module.exports = function(arr, fn, initial){
+module.exports = function(arr, fn, initial){  
   var idx = 0;
   var len = arr.length;
   var curr = arguments.length == 3
@@ -25532,7 +25532,7 @@ module.exports = function(arr, fn, initial){
   while (idx < len) {
     curr = fn.call(null, curr, arr[idx], ++idx, arr);
   }
-
+  
   return curr;
 };
 },{}],206:[function(require,module,exports){
@@ -25651,6 +25651,41 @@ function distance (date) {
 },{}],207:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
+  loadMessages: function() {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_MESSAGES
+    });
+    WebAPIUtils.loadMessages();
+  },
+
+  loadMessage: function(messageId) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_MESSAGE,
+      messageId: messageId
+    });
+    WebAPIUtils.loadMessage(messageId);
+  },
+
+  createMessage: function(content) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.CREATE_MESSAGE,
+      content: content
+    });
+    WebAPIUtils.createMessage(content);
+  }
+
+};
+
+
+},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220,"../utils/WebAPIUtils.js":225}],208:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 
 var ActionTypes = HouseRulesConstants.ActionTypes;
 
@@ -25667,7 +25702,7 @@ module.exports = {
 
 
 
-},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220}],208:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220}],209:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 
@@ -25683,23 +25718,23 @@ module.exports = {
     });
   },
 
-  receiveStories: function(json) {
+  receiveMessages: function(json) {
     HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_STORIES,
+      type: ActionTypes.RECEIVE_MESSAGES,
       json: json
     });
   },
 
-  receiveStory: function(json) {
+  receiveMessage: function(json) {
     HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_STORY,
+      type: ActionTypes.RECEIVE_MESSAGE,
       json: json
     });
   },
 
-  receiveCreatedStory: function(json, errors) {
+  receiveCreatedMessage: function(json, errors) {
     HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_CREATED_STORY,
+      type: ActionTypes.RECEIVE_CREATED_MESSAGE,
       json: json,
       errors: errors
     });
@@ -25707,8 +25742,7 @@ module.exports = {
 
 };
 
-
-},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220}],209:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220}],210:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var WebAPIUtils = require('../utils/WebAPIUtils.js');
@@ -25742,43 +25776,7 @@ module.exports = {
       type: ActionTypes.LOGOUT
     });
   }
-
-};
-
-
-},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220,"../utils/WebAPIUtils.js":225}],210:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-
-module.exports = {
-
-  loadStories: function() {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_STORIES
-    });
-    WebAPIUtils.loadStories();
-  },
-
-  loadStory: function(storyId) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_STORY,
-      storyId: storyId
-    });
-    WebAPIUtils.loadStory(storyId);
-  },
-
-  createStory: function(title, body) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.CREATE_STORY,
-      title: title,
-      body: body
-    });
-    WebAPIUtils.createStory(title, body);
-  }
-
+  
 };
 
 
@@ -25801,23 +25799,23 @@ var Header = React.createClass({displayName: "Header",
   },
   render: function() {
     var rightNav = this.props.isLoggedIn ? (
-      React.createElement("ul", {className: "right"},
-        React.createElement("li", {className: "has-dropdown"},
-          React.createElement("a", {href: "#"}, this.props.email),
-          React.createElement("ul", {className: "dropdown"},
+      React.createElement("ul", {className: "right"}, 
+        React.createElement("li", {className: "has-dropdown"}, 
+          React.createElement("a", {href: "#"}, this.props.email), 
+          React.createElement("ul", {className: "dropdown"}, 
             React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.logout}, "Logout"))
           )
         )
       )
     ) : (
-      React.createElement("ul", {className: "right"},
-        React.createElement("li", null, React.createElement(Link, {to: "login"}, "Login")),
+      React.createElement("ul", {className: "right"}, 
+        React.createElement("li", null, React.createElement(Link, {to: "login"}, "Login")), 
         React.createElement("li", null, React.createElement(Link, {to: "signup"}, "Sign up"))
       )
     );
 
     var leftNav = this.props.isLoggedIn ? (
-      React.createElement("ul", {className: "left"},
+      React.createElement("ul", {className: "left"}, 
         React.createElement("li", null, React.createElement(Link, {to: "new-story"}, "New story"))
       )
     ) : (
@@ -25825,16 +25823,16 @@ var Header = React.createClass({displayName: "Header",
     );
 
     return (
-      React.createElement("nav", {className: "top-bar", "data-topbar": true, role: "navigation"},
-        React.createElement("ul", {className: "title-area"},
-          React.createElement("li", {className: "name"},
+      React.createElement("nav", {className: "top-bar", "data-topbar": true, role: "navigation"}, 
+        React.createElement("ul", {className: "title-area"}, 
+          React.createElement("li", {className: "name"}, 
             React.createElement("h1", null, React.createElement("a", {href: "#"}, React.createElement("strong", null, "S")))
-          ),
+          ), 
           React.createElement("li", {className: "toggle-topbar menu-icon"}, React.createElement("a", {href: "#"}, React.createElement("span", null, "Menu")))
-        ),
+        ), 
 
-        React.createElement("section", {className: "top-bar-section"},
-          rightNav,
+        React.createElement("section", {className: "top-bar-section"}, 
+          rightNav, 
           leftNav
         )
       )
@@ -25845,7 +25843,7 @@ var Header = React.createClass({displayName: "Header",
 module.exports = Header;
 
 
-},{"../actions/SessionActionCreators.react.jsx":209,"react":202,"react-router":22}],212:[function(require,module,exports){
+},{"../actions/SessionActionCreators.react.jsx":210,"react":202,"react-router":22}],212:[function(require,module,exports){
 var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('../components/Header.react.jsx');
@@ -25879,10 +25877,10 @@ var HouseRules = React.createClass({displayName: "HouseRules",
 
   render: function() {
     return (
-      React.createElement("div", {className: "app"},
+      React.createElement("div", {className: "app"}, 
         React.createElement(Header, {
-          isLoggedIn: this.state.isLoggedIn,
-          email: this.state.email}),
+          isLoggedIn: this.state.isLoggedIn, 
+          email: this.state.email}), 
         React.createElement(RouteHandler, null)
       )
     );
@@ -25893,14 +25891,14 @@ var HouseRules = React.createClass({displayName: "HouseRules",
 module.exports = HouseRules;
 
 
-},{"../components/Header.react.jsx":211,"../stores/RouteStore.react.jsx":222,"../stores/SessionStore.react.jsx":223,"react":202,"react-router":22}],213:[function(require,module,exports){
+},{"../components/Header.react.jsx":211,"../stores/RouteStore.react.jsx":223,"../stores/SessionStore.react.jsx":224,"react":202,"react-router":22}],213:[function(require,module,exports){
 var React = require('react');
 
 var ErrorNotice = React.createClass({displayName: "ErrorNotice",
   render: function() {
     return (
-      React.createElement("div", {className: "error-notice"},
-        React.createElement("ul", null,
+      React.createElement("div", {className: "error-notice"}, 
+        React.createElement("ul", null, 
           this.props.errors.map(function(error, index){
             return React.createElement("li", {className: "error-notice__error", key: "error-"+index}, error);
           })
@@ -25915,6 +25913,179 @@ module.exports = ErrorNotice;
 
 },{"react":202}],214:[function(require,module,exports){
 var React = require('react');
+var HouseRulesAPIDispatcher = require('../../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var SessionStore = require('../../stores/SessionStore.react.jsx');
+var MessageActionCreators = require('../../actions/MessageActionCreators.react.jsx');
+var RouteActionCreators = require('../../actions/RouteActionCreators.react.jsx');
+
+var MessageNew = React.createClass({displayName: "MessageNew",
+
+  componentDidMount: function() {
+    if (!SessionStore.isLoggedIn()) {
+      RouteActionCreators.redirect('app');
+    }
+  },
+
+  _onSubmit: function(e) {
+    e.preventDefault();
+    var content = this.refs.content.getDOMNode().value;
+    MessageActionCreators.createMessage(content);
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", {className: "row"}, 
+        React.createElement("form", {onSubmit: this._onSubmit, className: "new-story"}, 
+          "// ", React.createElement("div", {className: "new-story__title"}, 
+          "//   ", React.createElement("input", {type: "text", placeholder: "Title", name: "content", ref: "title"}), 
+          "// "), 
+          React.createElement("div", {className: "new-story__body"}, 
+            React.createElement("textarea", {rows: "10", placeholder: "Your story...", name: "content", ref: "content"})
+          ), 
+          React.createElement("div", {className: "new-story__submit"}, 
+            React.createElement("button", {type: "submit"}, "Create")
+          )
+         )
+       )
+     );
+  }
+
+});
+
+module.exports = MessageNew;
+
+},{"../../actions/MessageActionCreators.react.jsx":207,"../../actions/RouteActionCreators.react.jsx":208,"../../constants/HouseRulesConstants.js":219,"../../dispatcher/HouseRulesAPIDispatcher.js":220,"../../stores/SessionStore.react.jsx":224,"../../utils/WebAPIUtils.js":225,"react":202}],215:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var MessageStore = require('../../stores/MessageStore.react.jsx');
+var MessageActionCreators = require('../../actions/MessageActionCreators.react.jsx');
+var State = require('react-router').State;
+
+var MessagePage = React.createClass({displayName: "MessagePage",
+
+  mixins: [ State ],
+
+  getInitialState: function() {
+    return {
+      message: MessageStore.getMessage(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    MessageStore.addChangeListener(this._onChange);
+    MessageActionCreators.loadMessage(this.getParams().messageId);
+  },
+
+  componentWillUnmount: function() {
+    MessageStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      message: MessageStore.getMessage(),
+      errors: MessageStore.getErrors()
+    });
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", {className: "row"}, 
+        "// ", React.createElement("div", {className: "story__title"}, this.state.story.title), 
+        React.createElement("div", {className: "story__body"}, this.state.message.content), 
+        "// ", React.createElement("div", {className: "story__user"}, this.state.message.author.first_name)
+      )
+     );
+  }
+
+});
+
+module.exports = MessagePage;
+
+},{"../../actions/MessageActionCreators.react.jsx":207,"../../stores/MessageStore.react.jsx":222,"../../utils/WebAPIUtils.js":225,"react":202,"react-router":22}],216:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var MessageStore = require('../../stores/MessageStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var MessageActionCreators = require('../../actions/MessageActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+
+var MessagesPage = React.createClass({displayName: "MessagesPage",
+
+  getInitialState: function() {
+    return {
+      messages: MessageStore.getAllMessages(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    MessageStore.addChangeListener(this._onChange);
+    MessageActionCreators.loadMessages();
+  },
+
+  componentWillUnmount: function() {
+    MessageStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      messages: MessageStore.getAllMessages(),
+      errors: MessageStore.getErrors()
+    });
+  },
+
+  render: function() {
+    var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
+    return (
+      React.createElement("div", null, 
+        errors, 
+        React.createElement("div", {className: "row"}, 
+          React.createElement(MessagesList, {messages: this.state.messages})
+        )
+      )
+    );
+  }
+});
+
+var MessageItem = React.createClass({displayName: "MessageItem",
+  render: function() {
+    return (
+      React.createElement("li", {className: "story"}, 
+        "// ", React.createElement("div", {className: "story__title"}, 
+        "//   ", React.createElement(Link, {to: "message", params:  {messageId: this.props.message.id} }, 
+        "//     ", this.props.s.title, 
+        "//   "), 
+        "// "), 
+        React.createElement("div", {className: "story__body"}, this.props.message.content, "..."), 
+        "// ", React.createElement("span", {className: "story__user"}, this.props.story.user.username), 
+        "// ", React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.story.created_at))
+      )
+      );
+  }
+});
+
+var MessagesList = React.createClass({displayName: "MessagesList",
+  render: function() {
+    return (
+      React.createElement("ul", {className: "large-8 medium-10 small-12 small-centered columns"}, 
+        this.props.messages.map(function(message, index){
+          return React.createElement(MessageItem, {message: message, key: "message-" + index})
+        })
+      )
+    );
+  }
+});
+
+module.exports = MessagesPage;
+
+
+},{"../../actions/MessageActionCreators.react.jsx":207,"../../components/common/ErrorNotice.react.jsx":213,"../../stores/MessageStore.react.jsx":222,"../../utils/WebAPIUtils.js":225,"react":202,"react-router":22,"timeago":206}],217:[function(require,module,exports){
+var React = require('react');
 var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
 var SessionStore = require('../../stores/SessionStore.react.jsx');
 var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
@@ -25924,7 +26095,7 @@ var LoginPage = React.createClass({displayName: "LoginPage",
   getInitialState: function() {
     return { errors: [] };
   },
-
+ 
   componentDidMount: function() {
     SessionStore.addChangeListener(this._onChange);
   },
@@ -25948,19 +26119,19 @@ var LoginPage = React.createClass({displayName: "LoginPage",
   render: function() {
     var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
     return (
-      React.createElement("div", null,
-        errors,
-        React.createElement("div", {className: "row"},
-          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"},
-            React.createElement("form", {onSubmit: this._onSubmit},
-              React.createElement("div", {className: "card--login__field"},
-                React.createElement("label", {name: "email"}, "Email"),
+      React.createElement("div", null, 
+        errors, 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
+            React.createElement("form", {onSubmit: this._onSubmit}, 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "email"}, "Email"), 
                 React.createElement("input", {type: "text", name: "email", ref: "email"})
-              ),
-              React.createElement("div", {className: "card--login__field"},
-                React.createElement("label", {name: "password"}, "Password"),
+              ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "password"}, "Password"), 
                 React.createElement("input", {type: "password", name: "password", ref: "password"})
-              ),
+              ), 
               React.createElement("button", {type: "submit", className: "card--login__submit"}, "Login")
             )
           )
@@ -25973,7 +26144,7 @@ var LoginPage = React.createClass({displayName: "LoginPage",
 module.exports = LoginPage;
 
 
-},{"../../actions/SessionActionCreators.react.jsx":209,"../../components/common/ErrorNotice.react.jsx":213,"../../stores/SessionStore.react.jsx":223,"react":202}],215:[function(require,module,exports){
+},{"../../actions/SessionActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":213,"../../stores/SessionStore.react.jsx":224,"react":202}],218:[function(require,module,exports){
 var React = require('react');
 var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
 var SessionStore = require('../../stores/SessionStore.react.jsx');
@@ -25984,7 +26155,7 @@ var SignupPage = React.createClass({displayName: "SignupPage",
   getInitialState: function() {
     return { errors: [] };
   },
-
+ 
   componentDidMount: function() {
     SessionStore.addChangeListener(this._onChange);
   },
@@ -26014,27 +26185,27 @@ var SignupPage = React.createClass({displayName: "SignupPage",
   render: function() {
     var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
     return (
-      React.createElement("div", null,
-        errors,
-        React.createElement("div", {className: "row"},
-          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"},
-            React.createElement("form", {onSubmit: this._onSubmit},
-              React.createElement("div", {className: "card--login__field"},
-                React.createElement("label", {name: "email"}, "Email"),
+      React.createElement("div", null, 
+        errors, 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
+            React.createElement("form", {onSubmit: this._onSubmit}, 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "email"}, "Email"), 
                 React.createElement("input", {type: "text", name: "email", ref: "email"})
-              ),
-              React.createElement("div", {className: "card--login__field"},
-                React.createElement("label", {name: "username"}, "Username"),
+              ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "username"}, "Username"), 
                 React.createElement("input", {type: "text", name: "username", ref: "username"})
-              ),
-              React.createElement("div", {className: "card--login__field"},
-                React.createElement("label", {name: "password"}, "Password"),
+              ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "password"}, "Password"), 
                 React.createElement("input", {type: "password", name: "password", ref: "password"})
-              ),
-              React.createElement("div", {className: "card--login__field"},
-                React.createElement("label", {name: "password-confrimation"}, "Password confirmation"),
+              ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "password-confrimation"}, "Password confirmation"), 
                 React.createElement("input", {type: "password", name: "password-confirmation", ref: "passwordConfirmation"})
-              ),
+              ), 
               React.createElement("button", {type: "submit", className: "card--login__submit"}, "Signup")
             )
           )
@@ -26047,193 +26218,17 @@ var SignupPage = React.createClass({displayName: "SignupPage",
 module.exports = SignupPage;
 
 
-},{"../../actions/SessionActionCreators.react.jsx":209,"../../components/common/ErrorNotice.react.jsx":213,"../../stores/SessionStore.react.jsx":223,"react":202}],216:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var StoryStore = require('../../stores/StoryStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var StoryActionCreators = require('../../actions/StoryActionCreators.react.jsx');
-var Router = require('react-router');
-var Link = Router.Link;
-var timeago = require('timeago');
-
-var StoriesPage = React.createClass({displayName: "StoriesPage",
-
-  getInitialState: function() {
-    return {
-      stories: StoryStore.getAllStories(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    StoryStore.addChangeListener(this._onChange);
-    StoryActionCreators.loadStories();
-  },
-
-  componentWillUnmount: function() {
-    StoryStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      stories: StoryStore.getAllStories(),
-      errors: StoryStore.getErrors()
-    });
-  },
-
-  render: function() {
-    var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
-    return (
-      React.createElement("div", null,
-        errors,
-        React.createElement("div", {className: "row"},
-          React.createElement(StoriesList, {stories: this.state.stories})
-        )
-      )
-    );
-  }
-});
-
-var StoryItem = React.createClass({displayName: "StoryItem",
-  render: function() {
-    return (
-      React.createElement("li", {className: "story"},
-        React.createElement("div", {className: "story__title"},
-          React.createElement(Link, {to: "story", params:  {storyId: this.props.story.id} },
-            this.props.story.title
-          )
-        ),
-        React.createElement("div", {className: "story__body"}, this.props.story['abstract'], "..."),
-        React.createElement("span", {className: "story__user"}, this.props.story.user.username),
-        React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.story.created_at))
-      )
-      );
-  }
-});
-
-var StoriesList = React.createClass({displayName: "StoriesList",
-  render: function() {
-    return (
-      React.createElement("ul", {className: "large-8 medium-10 small-12 small-centered columns"},
-        this.props.stories.map(function(story, index){
-          return React.createElement(StoryItem, {story: story, key: "story-" + index})
-        })
-      )
-    );
-  }
-});
-
-module.exports = StoriesPage;
-
-
-},{"../../actions/StoryActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":213,"../../stores/StoryStore.react.jsx":224,"../../utils/WebAPIUtils.js":225,"react":202,"react-router":22,"timeago":206}],217:[function(require,module,exports){
-var React = require('react');
-var HouseRulesAPIDispatcher = require('../../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../../constants/HouseRulesConstants.js');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var SessionStore = require('../../stores/SessionStore.react.jsx');
-var StoryActionCreators = require('../../actions/StoryActionCreators.react.jsx');
-var RouteActionCreators = require('../../actions/RouteActionCreators.react.jsx');
-
-var StoryNew = React.createClass({displayName: "StoryNew",
-
-  componentDidMount: function() {
-    if (!SessionStore.isLoggedIn()) {
-      RouteActionCreators.redirect('app');
-    }
-  },
-
-  _onSubmit: function(e) {
-    e.preventDefault();
-    var title = this.refs.title.getDOMNode().value;
-    var body = this.refs.body.getDOMNode().value;
-    StoryActionCreators.createStory(title, body);
-  },
-
-  render: function() {
-    return (
-      React.createElement("div", {className: "row"},
-        React.createElement("form", {onSubmit: this._onSubmit, className: "new-story"},
-          React.createElement("div", {className: "new-story__title"},
-            React.createElement("input", {type: "text", placeholder: "Title", name: "title", ref: "title"})
-          ),
-          React.createElement("div", {className: "new-story__body"},
-            React.createElement("textarea", {rows: "10", placeholder: "Your story...", name: "body", ref: "body"})
-          ),
-          React.createElement("div", {className: "new-story__submit"},
-            React.createElement("button", {type: "submit"}, "Create")
-          )
-         )
-       )
-     );
-  }
-
-});
-
-module.exports = StoryNew;
-
-
-},{"../../actions/RouteActionCreators.react.jsx":207,"../../actions/StoryActionCreators.react.jsx":210,"../../constants/HouseRulesConstants.js":219,"../../dispatcher/HouseRulesAPIDispatcher.js":220,"../../stores/SessionStore.react.jsx":223,"../../utils/WebAPIUtils.js":225,"react":202}],218:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var StoryStore = require('../../stores/StoryStore.react.jsx');
-var StoryActionCreators = require('../../actions/StoryActionCreators.react.jsx');
-var State = require('react-router').State;
-
-var StoryPage = React.createClass({displayName: "StoryPage",
-
-  mixins: [ State ],
-
-  getInitialState: function() {
-    return {
-      story: StoryStore.getStory(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    StoryStore.addChangeListener(this._onChange);
-    StoryActionCreators.loadStory(this.getParams().storyId);
-  },
-
-  componentWillUnmount: function() {
-    StoryStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      story: StoryStore.getStory(),
-      errors: StoryStore.getErrors()
-    });
-  },
-
-  render: function() {
-    return (
-      React.createElement("div", {className: "row"},
-        React.createElement("div", {className: "story__title"}, this.state.story.title),
-        React.createElement("div", {className: "story__body"}, this.state.story.body),
-        React.createElement("div", {className: "story__user"}, this.state.story.user.username)
-      )
-     );
-  }
-
-});
-
-module.exports = StoryPage;
-
-
-},{"../../actions/StoryActionCreators.react.jsx":210,"../../stores/StoryStore.react.jsx":224,"../../utils/WebAPIUtils.js":225,"react":202,"react-router":22}],219:[function(require,module,exports){
+},{"../../actions/SessionActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":213,"../../stores/SessionStore.react.jsx":224,"react":202}],219:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
-var APIRoot = "http://localhost:3002";
+var APIRoot = "http://localhost:3000";
 
 module.exports = {
 
   APIEndpoints: {
     LOGIN:          APIRoot + "/v1/login",
     REGISTRATION:   APIRoot + "/v1/users",
-    STORIES:        APIRoot + "/v1/stories"
+    MESSAGES:       APIRoot + "/houses/1/messages"
   },
 
   PayloadSources: keyMirror({
@@ -26249,12 +26244,12 @@ module.exports = {
     // Routes
     REDIRECT: null,
 
-    LOAD_STORIES: null,
-    RECEIVE_STORIES: null,
-    LOAD_STORY: null,
-    RECEIVE_STORY: null,
-    CREATE_STORY: null,
-    RECEIVE_CREATED_STORY: null
+    LOAD_MESSAGES: null,
+    RECEIVE_MESSAGES: null,
+    LOAD_MESSAGE: null,
+    RECEIVE_MESSAGE: null,
+    CREATE_MESSAGE: null,
+    RECEIVE_CREATED_MESSAGE: null
   })
 
 };
@@ -26294,28 +26289,107 @@ var DefaultRoute = Router.DefaultRoute;
 
 var HouseRules = require('./components/HouseRules.react.jsx');
 var LoginPage = require('./components/session/LoginPage.react.jsx');
-var StoriesPage = require('./components/stories/StoriesPage.react.jsx');
-var StoryPage = require('./components/stories/StoryPage.react.jsx');
-var StoryNew = require('./components/stories/StoryNew.react.jsx');
+var MessagesPage = require('./components/messages/MessagesPage.react.jsx');
+var MessagePage = require('./components/messages/MessagePage.react.jsx');
+var MessageNew = require('./components/messages/MessageNew.react.jsx');
 var SignupPage = require('./components/session/SignupPage.react.jsx');
 
 module.exports = (
-  React.createElement(Route, {name: "app", path: "/", handler: HouseRules},
-    React.createElement(DefaultRoute, {handler: StoriesPage}),
-    React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}),
-    React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}),
-    React.createElement(Route, {name: "stories", path: "/stories", handler: StoriesPage}),
-    React.createElement(Route, {name: "story", path: "/stories/:storyId", handler: StoryPage}),
-    React.createElement(Route, {name: "new-story", path: "/story/new", handler: StoryNew})
+  React.createElement(Route, {name: "app", path: "/", handler: HouseRules}, 
+    React.createElement(DefaultRoute, {handler: MessagesPage}), 
+    React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}), 
+    React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}), 
+    React.createElement(Route, {name: "messages", path: "/messages", handler: MessagesPage}), 
+    React.createElement(Route, {name: "message", path: "/messages/:messageId", handler: MessagePage}), 
+    React.createElement(Route, {name: "new-message", path: "/message/new", handler: MessageNew})
   )
 );
 
+},{"./components/HouseRules.react.jsx":212,"./components/messages/MessageNew.react.jsx":214,"./components/messages/MessagePage.react.jsx":215,"./components/messages/MessagesPage.react.jsx":216,"./components/session/LoginPage.react.jsx":217,"./components/session/SignupPage.react.jsx":218,"react":202,"react-router":22}],222:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
 
-},{"./components/HouseRules.react.jsx":212,"./components/session/LoginPage.react.jsx":214,"./components/session/SignupPage.react.jsx":215,"./components/stories/StoriesPage.react.jsx":216,"./components/stories/StoryNew.react.jsx":217,"./components/stories/StoryPage.react.jsx":218,"react":202,"react-router":22}],222:[function(require,module,exports){
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+var _messages = [];
+var _errors = [];
+var _message = { content: "", author: { first_name: "" } };
+
+var MessageStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getAllMessages: function() {
+    return _messages;
+  },
+
+  getMessage: function() {
+    return _message;
+  },
+
+  getErrors: function() {
+    return _errors;
+  }
+
+});
+
+MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.type) {
+
+    case ActionTypes.RECEIVE_MESSAGES:
+      _messages = action.json.messages;
+      MessageStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_MESSAGE:
+      if (action.json) {
+        _messages.unshift(action.json.message);
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      MessageStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_MESSAGE:
+      if (action.json) {
+        _message = action.json.message;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      MessageStore.emitChange();
+      break;
+  }
+
+  return true;
+});
+
+module.exports = MessageStore;
+
+},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220,"../utils/WebAPIUtils.js":225,"events":6,"object-assign":12}],223:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var SessionStore = require('../stores/SessionStore.react.jsx');
-var StoryStore = require('../stores/StoryStore.react.jsx');
+var MessageStore = require('../stores/MessageStore.react.jsx');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
@@ -26356,7 +26430,7 @@ var RouteStore = assign({}, EventEmitter.prototype, {
 RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   HouseRulesAPIDispatcher.waitFor([
     SessionStore.dispatchToken,
-    StoryStore.dispatchToken
+    MessageStore.dispatchToken
   ]);
 
   var action = payload.action;
@@ -26375,7 +26449,7 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       }
       break;
 
-    case ActionTypes.RECEIVE_CREATED_STORY:
+    case ActionTypes.RECEIVE_CREATED_MESSAGE:
       router.transitionTo('app');
       break;
 
@@ -26388,7 +26462,7 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 module.exports = RouteStore;
 
 
-},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220,"../routes.jsx":221,"../stores/SessionStore.react.jsx":223,"../stores/StoryStore.react.jsx":224,"events":6,"object-assign":12,"react-router":22}],223:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220,"../routes.jsx":221,"../stores/MessageStore.react.jsx":222,"../stores/SessionStore.react.jsx":224,"events":6,"object-assign":12,"react-router":22}],224:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var EventEmitter = require('events').EventEmitter;
@@ -26404,7 +26478,7 @@ var _email = sessionStorage.getItem('email');
 var _errors = [];
 
 var SessionStore = assign({}, EventEmitter.prototype, {
-
+  
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -26418,7 +26492,7 @@ var SessionStore = assign({}, EventEmitter.prototype, {
   },
 
   isLoggedIn: function() {
-    return _accessToken ? true : false;
+    return _accessToken ? true : false;    
   },
 
   getAccessToken: function() {
@@ -26464,95 +26538,14 @@ SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
 
     default:
   }
-
+  
   return true;
 });
 
 module.exports = SessionStore;
 
 
-},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220,"events":6,"object-assign":12}],224:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-var CHANGE_EVENT = 'change';
-
-var _stories = [];
-var _errors = [];
-var _story = { title: "", body: "", user: { username: "" } };
-
-var StoryStore = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-  },
-
-  getAllStories: function() {
-    return _stories;
-  },
-
-  getStory: function() {
-    return _story;
-  },
-
-  getErrors: function() {
-    return _errors;
-  }
-
-});
-
-StoryStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
-  var action = payload.action;
-
-  switch(action.type) {
-
-    case ActionTypes.RECEIVE_STORIES:
-      _stories = action.json.stories;
-      StoryStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_STORY:
-      if (action.json) {
-        _stories.unshift(action.json.story);
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      StoryStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_STORY:
-      if (action.json) {
-        _story = action.json.story;
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      StoryStore.emitChange();
-      break;
-  }
-
-  return true;
-});
-
-module.exports = StoryStore;
-
-
-},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220,"../utils/WebAPIUtils.js":225,"events":6,"object-assign":12}],225:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":219,"../dispatcher/HouseRulesAPIDispatcher.js":220,"events":6,"object-assign":12}],225:[function(require,module,exports){
 var ServerActionCreators = require('../actions/ServerActionCreators.react.jsx');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var request = require('superagent');
@@ -26575,8 +26568,8 @@ module.exports = {
 
   signup: function(email, username, password, passwordConfirmation) {
     request.post(APIEndpoints.REGISTRATION)
-      .send({ user: {
-        email: email,
+      .send({ user: { 
+        email: email, 
         username: username,
         password: password,
         password_confirmation: passwordConfirmation
@@ -26657,4 +26650,4 @@ module.exports = {
 };
 
 
-},{"../actions/ServerActionCreators.react.jsx":208,"../constants/HouseRulesConstants.js":219,"superagent":203}]},{},[1]);
+},{"../actions/ServerActionCreators.react.jsx":209,"../constants/HouseRulesConstants.js":219,"superagent":203}]},{},[1]);

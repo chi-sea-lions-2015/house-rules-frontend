@@ -1,8 +1,8 @@
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var SmallConstants = require('../constants/SmallConstants.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var WebAPIUtils = require('../utils/WebAPIUtils.js');
 
-var ActionTypes = SmallConstants.ActionTypes;
+var ActionTypes = HouseRulesConstants.ActionTypes;
 
 module.exports = {
 
