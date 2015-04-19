@@ -2646,7 +2646,7 @@ var FakeNode = require('../mixins/FakeNode');
  *       <Route name="about" handler={About}/>
  *     </Route>
  *   ];
- *   
+ *
  *   Router.run(routes, function (Handler) {
  *     React.render(<Handler/>, document.body);
  *   });
@@ -3249,10 +3249,10 @@ var React = require('react');
  *     mixins: [ Router.State ],
  *     render: function () {
  *       var className = this.props.className;
- *   
+ *
  *       if (this.isActive('about'))
  *         className += ' is-active';
- *   
+ *
  *       return React.DOM.a({ className: className }, this.props.children);
  *     }
  *   });
@@ -4511,9 +4511,9 @@ var createRouter = require('./createRouter');
  *   Router.run(routes, function (Handler) {
  *     React.render(<Handler/>, document.body);
  *   });
- * 
+ *
  * Using HTML5 history and a custom "cursor" prop:
- * 
+ *
  *   Router.run(routes, Router.HistoryLocation, function (Handler) {
  *     React.render(<Handler cursor={cursor}/>, document.body);
  *   });
@@ -24558,8 +24558,8 @@ function Response(req, options) {
   options = options || {};
   this.req = req;
   this.xhr = this.req.xhr;
-  this.text = this.req.method !='HEAD' 
-     ? this.xhr.responseText 
+  this.text = this.req.method !='HEAD'
+     ? this.xhr.responseText
      : null;
   this.setStatusProperties(this.xhr.status);
   this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
@@ -24720,7 +24720,7 @@ function Request(method, url) {
     var res = null;
 
     try {
-      res = new Response(self); 
+      res = new Response(self);
     } catch(e) {
       err = new Error('Parser is unable to parse the response');
       err.parse = true;
@@ -25522,7 +25522,7 @@ Emitter.prototype.hasListeners = function(event){
  * TODO: combatible error handling?
  */
 
-module.exports = function(arr, fn, initial){  
+module.exports = function(arr, fn, initial){
   var idx = 0;
   var len = arr.length;
   var curr = arguments.length == 3
@@ -25532,7 +25532,7 @@ module.exports = function(arr, fn, initial){
   while (idx < len) {
     curr = fn.call(null, curr, arr[idx], ++idx, arr);
   }
-  
+
   return curr;
 };
 },{}],206:[function(require,module,exports){
@@ -25696,7 +25696,7 @@ module.exports = {
       json: json
     });
   },
-  
+
   receiveCreatedStory: function(json, errors) {
     HouseRulesAPIDispatcher.handleServerAction({
       type: ActionTypes.RECEIVE_CREATED_STORY,
@@ -25704,7 +25704,7 @@ module.exports = {
       errors: errors
     });
   }
-  
+
 };
 
 
@@ -25742,7 +25742,7 @@ module.exports = {
       type: ActionTypes.LOGOUT
     });
   }
-  
+
 };
 
 
@@ -25761,7 +25761,7 @@ module.exports = {
     });
     WebAPIUtils.loadStories();
   },
-  
+
   loadStory: function(storyId) {
     HouseRulesAPIDispatcher.handleViewAction({
       type: ActionTypes.LOAD_STORY,
@@ -25801,23 +25801,23 @@ var Header = React.createClass({displayName: "Header",
   },
   render: function() {
     var rightNav = this.props.isLoggedIn ? (
-      React.createElement("ul", {className: "right"}, 
-        React.createElement("li", {className: "has-dropdown"}, 
-          React.createElement("a", {href: "#"}, this.props.email), 
-          React.createElement("ul", {className: "dropdown"}, 
+      React.createElement("ul", {className: "right"},
+        React.createElement("li", {className: "has-dropdown"},
+          React.createElement("a", {href: "#"}, this.props.email),
+          React.createElement("ul", {className: "dropdown"},
             React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.logout}, "Logout"))
           )
         )
       )
     ) : (
-      React.createElement("ul", {className: "right"}, 
-        React.createElement("li", null, React.createElement(Link, {to: "login"}, "Login")), 
+      React.createElement("ul", {className: "right"},
+        React.createElement("li", null, React.createElement(Link, {to: "login"}, "Login")),
         React.createElement("li", null, React.createElement(Link, {to: "signup"}, "Sign up"))
       )
     );
 
     var leftNav = this.props.isLoggedIn ? (
-      React.createElement("ul", {className: "left"}, 
+      React.createElement("ul", {className: "left"},
         React.createElement("li", null, React.createElement(Link, {to: "new-story"}, "New story"))
       )
     ) : (
@@ -25825,16 +25825,16 @@ var Header = React.createClass({displayName: "Header",
     );
 
     return (
-      React.createElement("nav", {className: "top-bar", "data-topbar": true, role: "navigation"}, 
-        React.createElement("ul", {className: "title-area"}, 
-          React.createElement("li", {className: "name"}, 
+      React.createElement("nav", {className: "top-bar", "data-topbar": true, role: "navigation"},
+        React.createElement("ul", {className: "title-area"},
+          React.createElement("li", {className: "name"},
             React.createElement("h1", null, React.createElement("a", {href: "#"}, React.createElement("strong", null, "S")))
-          ), 
+          ),
           React.createElement("li", {className: "toggle-topbar menu-icon"}, React.createElement("a", {href: "#"}, React.createElement("span", null, "Menu")))
-        ), 
+        ),
 
-        React.createElement("section", {className: "top-bar-section"}, 
-          rightNav, 
+        React.createElement("section", {className: "top-bar-section"},
+          rightNav,
           leftNav
         )
       )
@@ -25864,7 +25864,7 @@ var HouseRules = React.createClass({displayName: "HouseRules",
   getInitialState: function() {
     return getStateFromStores();
   },
-  
+
   componentDidMount: function() {
     SessionStore.addChangeListener(this._onChange);
   },
@@ -25879,10 +25879,10 @@ var HouseRules = React.createClass({displayName: "HouseRules",
 
   render: function() {
     return (
-      React.createElement("div", {className: "app"}, 
+      React.createElement("div", {className: "app"},
         React.createElement(Header, {
-          isLoggedIn: this.state.isLoggedIn, 
-          email: this.state.email}), 
+          isLoggedIn: this.state.isLoggedIn,
+          email: this.state.email}),
         React.createElement(RouteHandler, null)
       )
     );
@@ -25890,7 +25890,7 @@ var HouseRules = React.createClass({displayName: "HouseRules",
 
 });
 
-module.exports = SmallApp;
+module.exports = HouseRules;
 
 
 },{"../components/Header.react.jsx":211,"../stores/RouteStore.react.jsx":222,"../stores/SessionStore.react.jsx":223,"react":202,"react-router":22}],213:[function(require,module,exports){
@@ -25899,8 +25899,8 @@ var React = require('react');
 var ErrorNotice = React.createClass({displayName: "ErrorNotice",
   render: function() {
     return (
-      React.createElement("div", {className: "error-notice"}, 
-        React.createElement("ul", null, 
+      React.createElement("div", {className: "error-notice"},
+        React.createElement("ul", null,
           this.props.errors.map(function(error, index){
             return React.createElement("li", {className: "error-notice__error", key: "error-"+index}, error);
           })
@@ -25924,7 +25924,7 @@ var LoginPage = React.createClass({displayName: "LoginPage",
   getInitialState: function() {
     return { errors: [] };
   },
- 
+
   componentDidMount: function() {
     SessionStore.addChangeListener(this._onChange);
   },
@@ -25948,19 +25948,19 @@ var LoginPage = React.createClass({displayName: "LoginPage",
   render: function() {
     var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
     return (
-      React.createElement("div", null, 
-        errors, 
-        React.createElement("div", {className: "row"}, 
-          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
-            React.createElement("form", {onSubmit: this._onSubmit}, 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "email"}, "Email"), 
+      React.createElement("div", null,
+        errors,
+        React.createElement("div", {className: "row"},
+          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"},
+            React.createElement("form", {onSubmit: this._onSubmit},
+              React.createElement("div", {className: "card--login__field"},
+                React.createElement("label", {name: "email"}, "Email"),
                 React.createElement("input", {type: "text", name: "email", ref: "email"})
-              ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "password"}, "Password"), 
+              ),
+              React.createElement("div", {className: "card--login__field"},
+                React.createElement("label", {name: "password"}, "Password"),
                 React.createElement("input", {type: "password", name: "password", ref: "password"})
-              ), 
+              ),
               React.createElement("button", {type: "submit", className: "card--login__submit"}, "Login")
             )
           )
@@ -25984,7 +25984,7 @@ var SignupPage = React.createClass({displayName: "SignupPage",
   getInitialState: function() {
     return { errors: [] };
   },
- 
+
   componentDidMount: function() {
     SessionStore.addChangeListener(this._onChange);
   },
@@ -26014,27 +26014,27 @@ var SignupPage = React.createClass({displayName: "SignupPage",
   render: function() {
     var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
     return (
-      React.createElement("div", null, 
-        errors, 
-        React.createElement("div", {className: "row"}, 
-          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
-            React.createElement("form", {onSubmit: this._onSubmit}, 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "email"}, "Email"), 
+      React.createElement("div", null,
+        errors,
+        React.createElement("div", {className: "row"},
+          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"},
+            React.createElement("form", {onSubmit: this._onSubmit},
+              React.createElement("div", {className: "card--login__field"},
+                React.createElement("label", {name: "email"}, "Email"),
                 React.createElement("input", {type: "text", name: "email", ref: "email"})
-              ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "username"}, "Username"), 
+              ),
+              React.createElement("div", {className: "card--login__field"},
+                React.createElement("label", {name: "username"}, "Username"),
                 React.createElement("input", {type: "text", name: "username", ref: "username"})
-              ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "password"}, "Password"), 
+              ),
+              React.createElement("div", {className: "card--login__field"},
+                React.createElement("label", {name: "password"}, "Password"),
                 React.createElement("input", {type: "password", name: "password", ref: "password"})
-              ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "password-confrimation"}, "Password confirmation"), 
+              ),
+              React.createElement("div", {className: "card--login__field"},
+                React.createElement("label", {name: "password-confrimation"}, "Password confirmation"),
                 React.createElement("input", {type: "password", name: "password-confirmation", ref: "passwordConfirmation"})
-              ), 
+              ),
               React.createElement("button", {type: "submit", className: "card--login__submit"}, "Signup")
             )
           )
@@ -26060,12 +26060,12 @@ var timeago = require('timeago');
 var StoriesPage = React.createClass({displayName: "StoriesPage",
 
   getInitialState: function() {
-    return { 
-      stories: StoryStore.getAllStories(), 
+    return {
+      stories: StoryStore.getAllStories(),
       errors: []
     };
   },
- 
+
   componentDidMount: function() {
     StoryStore.addChangeListener(this._onChange);
     StoryActionCreators.loadStories();
@@ -26076,18 +26076,18 @@ var StoriesPage = React.createClass({displayName: "StoriesPage",
   },
 
   _onChange: function() {
-    this.setState({ 
+    this.setState({
       stories: StoryStore.getAllStories(),
       errors: StoryStore.getErrors()
-    }); 
+    });
   },
 
   render: function() {
     var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
     return (
-      React.createElement("div", null, 
-        errors, 
-        React.createElement("div", {className: "row"}, 
+      React.createElement("div", null,
+        errors,
+        React.createElement("div", {className: "row"},
           React.createElement(StoriesList, {stories: this.state.stories})
         )
       )
@@ -26098,14 +26098,14 @@ var StoriesPage = React.createClass({displayName: "StoriesPage",
 var StoryItem = React.createClass({displayName: "StoryItem",
   render: function() {
     return (
-      React.createElement("li", {className: "story"}, 
-        React.createElement("div", {className: "story__title"}, 
-          React.createElement(Link, {to: "story", params:  {storyId: this.props.story.id} }, 
+      React.createElement("li", {className: "story"},
+        React.createElement("div", {className: "story__title"},
+          React.createElement(Link, {to: "story", params:  {storyId: this.props.story.id} },
             this.props.story.title
           )
-        ), 
-        React.createElement("div", {className: "story__body"}, this.props.story['abstract'], "..."), 
-        React.createElement("span", {className: "story__user"}, this.props.story.user.username), 
+        ),
+        React.createElement("div", {className: "story__body"}, this.props.story['abstract'], "..."),
+        React.createElement("span", {className: "story__user"}, this.props.story.user.username),
         React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.story.created_at))
       )
       );
@@ -26115,7 +26115,7 @@ var StoryItem = React.createClass({displayName: "StoryItem",
 var StoriesList = React.createClass({displayName: "StoriesList",
   render: function() {
     return (
-      React.createElement("ul", {className: "large-8 medium-10 small-12 small-centered columns"}, 
+      React.createElement("ul", {className: "large-8 medium-10 small-12 small-centered columns"},
         this.props.stories.map(function(story, index){
           return React.createElement(StoryItem, {story: story, key: "story-" + index})
         })
@@ -26139,7 +26139,7 @@ var RouteActionCreators = require('../../actions/RouteActionCreators.react.jsx')
 var StoryNew = React.createClass({displayName: "StoryNew",
 
   componentDidMount: function() {
-    if (!SessionStore.isLoggedIn()) { 
+    if (!SessionStore.isLoggedIn()) {
       RouteActionCreators.redirect('app');
     }
   },
@@ -26150,18 +26150,18 @@ var StoryNew = React.createClass({displayName: "StoryNew",
     var body = this.refs.body.getDOMNode().value;
     StoryActionCreators.createStory(title, body);
   },
-  
+
   render: function() {
     return (
-      React.createElement("div", {className: "row"}, 
-        React.createElement("form", {onSubmit: this._onSubmit, className: "new-story"}, 
-          React.createElement("div", {className: "new-story__title"}, 
+      React.createElement("div", {className: "row"},
+        React.createElement("form", {onSubmit: this._onSubmit, className: "new-story"},
+          React.createElement("div", {className: "new-story__title"},
             React.createElement("input", {type: "text", placeholder: "Title", name: "title", ref: "title"})
-          ), 
-          React.createElement("div", {className: "new-story__body"}, 
+          ),
+          React.createElement("div", {className: "new-story__body"},
             React.createElement("textarea", {rows: "10", placeholder: "Your story...", name: "body", ref: "body"})
-          ), 
-          React.createElement("div", {className: "new-story__submit"}, 
+          ),
+          React.createElement("div", {className: "new-story__submit"},
             React.createElement("button", {type: "submit"}, "Create")
           )
          )
@@ -26182,16 +26182,16 @@ var StoryActionCreators = require('../../actions/StoryActionCreators.react.jsx')
 var State = require('react-router').State;
 
 var StoryPage = React.createClass({displayName: "StoryPage",
-  
+
   mixins: [ State ],
 
   getInitialState: function() {
-    return { 
-      story: StoryStore.getStory(), 
+    return {
+      story: StoryStore.getStory(),
       errors: []
     };
   },
- 
+
   componentDidMount: function() {
     StoryStore.addChangeListener(this._onChange);
     StoryActionCreators.loadStory(this.getParams().storyId);
@@ -26202,17 +26202,17 @@ var StoryPage = React.createClass({displayName: "StoryPage",
   },
 
   _onChange: function() {
-    this.setState({ 
+    this.setState({
       story: StoryStore.getStory(),
       errors: StoryStore.getErrors()
-    }); 
+    });
   },
-  
+
   render: function() {
     return (
-      React.createElement("div", {className: "row"}, 
-        React.createElement("div", {className: "story__title"}, this.state.story.title), 
-        React.createElement("div", {className: "story__body"}, this.state.story.body), 
+      React.createElement("div", {className: "row"},
+        React.createElement("div", {className: "story__title"}, this.state.story.title),
+        React.createElement("div", {className: "story__body"}, this.state.story.body),
         React.createElement("div", {className: "story__user"}, this.state.story.user.username)
       )
      );
@@ -26300,12 +26300,12 @@ var StoryNew = require('./components/stories/StoryNew.react.jsx');
 var SignupPage = require('./components/session/SignupPage.react.jsx');
 
 module.exports = (
-  React.createElement(Route, {name: "app", path: "/", handler: HouseRules}, 
-    React.createElement(DefaultRoute, {handler: StoriesPage}), 
-    React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}), 
-    React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}), 
-    React.createElement(Route, {name: "stories", path: "/stories", handler: StoriesPage}), 
-    React.createElement(Route, {name: "story", path: "/stories/:storyId", handler: StoryPage}), 
+  React.createElement(Route, {name: "app", path: "/", handler: HouseRules},
+    React.createElement(DefaultRoute, {handler: StoriesPage}),
+    React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}),
+    React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}),
+    React.createElement(Route, {name: "stories", path: "/stories", handler: StoriesPage}),
+    React.createElement(Route, {name: "story", path: "/stories/:storyId", handler: StoryPage}),
     React.createElement(Route, {name: "new-story", path: "/story/new", handler: StoryNew})
   )
 );
@@ -26331,7 +26331,7 @@ var ActionTypes = HouseRulesConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var RouteStore = assign({}, EventEmitter.prototype, {
-  
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -26360,7 +26360,7 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   ]);
 
   var action = payload.action;
-  
+
   switch(action.type) {
 
     case ActionTypes.REDIRECT:
@@ -26374,14 +26374,14 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
         $(document).foundation();
       }
       break;
-    
+
     case ActionTypes.RECEIVE_CREATED_STORY:
       router.transitionTo('app');
       break;
 
     default:
   }
-  
+
   return true;
 });
 
@@ -26404,7 +26404,7 @@ var _email = sessionStorage.getItem('email');
 var _errors = [];
 
 var SessionStore = assign({}, EventEmitter.prototype, {
-  
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -26418,7 +26418,7 @@ var SessionStore = assign({}, EventEmitter.prototype, {
   },
 
   isLoggedIn: function() {
-    return _accessToken ? true : false;    
+    return _accessToken ? true : false;
   },
 
   getAccessToken: function() {
@@ -26464,7 +26464,7 @@ SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
 
     default:
   }
-  
+
   return true;
 });
 
@@ -26517,7 +26517,7 @@ StoryStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.type) {
-    
+
     case ActionTypes.RECEIVE_STORIES:
       _stories = action.json.stories;
       StoryStore.emitChange();
@@ -26533,7 +26533,7 @@ StoryStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       }
       StoryStore.emitChange();
       break;
-    
+
     case ActionTypes.RECEIVE_STORY:
       if (action.json) {
         _story = action.json.story;
@@ -26575,8 +26575,8 @@ module.exports = {
 
   signup: function(email, username, password, passwordConfirmation) {
     request.post(APIEndpoints.REGISTRATION)
-      .send({ user: { 
-        email: email, 
+      .send({ user: {
+        email: email,
         username: username,
         password: password,
         password_confirmation: passwordConfirmation

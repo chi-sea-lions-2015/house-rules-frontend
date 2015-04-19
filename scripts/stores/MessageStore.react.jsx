@@ -7,11 +7,11 @@ var WebAPIUtils = require('../utils/WebAPIUtils.js');
 var ActionTypes = HouseRulesConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
-var _stories = [];
+var _messages = [];
 var _errors = [];
-var _story = { title: "", body: "", user: { username: "" } };
+var _message = { content: "", author: { first_name: "" } };
 
-var StoryStore = assign({}, EventEmitter.prototype, {
+var MessageStore = assign({}, EventEmitter.prototype, {
 
   emitChange: function() {
     this.emit(CHANGE_EVENT);
@@ -25,12 +25,12 @@ var StoryStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getAllStories: function() {
-    return _stories;
+  getAllMessages: function() {
+    return _messages;
   },
 
-  getStory: function() {
-    return _story;
+  getMessage: function() {
+    return _message;
   },
 
   getErrors: function() {
@@ -39,41 +39,40 @@ var StoryStore = assign({}, EventEmitter.prototype, {
 
 });
 
-StoryStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.type) {
-    
-    case ActionTypes.RECEIVE_STORIES:
-      _stories = action.json.stories;
-      StoryStore.emitChange();
+
+    case ActionTypes.RECEIVE_MESSAGES:
+      _messages = action.json.messages;
+      MessageStore.emitChange();
       break;
 
-    case ActionTypes.RECEIVE_CREATED_STORY:
+    case ActionTypes.RECEIVE_CREATED_MESSAGE:
       if (action.json) {
-        _stories.unshift(action.json.story);
+        _messages.unshift(action.json.message);
         _errors = [];
       }
       if (action.errors) {
         _errors = action.errors;
       }
-      StoryStore.emitChange();
+      MessageStore.emitChange();
       break;
-    
-    case ActionTypes.RECEIVE_STORY:
+
+    case ActionTypes.RECEIVE_MESSAGE:
       if (action.json) {
-        _story = action.json.story;
+        _message = action.json.message;
         _errors = [];
       }
       if (action.errors) {
         _errors = action.errors;
       }
-      StoryStore.emitChange();
+      MessageStore.emitChange();
       break;
   }
 
   return true;
 });
 
-module.exports = StoryStore;
-
+module.exports = MessageStore;

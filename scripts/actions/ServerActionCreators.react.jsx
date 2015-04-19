@@ -1,7 +1,7 @@
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesDispatcher.js');
+var SmallConstants = require('../constants/SmallConstants.js');
 
-var ActionTypes = HouseRulesConstants.ActionTypes;
+var ActionTypes = SmallConstants.ActionTypes;
 
 module.exports = {
 
@@ -13,27 +13,26 @@ module.exports = {
     });
   },
 
-  receiveStories: function(json) {
+  receiveMessages: function(json) {
     HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_STORIES,
+      type: ActionTypes.RECEIVE_MESSAGES,
       json: json
     });
   },
 
-  receiveStory: function(json) {
+  receiveMessage: function(json) {
     HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_STORY,
+      type: ActionTypes.RECEIVE_MESSAGE,
       json: json
     });
   },
-  
-  receiveCreatedStory: function(json, errors) {
+
+  receiveCreatedMessage: function(json, errors) {
     HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_CREATED_STORY,
+      type: ActionTypes.RECEIVE_CREATED_MESSAGE,
       json: json,
       errors: errors
     });
   }
-  
-};
 
+};

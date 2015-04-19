@@ -5,19 +5,18 @@ var DefaultRoute = Router.DefaultRoute;
 
 var HouseRules = require('./components/HouseRules.react.jsx');
 var LoginPage = require('./components/session/LoginPage.react.jsx');
-var StoriesPage = require('./components/stories/StoriesPage.react.jsx');
-var StoryPage = require('./components/stories/StoryPage.react.jsx');
-var StoryNew = require('./components/stories/StoryNew.react.jsx');
+var MessagesPage = require('./components/messages/MessagesPage.react.jsx');
+var MessagePage = require('./components/messages/MessagePage.react.jsx');
+var MessageNew = require('./components/messages/MessageNew.react.jsx');
 var SignupPage = require('./components/session/SignupPage.react.jsx');
 
 module.exports = (
   <Route name="app" path="/" handler={HouseRules}>
-    <DefaultRoute handler={StoriesPage} />
+    <DefaultRoute handler={MessagesPage} />
     <Route name="login" path="/login" handler={LoginPage}/>
     <Route name="signup" path="/signup" handler={SignupPage}/>
-    <Route name="stories" path="/stories" handler={StoriesPage}/>
-    <Route name="story" path="/stories/:storyId" handler={StoryPage} />
-    <Route name="new-story" path="/story/new" handler={StoryNew}/>
+    <Route name="messages" path="/messages" handler={MessagesPage}/>
+    <Route name="message" path="/messages/:messageId" handler={MessagePage} />
+    <Route name="new-message" path="/message/new" handler={MessageNew}/>
   </Route>
 );
-

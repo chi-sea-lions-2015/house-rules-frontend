@@ -16,7 +16,7 @@ var HouseRules = React.createClass({
   getInitialState: function() {
     return getStateFromStores();
   },
-  
+
   componentDidMount: function() {
     SessionStore.addChangeListener(this._onChange);
   },
@@ -32,7 +32,7 @@ var HouseRules = React.createClass({
   render: function() {
     return (
       <div className="app">
-        <Header 
+        <Header
           isLoggedIn={this.state.isLoggedIn}
           email={this.state.email} />
         <RouteHandler/>
@@ -42,5 +42,5 @@ var HouseRules = React.createClass({
 
 });
 
-module.exports = SmallApp;
+module.exports = HouseRules;
 
