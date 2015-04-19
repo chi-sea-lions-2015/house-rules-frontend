@@ -15,7 +15,7 @@ module.exports = (
     <DefaultRoute handler={MessagesPage} />
     <Route name="login" path="/login" handler={LoginPage}/>
     <Route name="signup" path="/signup" handler={SignupPage}/>
-    <Route name="messages" path="/messages" handler={MessagesPage}/>
+    <Route name="messages" path="/house/:houseId/messages" handler={MessagesPage}/>
     <Route name="message" path="/messages/:messageId" handler={MessagePage} />
     <Route name="new-message" path="/message/new" handler={MessageNew}/>
   </Route>

@@ -49,14 +49,9 @@ var MessageItem = React.createClass({
   render: function() {
     return (
       <li className="story">
-        // <div className="story__title">
-        //   <Link to="message" params={ {messageId: this.props.message.id} }>
-        //     {this.props.s.title}
-        //   </Link>
-        // </div>
-        <div className="story__body">{this.props.message.content}...</div>
-        // <span className="story__user">{this.props.story.user.username}</span>
-        // <span className="story__date"> - {timeago(this.props.story.created_at)}</span>
+        <div className="story__body">{this.props.message.content}</div>
+        <span className="story__user">{this.props.message.author}</span>
+        <span className="story__date"> - {timeago(this.props.message.created_at)}</span>
       </li>
       );
   }

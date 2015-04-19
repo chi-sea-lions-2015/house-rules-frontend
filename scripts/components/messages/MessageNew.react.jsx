@@ -24,9 +24,6 @@ var MessageNew = React.createClass({
     return (
       <div className="row">
         <form onSubmit={this._onSubmit} className="new-story">
-          // <div className="new-story__title">
-          //   <input type="text" placeholder="Title" name="content" ref="title" />
-          // </div>
           <div className="new-story__body">
             <textarea rows="10" placeholder="Your story..." name="content" ref="content" />
           </div>

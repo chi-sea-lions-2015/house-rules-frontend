@@ -25938,9 +25938,6 @@ var MessageNew = React.createClass({displayName: "MessageNew",
     return (
       React.createElement("div", {className: "row"}, 
         React.createElement("form", {onSubmit: this._onSubmit, className: "new-story"}, 
-          "// ", React.createElement("div", {className: "new-story__title"}, 
-          "//   ", React.createElement("input", {type: "text", placeholder: "Title", name: "content", ref: "title"}), 
-          "// "), 
           React.createElement("div", {className: "new-story__body"}, 
             React.createElement("textarea", {rows: "10", placeholder: "Your story...", name: "content", ref: "content"})
           ), 
@@ -25993,9 +25990,8 @@ var MessagePage = React.createClass({displayName: "MessagePage",
   render: function() {
     return (
       React.createElement("div", {className: "row"}, 
-        "// ", React.createElement("div", {className: "story__title"}, this.state.story.title), 
         React.createElement("div", {className: "story__body"}, this.state.message.content), 
-        "// ", React.createElement("div", {className: "story__user"}, this.state.message.author.first_name)
+        React.createElement("div", {className: "story__user"}, this.state.message.author.first_name)
       )
      );
   }
@@ -26056,14 +26052,9 @@ var MessageItem = React.createClass({displayName: "MessageItem",
   render: function() {
     return (
       React.createElement("li", {className: "story"}, 
-        "// ", React.createElement("div", {className: "story__title"}, 
-        "//   ", React.createElement(Link, {to: "message", params:  {messageId: this.props.message.id} }, 
-        "//     ", this.props.s.title, 
-        "//   "), 
-        "// "), 
-        React.createElement("div", {className: "story__body"}, this.props.message.content, "..."), 
-        "// ", React.createElement("span", {className: "story__user"}, this.props.story.user.username), 
-        "// ", React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.story.created_at))
+        React.createElement("div", {className: "story__body"}, this.props.message.content), 
+        React.createElement("span", {className: "story__user"}, this.props.message.author), 
+        React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.message.created_at))
       )
       );
   }
@@ -26299,7 +26290,7 @@ module.exports = (
     React.createElement(DefaultRoute, {handler: MessagesPage}), 
     React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}), 
     React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}), 
-    React.createElement(Route, {name: "messages", path: "/messages", handler: MessagesPage}), 
+    React.createElement(Route, {name: "messages", path: "/house/:houseId/messages", handler: MessagesPage}), 
     React.createElement(Route, {name: "message", path: "/messages/:messageId", handler: MessagePage}), 
     React.createElement(Route, {name: "new-message", path: "/message/new", handler: MessageNew})
   )
@@ -26568,8 +26559,8 @@ module.exports = {
 
   signup: function(email, username, password, passwordConfirmation) {
     request.post(APIEndpoints.REGISTRATION)
-      .send({ user: { 
-        email: email, 
+      .send({ user: {
+        email: email,
         username: username,
         password: password,
         password_confirmation: passwordConfirmation
@@ -26605,43 +26596,43 @@ module.exports = {
       });
   },
 
-  loadStories: function() {
-    request.get(APIEndpoints.STORIES)
+  loadMessages: function() {
+    request.get(APIEndpoints.MESSAGES)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
       .end(function(error, res){
         if (res) {
           json = JSON.parse(res.text);
-          ServerActionCreators.receiveStories(json);
+          ServerActionCreators.receiveMessages(json);
         }
       });
   },
 
-  loadStory: function(storyId) {
-    request.get(APIEndpoints.STORIES + '/' + storyId)
+  loadMessage: function(messageId) {
+    request.get(APIEndpoints.MESSAGES + '/' + messageId)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
       .end(function(error, res){
         if (res) {
           json = JSON.parse(res.text);
-          ServerActionCreators.receiveStory(json);
+          ServerActionCreators.receiveMessage(json);
         }
       });
   },
 
-  createStory: function(title, body) {
-    request.post(APIEndpoints.STORIES)
+  createMessage: function(content) {
+    request.post(APIEndpoints.MESSAGES)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ story: { title: title, body: body } })
+      .send({ message: { content: content } })
       .end(function(error, res){
         if (res) {
           if (res.error) {
             var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveCreatedStory(null, errorMsgs);
+            ServerActionCreators.receiveCreatedMessage(null, errorMsgs);
           } else {
             json = JSON.parse(res.text);
-            ServerActionCreators.receiveCreatedStory(json, null);
+            ServerActionCreators.receiveCreatedMessage(json, null);
           }
         }
       });

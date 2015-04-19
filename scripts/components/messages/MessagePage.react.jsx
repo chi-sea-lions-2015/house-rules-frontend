@@ -34,9 +34,8 @@ var MessagePage = React.createClass({
   render: function() {
     return (
       <div className="row">
-        // <div className="story__title">{this.state.story.title}</div>
         <div className="story__body">{this.state.message.content}</div>
-        // <div className="story__user">{this.state.message.author.first_name}</div>
+        <div className="story__user">{this.state.message.author.first_name}</div>
       </div>
      );
   }
