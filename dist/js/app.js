@@ -26156,9 +26156,10 @@ var MessageList = React.createClass({displayName: "MessageList",
 var Message = React.createClass({displayName: "Message",
   render: function () {
     return (
-      React.createElement("div", null, 
-        React.createElement("h4", null, "Someone said: "), 
-        React.createElement("p", null,  this.props.message.content)
+      React.createElement("li", {className: "story"}, 
+        React.createElement("div", {className: "story__body"}, this.props.message.content), 
+        React.createElement("span", {className: "story__user"}, this.props.message.author), 
+        React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.message.created_at))
       )
     )
   }

@@ -74,10 +74,11 @@ var MessageList = React.createClass({
 var Message = React.createClass({
   render: function () {
     return (
-      <div>
-        <h4>Someone said: </h4>
-        <p>{ this.props.message.content }</p>
-      </div>
+      <li className="story">
+        <div className="story__body">{this.props.message.content}</div>
+        <span className="story__user">{this.props.message.author}</span>
+        <span className="story__date"> - {timeago(this.props.message.created_at)}</span>
+      </li>
     )
   }
 });
