@@ -60,43 +60,44 @@ module.exports = {
       });
   },
 
-  loadStories: function() {
-    request.get(APIEndpoints.STORIES)
+loadMessages: function() {
+    request.get(APIEndpoints.MESSAGES)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
       .end(function(error, res){
         if (res) {
           json = JSON.parse(res.text);
-          ServerActionCreators.receiveStories(json);
+          ServerActionCreators.receiveMessages(json);
         }
       });
   },
 
-  loadStory: function(storyId) {
-    request.get(APIEndpoints.STORIES + '/' + storyId)
+  loadMessage: function(messageId) {
+    request.get(APIEndpoints.MESSAGES + '/' + messageId)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
       .end(function(error, res){
         if (res) {
           json = JSON.parse(res.text);
-          ServerActionCreators.receiveStory(json);
+          ServerActionCreators.receiveMessage(json);
         }
       });
   },
 
-  createStory: function(title, body) {
+
+  createMessage: function(title, body) {
     request.post(APIEndpoints.STORIES)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ story: { title: title, body: body } })
+      .send({ message: { content: content } })
       .end(function(error, res){
         if (res) {
           if (res.error) {
             var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveCreatedStory(null, errorMsgs);
+            ServerActionCreators.receiveCreatedMessage(null, errorMsgs);
           } else {
             json = JSON.parse(res.text);
-            ServerActionCreators.receiveCreatedStory(json, null);
+            ServerActionCreators.receiveCreatedMessage(json, null);
           }
         }
       });

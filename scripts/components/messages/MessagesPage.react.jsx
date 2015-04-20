@@ -54,7 +54,7 @@ var MessageItem = React.createClass({
         //     {this.props.s.title}
         //   </Link>
         // </div>
-        <div className="story__body">{this.props.message.content}...</div>
+        <div className="message__body">{this.props.message.content}...</div>
         // <span className="story__user">{this.props.story.user.username}</span>
         // <span className="story__date"> - {timeago(this.props.story.created_at)}</span>
       </li>

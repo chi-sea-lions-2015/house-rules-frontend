@@ -25819,7 +25819,7 @@ var Header = React.createClass({displayName: "Header",
 
     var leftNav = this.props.isLoggedIn ? (
       React.createElement("ul", {className: "left"}, 
-        React.createElement("li", null, React.createElement(Link, {to: "new-story"}, "New story"))
+        React.createElement("li", null, React.createElement(Link, {to: "new-message"}, "New Message"))
       )
     ) : (
       React.createElement("div", null)
@@ -25940,14 +25940,14 @@ var MessageNew = React.createClass({displayName: "MessageNew",
   render: function() {
     return (
       React.createElement("div", {className: "row"}, 
-        React.createElement("form", {onSubmit: this._onSubmit, className: "new-story"}, 
-          "// ", React.createElement("div", {className: "new-story__title"}, 
+        React.createElement("form", {onSubmit: this._onSubmit, className: "new-message"}, 
+          "// ", React.createElement("div", {className: "new-message__title"}, 
           "//   ", React.createElement("input", {type: "text", placeholder: "Title", name: "content", ref: "title"}), 
           "// "), 
-          React.createElement("div", {className: "new-story__body"}, 
-            React.createElement("textarea", {rows: "10", placeholder: "Your story...", name: "content", ref: "content"})
+          React.createElement("div", {className: "new-message__body"}, 
+            React.createElement("textarea", {rows: "10", placeholder: "Your message...", name: "content", ref: "content"})
           ), 
-          React.createElement("div", {className: "new-story__submit"}, 
+          React.createElement("div", {className: "new-message__submit"}, 
             React.createElement("button", {type: "submit"}, "Create")
           )
          )
@@ -25997,7 +25997,7 @@ var MessagePage = React.createClass({displayName: "MessagePage",
     return (
       React.createElement("div", {className: "row"}, 
         "// ", React.createElement("div", {className: "story__title"}, this.state.story.title), 
-        React.createElement("div", {className: "story__body"}, this.state.message.content), 
+        React.createElement("div", {className: "message__body"}, this.state.message.content), 
         "// ", React.createElement("div", {className: "story__user"}, this.state.message.author.first_name)
       )
      );
@@ -26064,7 +26064,7 @@ var MessageItem = React.createClass({displayName: "MessageItem",
         "//     ", this.props.s.title, 
         "//   "), 
         "// "), 
-        React.createElement("div", {className: "story__body"}, this.props.message.content, "..."), 
+        React.createElement("div", {className: "message__body"}, this.props.message.content, "..."), 
         "// ", React.createElement("span", {className: "story__user"}, this.props.story.user.username), 
         "// ", React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.story.created_at))
       )
@@ -26626,43 +26626,44 @@ module.exports = {
       });
   },
 
-  loadStories: function() {
-    request.get(APIEndpoints.STORIES)
+loadMessages: function() {
+    request.get(APIEndpoints.MESSAGES)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
       .end(function(error, res){
         if (res) {
           json = JSON.parse(res.text);
-          ServerActionCreators.receiveStories(json);
+          ServerActionCreators.receiveMessages(json);
         }
       });
   },
 
-  loadStory: function(storyId) {
-    request.get(APIEndpoints.STORIES + '/' + storyId)
+  loadMessage: function(messageId) {
+    request.get(APIEndpoints.MESSAGES + '/' + messageId)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
       .end(function(error, res){
         if (res) {
           json = JSON.parse(res.text);
-          ServerActionCreators.receiveStory(json);
+          ServerActionCreators.receiveMessage(json);
         }
       });
   },
 
-  createStory: function(title, body) {
+
+  createMessage: function(title, body) {
     request.post(APIEndpoints.STORIES)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ story: { title: title, body: body } })
+      .send({ message: { content: content } })
       .end(function(error, res){
         if (res) {
           if (res.error) {
             var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveCreatedStory(null, errorMsgs);
+            ServerActionCreators.receiveCreatedMessage(null, errorMsgs);
           } else {
             json = JSON.parse(res.text);
-            ServerActionCreators.receiveCreatedStory(json, null);
+            ServerActionCreators.receiveCreatedMessage(json, null);
           }
         }
       });
