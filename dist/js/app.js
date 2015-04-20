@@ -25860,7 +25860,7 @@ var Header = React.createClass({displayName: "Header",
       React.createElement("nav", {className: "top-bar", "data-topbar": true, role: "navigation"}, 
         React.createElement("ul", {className: "title-area"}, 
           React.createElement("li", {className: "name"}, 
-            React.createElement("h1", null, React.createElement("a", {href: "#"}, React.createElement("strong", null, "S")))
+            React.createElement("h1", null, React.createElement("strong", null, "Menu"))
           ), 
           React.createElement("li", {className: "toggle-topbar menu-icon"}, React.createElement("a", {href: "#"}, React.createElement("span", null, "Menu")))
         ), 
