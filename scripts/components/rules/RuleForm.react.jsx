@@ -1,6 +1,6 @@
 var React = require('react');
 
-var MessageForm = React.createClass({
+var RuleForm = React.createClass({
   handleSubmit: function ( event ) {
     event.preventDefault();
     var content = this.refs.content.getDOMNode().value.trim();
@@ -11,7 +11,8 @@ var MessageForm = React.createClass({
     }
 
     // submit
-
+    var formData = $( this.refs.form.getDOMNode() ).serialize();
+    this.props.onRuleSubmit( formData, this.props.form.action );
 
     // reset form
     this.refs.content.getDOMNode().value = "";
@@ -26,3 +27,5 @@ var MessageForm = React.createClass({
     )
   }
 });
+
+module.exports = RuleForm;
