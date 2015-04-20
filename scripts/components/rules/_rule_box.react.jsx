@@ -41,7 +41,7 @@ var RuleBox = React.createClass({
         <h4>Create a Rule</h4>
         <RuleForm form={ this.state.form } />
         <div className="messages_link">
-          <Link to="messages" params={ {houseId: 1} }>
+          <Link to="messages" params={ {houseId: 1}}>
           <p>Messages</p>
           </Link>
         </div>

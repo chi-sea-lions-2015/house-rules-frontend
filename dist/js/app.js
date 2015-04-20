@@ -26238,171 +26238,12 @@ var MessageForm = React.createClass({displayName: "MessageForm",
 module.exports = MessageBox;
 
 },{"../../actions/MessageActionCreators.react.jsx":207,"../../components/common/ErrorNotice.react.jsx":214,"../../stores/MessageStore.react.jsx":228,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],219:[function(require,module,exports){
-var React = require('react');
-var HouseRulesAPIDispatcher = require('../../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../../constants/HouseRulesConstants.js');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var SessionStore = require('../../stores/SessionStore.react.jsx');
-var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
-var RouteActionCreators = require('../../actions/RouteActionCreators.react.jsx');
 
-var RuleNew = React.createClass({displayName: "RuleNew",
-
-  componentDidMount: function() {
-    if (!SessionStore.isLoggedIn()) {
-      RouteActionCreators.redirect('app');
-    }
-  },
-
-  _onSubmit: function(e) {
-    e.preventDefault();
-    var content = this.refs.content.getDOMNode().value;
-    RuleActionCreators.createRule(content);
-  },
-
-  render: function() {
-    return (
-      React.createElement("div", {className: "row"}, 
-        React.createElement("form", {onSubmit: this._onSubmit, className: "new-rule"}, 
-          React.createElement("div", {className: "new-rule__body"}, 
-            React.createElement("textarea", {rows: "10", placeholder: "Your rule...", name: "content", ref: "content"})
-          ), 
-          React.createElement("div", {className: "new-rule__submit"}, 
-            React.createElement("button", {type: "submit"}, "Create")
-          )
-         )
-       )
-     );
-  }
-
-});
-
-module.exports = RuleNew;
-
-},{"../../actions/RouteActionCreators.react.jsx":208,"../../actions/RuleActionCreators.react.jsx":209,"../../constants/HouseRulesConstants.js":225,"../../dispatcher/HouseRulesAPIDispatcher.js":226,"../../stores/SessionStore.react.jsx":231,"../../utils/WebAPIUtils.js":232,"react":202}],220:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var RuleStore = require('../../stores/RuleStore.react.jsx');
-var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
-var State = require('react-router').State;
-
-var RulePage = React.createClass({displayName: "RulePage",
-
-  mixins: [ State ],
-
-  getInitialState: function() {
-    return {
-      rule: RuleStore.getRule(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    RuleStore.addChangeListener(this._onChange);
-    RuleActionCreators.loadRule(this.getParams().ruleId);
-  },
-
-  componentWillUnmount: function() {
-    RuleStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      rule: RuleStore.getRule(),
-      errors: RuleStore.getErrors()
-    });
-  },
-
-  render: function() {
-    return (
-      React.createElement("div", {className: "row"}, 
-        React.createElement("div", {className: "rule__body"}, this.state.rule.content)
-      )
-     );
-  }
-
-});
-
-module.exports = RulePage;
-
-},{"../../actions/RuleActionCreators.react.jsx":209,"../../stores/RuleStore.react.jsx":230,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22}],221:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var RuleStore = require('../../stores/RuleStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
-var Router = require('react-router');
-var Link = Router.Link;
-var timeago = require('timeago');
-
-var RulesPage = React.createClass({displayName: "RulesPage",
-
-  getInitialState: function() {
-    return {
-      rules: RuleStore.getAllRules(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    RuleStore.addChangeListener(this._onChange);
-    RuleActionCreators.loadRules();
-  },
-
-  componentWillUnmount: function() {
-    RuleStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      rules: RuleStore.getAllRules(),
-      errors: RuleStore.getErrors()
-    });
-  },
-
-  render: function() {
-    var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
-    return (
-      React.createElement("div", null, 
-        errors, 
-        React.createElement("div", {className: "row"}, 
-          React.createElement(RulesList, {rules: this.state.rules})
-        ), 
-        React.createElement("form", {ref: "form", className: "rule-form", method: "post", onSubmit:  this.handleSubmit}, 
-        React.createElement("p", null, React.createElement("textarea", {ref: "content", name: "rule[content]", placeholder: "Say something..."})), 
-        React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post rule"))
-      )
-      )
-    );
-  }
-});
-
-var RuleItem = React.createClass({displayName: "RuleItem",
-  render: function() {
-    return (
-      React.createElement("li", {className: "rule"}, 
-        React.createElement("div", {className: "rule__body"}, this.props.rule.content)
-      )
-      );
-  }
-});
-
-var RulesList = React.createClass({displayName: "RulesList",
-  render: function() {
-    return (
-      React.createElement("ul", {className: "large-8 medium-10 small-12 small-centered columns"}, 
-        this.props.rules.map(function(rule, index){
-          return React.createElement(RuleItem, {rule: rule, key: "rule-" + index})
-        })
-      )
-    );
-  }
-});
-
-module.exports = RulesPage;
-
-
-},{"../../actions/RuleActionCreators.react.jsx":209,"../../components/common/ErrorNotice.react.jsx":214,"../../stores/RuleStore.react.jsx":230,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],222:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
+arguments[4][219][0].apply(exports,arguments)
+},{"dup":219}],221:[function(require,module,exports){
+arguments[4][219][0].apply(exports,arguments)
+},{"dup":219}],222:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var RuleStore = require('../../stores/RuleStore.react.jsx');
@@ -26446,7 +26287,7 @@ var RuleBox = React.createClass({displayName: "RuleBox",
         React.createElement("h4", null, "Create a Rule"), 
         React.createElement(RuleForm, {form:  this.state.form}), 
         React.createElement("div", {className: "messages_link"}, 
-          React.createElement(Link, {to: "messages", params:  {houseId: 1} }, 
+          React.createElement(Link, {to: "messages", params:  {houseId: 1}}, 
           React.createElement("p", null, "Messages")
           )
         )
