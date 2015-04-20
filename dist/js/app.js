@@ -26275,6 +26275,7 @@ var MessageBox = React.createClass({displayName: "MessageBox",
 });
 
 var MessageList = React.createClass({displayName: "MessageList",
+
   render: function () {
     var messageNodes = this.props.messages.map(function ( message ) {
       return React.createElement(Message, {message: message, key:  message.id})
@@ -26302,10 +26303,12 @@ var Message = React.createClass({displayName: "Message",
 
 
 var MessageForm = React.createClass({displayName: "MessageForm",
+
   handleSubmit: function ( event ) {
     event.preventDefault();
     var content = this.refs.content.getDOMNode().value;
     MessageActionCreators.createMessage(content);
+
 
     // validate
     if (!content) {
@@ -26315,6 +26318,7 @@ var MessageForm = React.createClass({displayName: "MessageForm",
     // reset form
     this.refs.content.getDOMNode().value = "";
   },
+
   render: function () {
     return (
       React.createElement("form", {ref: "form", className: "message-form", method: "post", onSubmit:  this.handleSubmit}, 

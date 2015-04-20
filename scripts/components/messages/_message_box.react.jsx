@@ -46,6 +46,7 @@ var MessageBox = React.createClass({
 });
 
 var MessageList = React.createClass({
+
   render: function () {
     var messageNodes = this.props.messages.map(function ( message ) {
       return <Message message={ message } key={ message.id } />
@@ -73,10 +74,12 @@ var Message = React.createClass({
 
 
 var MessageForm = React.createClass({
+
   handleSubmit: function ( event ) {
     event.preventDefault();
     var content = this.refs.content.getDOMNode().value;
     MessageActionCreators.createMessage(content);
+
 
     // validate
     if (!content) {
@@ -86,6 +89,7 @@ var MessageForm = React.createClass({
     // reset form
     this.refs.content.getDOMNode().value = "";
   },
+
   render: function () {
     return (
       <form ref="form" className="message-form" method="post" onSubmit={ this.handleSubmit }>
