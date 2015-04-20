@@ -68,7 +68,7 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:
-      router.transitionTo('app');
+      router.transitionTo('rule');
       break;
 
     default:
