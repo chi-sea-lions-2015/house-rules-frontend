@@ -52,14 +52,19 @@ var MessageBox = React.createClass({
   render: function () {
     return (
       <div className="message-box">
-        <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
-        <MessageList messages={ this.state.messages } />
-        <hr />
-        <h2>talk to your roomies</h2>
-        <MessageForm onMessageSubmit={this.handleMessageSubmit} form={ this.state.form } />
-        <RouteHandler/>
+      <div className="row">
+      <div class="small-6 large-2 columns"><br /></div>
+      <div class="small-6 large-8 columns">
+      <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
+      <MessageList messages={ this.state.messages } />
+      <hr />
+      <h2>talk to your roomies</h2>
+      <MessageForm onMessageSubmit={this.handleMessageSubmit} form={ this.state.form } />
+      <RouteHandler/>
       </div>
-    );
+      <div className="large-3 columns"><br /></div>
+      </div></div>
+      );
   }
 });
 
@@ -72,9 +77,9 @@ var MessageList = React.createClass({
 
     return (
       <div className="message-list">
-        { messageNodes }
+      { messageNodes }
       </div>
-    )
+      )
   }
 });
 
@@ -82,11 +87,11 @@ var Message = React.createClass({
   render: function () {
     return (
       <li className="story">
-        <div className="story__body">{this.props.message.content}</div>
-        <span className="story__user">{this.props.message.author}</span>
-        <span className="story__date"> - {timeago(this.props.message.created_at)}</span>
+      <div className="story__body">{this.props.message.content}</div>
+      <span className="story__user">{this.props.message.author}</span>
+      <span className="story__date"> - {timeago(this.props.message.created_at)}</span>
       </li>
-    )
+      )
   }
 });
 
@@ -110,10 +115,13 @@ var MessageForm = React.createClass({
   render: function () {
     return (
       <form ref="form" className="message-form" method="post" onSubmit={ this.handleSubmit }>
-        <p><textarea ref="content" name="message[content]" placeholder="Say something..." /></p>
-        <p><button type="submit">Post message</button></p>
+        <fieldset>
+          <legend>Create a Message</legend>
+          <p><textarea ref="content" name="message[content]" placeholder="Say something..." /></p>
+          <p><button type="submit">Post message</button></p>
+        </fieldset>
       </form>
-    )
+      )
   }
 });
 
