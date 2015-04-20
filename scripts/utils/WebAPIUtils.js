@@ -20,7 +20,8 @@ module.exports = {
 
   signup: function(username, firstName, lastName, phone, email, password, passwordConfirmation) {
     request.post(APIEndpoints.REGISTRATION)
-      .send({ user: { 
+      .send({ user: {
+        email: email,
         username: username,
         first_name: firstName,
         last_name: lastName,
@@ -60,7 +61,11 @@ module.exports = {
       });
   },
 
+<<<<<<< HEAD
 loadMessages: function() {
+=======
+  loadMessages: function() {
+>>>>>>> 1b10e59f711606aa473cbc197bd9aa96b4e58798
     request.get(APIEndpoints.MESSAGES)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
@@ -84,9 +89,14 @@ loadMessages: function() {
       });
   },
 
+<<<<<<< HEAD
 
   createMessage: function(title, body) {
     request.post(APIEndpoints.STORIES)
+=======
+  createMessage: function(content) {
+    request.post(APIEndpoints.MESSAGES)
+>>>>>>> 1b10e59f711606aa473cbc197bd9aa96b4e58798
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
       .send({ message: { content: content } })
@@ -98,6 +108,51 @@ loadMessages: function() {
           } else {
             json = JSON.parse(res.text);
             ServerActionCreators.receiveCreatedMessage(json, null);
+<<<<<<< HEAD
+=======
+          }
+        }
+      });
+  },
+
+  loadChores: function() {
+    request.get(APIEndpoints.CHORES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveChores(json);
+        }
+      });
+  },
+
+  loadChore: function(choreId) {
+    request.get(APIEndpoints.CHORES + '/' + choreId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveChore(json);
+        }
+      });
+  },
+
+  createChore: function(task) {
+    request.post(APIEndpoints.CHORES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ chore: { task: task } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedChore(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedChore(json, null);
+>>>>>>> 1b10e59f711606aa473cbc197bd9aa96b4e58798
           }
         }
       });

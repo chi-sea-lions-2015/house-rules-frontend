@@ -27,3 +27,5 @@ var MessageForm = React.createClass({
     )
   }
 });
+
+module.exports = MessageForm;
