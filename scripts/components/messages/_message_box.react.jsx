@@ -79,6 +79,7 @@ var MessageForm = React.createClass({
     event.preventDefault();
     var content = this.refs.content.getDOMNode().value;
     MessageActionCreators.createMessage(content);
+    console.log(content)
 
 
     // validate

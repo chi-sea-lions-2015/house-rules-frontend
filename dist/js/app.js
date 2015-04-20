@@ -26365,6 +26365,7 @@ var MessageForm = React.createClass({displayName: "MessageForm",
     event.preventDefault();
     var content = this.refs.content.getDOMNode().value;
     MessageActionCreators.createMessage(content);
+    console.log(content)
 
 
     // validate
@@ -26814,8 +26815,8 @@ var APIRoot = "http://localhost:3002";
 module.exports = {
 
   APIEndpoints: {
-    LOGIN:          APIRoot + "/v1/login",
-    REGISTRATION:   APIRoot + "/v1/users",
+    LOGIN:          APIRoot + "/login",
+    REGISTRATION:   APIRoot + "/users",
     MESSAGES:       APIRoot + "/houses/1/messages",
     RULES:          APIRoot + "/houses/1/rules",
     CHORES:         APIRoot + "/houses/1/chores"
@@ -26884,6 +26885,7 @@ var HouseRulesAPIDispatcher = assign(new Dispatcher(), {
 });
 
 module.exports = HouseRulesAPIDispatcher;
+
 },{"../constants/HouseRulesConstants.js":227,"flux":8,"object-assign":12}],229:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
