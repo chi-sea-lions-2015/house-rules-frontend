@@ -7,13 +7,8 @@ var RouteHandler = Router.RouteHandler;
 var HouseRules = require('./components/HouseRules.react.jsx');
 var LoginPage = require('./components/session/LoginPage.react.jsx');
 var MessageBox = require('./components/messages/_message_box.react.jsx');
-var RulesPage = require('./components/rules/RulesPage.react.jsx');
-var RulePage = require('./components/rules/RulePage.react.jsx');
-var RuleNew = require('./components/rules/RuleNew.react.jsx');
 var RuleBox = require('./components/rules/_rule_box.react.jsx');
-
 var SignupPage = require('./components/session/SignupPage.react.jsx');
-
 var ChoreBox = require('./components/chores/ChoreBox.react.jsx');
 
 module.exports = (
@@ -23,16 +18,6 @@ module.exports = (
     <Route name="signup" path="/signup" handler={SignupPage}/>
     <Route name="rules" path="/houses/:houseId/rules" handler={RuleBox}/>
     <Route name="messages" path="/houses/:houseId/messages" handler={MessageBox}/>
-    <Route name="message" path="/messages/:messageId" handler={MessagePage} />
-    <Route name="new-message" path="/message/new" handler={MessageNew}/>
-<<<<<<< HEAD
-    <Route name="chores" path="/house/:houseId/chores" handler={ChoreBox}/>
-    <Route name="chore" path="/chores/:choreId" handler={ChoreBox} />
-    <Route name="new-chore" path="/chores/new" handler={ChoreBox}/>
-=======
     <Route name="chores" path="/houses/:houseId/chores" handler={ChoreBox}/>
-    <Route name="chore" path="houses/:houseId/chores/:choreId" handler={ChoreBox} />
-    <Route name="new-chore" path="/chore/new" handler={ChoreBox}/>
->>>>>>> d5721e13ee9bd493a7c6a04c0fc704244e76c3ea
   </Route>
 );
