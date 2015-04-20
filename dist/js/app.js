@@ -25754,7 +25754,7 @@ module.exports = {
 
   loadRule: function(ruleId) {
     HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_MESSAGE,
+      type: ActionTypes.LOAD_RULE,
       ruleId: ruleId
     });
     WebAPIUtils.loadRule(ruleId);
@@ -26292,8 +26292,25 @@ var MessageActionCreators = require('../../actions/MessageActionCreators.react.j
 var Router = require('react-router');
 var Link = Router.Link;
 var timeago = require('timeago');
+var RouteHandler = Router.RouteHandler
 
 var MessageBox = React.createClass({displayName: "MessageBox",
+
+  // handleMessageSubmit: function(message) {
+  //   $.ajax({
+  //     url: this.props.url,
+  //     dataType: 'json',
+  //     type: 'POST',
+  //     data: message,
+  //     success: function(data) {
+  //       console.log("YAYYYA!")
+
+  //     }.bind(this),
+  //     error: function(xhr, status err) {
+  //       console.error(this.props.url status, err.toString());
+  //     }.bind(this)
+  //   });
+  // },
 
   getInitialState: function() {
     return {
@@ -26325,7 +26342,8 @@ var MessageBox = React.createClass({displayName: "MessageBox",
         React.createElement(MessageList, {messages:  this.state.messages}), 
         React.createElement("hr", null), 
         React.createElement("h2", null, "talk to your roomies"), 
-        React.createElement(MessageForm, {form:  this.state.form})
+        React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit, form:  this.state.form}), 
+        React.createElement(RouteHandler, null)
       )
     );
   }
@@ -26384,6 +26402,9 @@ var MessageForm = React.createClass({displayName: "MessageForm",
     )
   }
 });
+
+
+
 
 module.exports = MessageBox;
 
@@ -26808,13 +26829,13 @@ module.exports = SignupPage;
 },{"../../actions/SessionActionCreators.react.jsx":212,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/SessionStore.react.jsx":234,"react":202}],227:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
-var APIRoot = "http://localhost:3000";
+var APIRoot = "http://localhost:3002";
 
 module.exports = {
 
   APIEndpoints: {
-    LOGIN:          APIRoot + "/v1/login",
-    REGISTRATION:   APIRoot + "/v1/users",
+    LOGIN:          APIRoot + "/login",
+    REGISTRATION:   APIRoot + "/users",
     MESSAGES:       APIRoot + "/houses/1/messages",
     RULES:          APIRoot + "/houses/1/rules",
     CHORES:         APIRoot + "/houses/1/chores"
@@ -26888,6 +26909,7 @@ var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
+var RouteHandler = Router.RouteHandler;
 
 var HouseRules = require('./components/HouseRules.react.jsx');
 var LoginPage = require('./components/session/LoginPage.react.jsx');
@@ -26900,22 +26922,21 @@ var RulePage = require('./components/rules/RulePage.react.jsx');
 var RuleNew = require('./components/rules/RuleNew.react.jsx');
 var RuleBox = require('./components/rules/_rule_box.react.jsx');
 
-
 var SignupPage = require('./components/session/SignupPage.react.jsx');
 
 var ChoreBox = require('./components/chores/ChoreBox.react.jsx');
 
 module.exports = (
   React.createElement(Route, {name: "app", path: "/", handler: HouseRules}, 
-    React.createElement(DefaultRoute, {handler: MessageBox}), 
+    React.createElement(DefaultRoute, {handler: RuleBox}), 
     React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}), 
     React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}), 
     React.createElement(Route, {name: "rules", path: "/houses/:houseId/rules", handler: RuleBox}), 
     React.createElement(Route, {name: "messages", path: "/houses/:houseId/messages", handler: MessageBox}), 
     React.createElement(Route, {name: "message", path: "/messages/:messageId", handler: MessagePage}), 
     React.createElement(Route, {name: "new-message", path: "/message/new", handler: MessageNew}), 
-    React.createElement(Route, {name: "chores", path: "/house/:houseId/chores", handler: ChoreBox}), 
-    React.createElement(Route, {name: "chore", path: "/chores/:choreId", handler: ChoreBox}), 
+    React.createElement(Route, {name: "chores", path: "/houses/:houseId/chores", handler: ChoreBox}), 
+    React.createElement(Route, {name: "chore", path: "houses/:houseId/chores/:choreId", handler: ChoreBox}), 
     React.createElement(Route, {name: "new-chore", path: "/chore/new", handler: ChoreBox})
   )
 );
@@ -27044,7 +27065,6 @@ var MessageStore = assign({}, EventEmitter.prototype, {
 
 MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   var action = payload.action;
-
   switch(action.type) {
 
     case ActionTypes.RECEIVE_MESSAGES:
@@ -27054,7 +27074,9 @@ MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
 
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
       if (action.json) {
-        _messages.unshift(action.json.message);
+        //ALTERED TO MAKE FUNCTIONAL!!!
+        //API MODIFIED TO SENT ONE MESSAGE!!!
+        _messages.push(action.json);
         _errors = [];
       }
       if (action.errors) {
@@ -27142,16 +27164,16 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       if (SessionStore.isLoggedIn()) {
         router.transitionTo('app');
         // Dirty hack, need to figure this out
-        $(document).foundation();
       }
       break;
 
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
-      router.transitionTo('app');
+      router.transitionTo('messages');
+
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:
-      router.transitionTo('app');
+      router.transitionTo('rules');
       break;
 
     default:
@@ -27217,7 +27239,7 @@ RuleStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
     case ActionTypes.RECEIVE_CREATED_RULE:
       if (action.json) {
-        _rules.unshift(action.json.rule);
+        _rules.push(action.json);
         _errors = [];
       }
       if (action.errors) {

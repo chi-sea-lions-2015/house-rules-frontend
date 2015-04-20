@@ -14,6 +14,7 @@ var MessageForm = React.createClass({
 
 
     // reset form
+
     this.refs.content.getDOMNode().value = "";
   },
   render: function () {
