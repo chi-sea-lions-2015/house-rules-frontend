@@ -26309,7 +26309,6 @@ var MessageForm = React.createClass({displayName: "MessageForm",
     var content = this.refs.content.getDOMNode().value;
     MessageActionCreators.createMessage(content);
 
-
     // validate
     if (!content) {
       return false;
@@ -26483,7 +26482,7 @@ module.exports = SignupPage;
 },{"../../actions/SessionActionCreators.react.jsx":211,"../../components/common/ErrorNotice.react.jsx":215,"../../stores/SessionStore.react.jsx":228,"react":202}],222:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
-var APIRoot = "http://localhost:3002";
+var APIRoot = "http://localhost:3000";
 
 module.exports = {
 

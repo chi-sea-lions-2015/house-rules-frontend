@@ -80,7 +80,6 @@ var MessageForm = React.createClass({
     var content = this.refs.content.getDOMNode().value;
     MessageActionCreators.createMessage(content);
 
-
     // validate
     if (!content) {
       return false;
