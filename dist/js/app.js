@@ -26000,24 +26000,24 @@ var ChoreBox = React.createClass({displayName: "ChoreBox",
 
   getInitialState: function() {
     return {
-      messages: MessageStore.getAllMessages(),
+      messages: ChoreStore.getAllChores(),
       errors: []
     };
   },
 
   componentDidMount: function() {
-    MessageStore.addChangeListener(this._onChange);
-    MessageActionCreators.loadMessages();
+    ChoreStore.addChangeListener(this._onChange);
+    ChoreActionCreators.loadChores();
   },
 
   componentWillUnmount: function() {
-    MessageStore.removeChangeListener(this._onChange);
+    ChoreStore.removeChangeListener(this._onChange);
   },
 
   _onChange: function() {
     this.setState({
-      messages: MessageStore.getAllMessages(),
-      errors: MessageStore.getErrors()
+      messages: ChoreStore.loadChores(),
+      errors: ChoreStore.getErrors()
     });
   },
 
@@ -26814,8 +26814,8 @@ var APIRoot = "http://localhost:3002";
 module.exports = {
 
   APIEndpoints: {
-    LOGIN:          APIRoot + "/v1/login",
-    REGISTRATION:   APIRoot + "/v1/users",
+    LOGIN:          APIRoot + "/login",
+    REGISTRATION:   APIRoot + "/users",
     MESSAGES:       APIRoot + "/houses/1/messages",
     RULES:          APIRoot + "/houses/1/rules",
     CHORES:         APIRoot + "/houses/1/chores"
@@ -26917,7 +26917,7 @@ module.exports = (
     React.createElement(Route, {name: "new-message", path: "/message/new", handler: MessageNew}), 
     React.createElement(Route, {name: "chores", path: "/house/:houseId/chores", handler: ChoreBox}), 
     React.createElement(Route, {name: "chore", path: "/chores/:choreId", handler: ChoreBox}), 
-    React.createElement(Route, {name: "new-chore", path: "/chore/new", handler: ChoreBox})
+    React.createElement(Route, {name: "new-chore", path: "/chores/new", handler: ChoreBox})
   )
 );
 

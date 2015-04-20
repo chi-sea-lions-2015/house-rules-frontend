@@ -11,24 +11,24 @@ var ChoreBox = React.createClass({
 
   getInitialState: function() {
     return {
-      messages: MessageStore.getAllMessages(),
+      messages: ChoreStore.getAllChores(),
       errors: []
     };
   },
 
   componentDidMount: function() {
-    MessageStore.addChangeListener(this._onChange);
-    MessageActionCreators.loadMessages();
+    ChoreStore.addChangeListener(this._onChange);
+    ChoreActionCreators.loadChores();
   },
 
   componentWillUnmount: function() {
-    MessageStore.removeChangeListener(this._onChange);
+    ChoreStore.removeChangeListener(this._onChange);
   },
 
   _onChange: function() {
     this.setState({
-      messages: MessageStore.getAllMessages(),
-      errors: MessageStore.getErrors()
+      messages: ChoreStore.loadChores(),
+      errors: ChoreStore.getErrors()
     });
   },
 

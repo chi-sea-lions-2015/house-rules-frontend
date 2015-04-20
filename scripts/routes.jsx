@@ -30,6 +30,6 @@ module.exports = (
     <Route name="new-message" path="/message/new" handler={MessageNew}/>
     <Route name="chores" path="/house/:houseId/chores" handler={ChoreBox}/>
     <Route name="chore" path="/chores/:choreId" handler={ChoreBox} />
-    <Route name="new-chore" path="/chore/new" handler={ChoreBox}/>
+    <Route name="new-chore" path="/chores/new" handler={ChoreBox}/>
   </Route>
 );
