@@ -8,7 +8,8 @@ module.exports = {
     LOGIN:          APIRoot + "/v1/login",
     REGISTRATION:   APIRoot + "/v1/users",
     MESSAGES:       APIRoot + "/houses/1/messages",
-    RULES:          APIRoot + "/houses/1/rules"
+    RULES:          APIRoot + "/houses/1/rules",
+    CHORES:         APIRoot + "/houses/1/chores"
   },
 
   PayloadSources: keyMirror({
@@ -35,7 +36,14 @@ module.exports = {
     LOAD_RULE: null,
     RECEIVE_RULE: null,
     CREATE_RULE: null,
-    RECEIVE_CREATED_RULE: null
+    RECEIVE_CREATED_RULE: null,
+
+    LOAD_CHORES: null,
+    RECEIVE_CHORES: null,
+    LOAD_CHORE: null,
+    RECEIVE_CHORE: null,
+    CREATE_CHORE: null,
+    RECEIVE_CREATED_CHORE: null
   })
 
 };

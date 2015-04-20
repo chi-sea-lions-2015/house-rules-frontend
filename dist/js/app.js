@@ -7,7 +7,7 @@ router.run(function (Handler, state) {
   React.render(React.createElement(Handler, null), document.getElementById('content'));
 });
 
-},{"./stores/RouteStore.react.jsx":229,"react":202}],2:[function(require,module,exports){
+},{"./stores/RouteStore.react.jsx":232,"react":202}],2:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -25657,6 +25657,40 @@ var ActionTypes = HouseRulesConstants.ActionTypes;
 
 module.exports = {
 
+  loadChores: function() {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_CHORES
+    });
+    WebAPIUtils.loadChores();
+  },
+
+  loadChore: function(choreId) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_CHORE,
+      choreId: choreId
+    });
+    WebAPIUtils.loadChore(choreId);
+  },
+
+  createChore: function(task) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.CREATE_CHORE,
+      task: task
+    });
+    WebAPIUtils.createChore(task);
+  }
+
+};
+
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228,"../utils/WebAPIUtils.js":235}],208:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
   loadMessages: function() {
     HouseRulesAPIDispatcher.handleViewAction({
       type: ActionTypes.LOAD_MESSAGES
@@ -25683,7 +25717,7 @@ module.exports = {
 };
 
 
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":232}],208:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228,"../utils/WebAPIUtils.js":235}],209:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 
@@ -25702,7 +25736,7 @@ module.exports = {
 
 
 
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226}],209:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228}],210:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var WebAPIUtils = require('../utils/WebAPIUtils.js');
@@ -25737,7 +25771,7 @@ module.exports = {
 };
 
 
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":232}],210:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228,"../utils/WebAPIUtils.js":235}],211:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 
@@ -25799,7 +25833,7 @@ module.exports = {
 
 };
 
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226}],211:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228}],212:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var WebAPIUtils = require('../utils/WebAPIUtils.js');
@@ -25808,15 +25842,18 @@ var ActionTypes = HouseRulesConstants.ActionTypes;
 
 module.exports = {
 
-  signup: function(email, username, password, passwordConfirmation) {
+  signup: function(username, email, password, passwordConfirmation, firstName, lastName, phone)  {
     HouseRulesAPIDispatcher.handleViewAction({
       type: ActionTypes.SIGNUP_REQUEST,
-      email: email,
       username: username,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      email: email, 
       password: password,
       passwordConfirmation: passwordConfirmation
     });
-    WebAPIUtils.signup(email, username, password, passwordConfirmation);
+    WebAPIUtils.signup(username, firstName, lastName, phone, email, password, passwordConfirmation);
   },
 
   login: function(email, password) {
@@ -25837,7 +25874,7 @@ module.exports = {
 };
 
 
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":232}],212:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228,"../utils/WebAPIUtils.js":235}],213:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
@@ -25873,7 +25910,7 @@ var Header = React.createClass({displayName: "Header",
 
     var leftNav = this.props.isLoggedIn ? (
       React.createElement("ul", {className: "left"}, 
-        React.createElement("li", null, React.createElement(Link, {to: "new-story"}, "New story"))
+        React.createElement("li", null, React.createElement(Link, {to: "new-message"}, "New Message"))
       )
     ) : (
       React.createElement("div", null)
@@ -25883,13 +25920,14 @@ var Header = React.createClass({displayName: "Header",
       React.createElement("nav", {className: "top-bar", "data-topbar": true, role: "navigation"}, 
         React.createElement("ul", {className: "title-area"}, 
           React.createElement("li", {className: "name"}, 
-            React.createElement("h1", null, React.createElement("a", {href: "#"}, React.createElement("strong", null, "S")))
+            React.createElement("h1", null, React.createElement("strong", null, "Menu"))
           ), 
           React.createElement("li", {className: "toggle-topbar menu-icon"}, React.createElement("a", {href: "#"}, React.createElement("span", null, "Menu")))
         ), 
 
         React.createElement("section", {className: "top-bar-section"}, 
           rightNav, 
+          React.createElement("div", {className: "top-logo"}, "House Rules"), 
           leftNav
         )
       )
@@ -25900,7 +25938,7 @@ var Header = React.createClass({displayName: "Header",
 module.exports = Header;
 
 
-},{"../actions/SessionActionCreators.react.jsx":211,"react":202,"react-router":22}],213:[function(require,module,exports){
+},{"../actions/SessionActionCreators.react.jsx":212,"react":202,"react-router":22}],214:[function(require,module,exports){
 var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('../components/Header.react.jsx');
@@ -25948,7 +25986,116 @@ var HouseRules = React.createClass({displayName: "HouseRules",
 module.exports = HouseRules;
 
 
-},{"../components/Header.react.jsx":212,"../stores/RouteStore.react.jsx":229,"../stores/SessionStore.react.jsx":231,"react":202,"react-router":22}],214:[function(require,module,exports){
+},{"../components/Header.react.jsx":213,"../stores/RouteStore.react.jsx":232,"../stores/SessionStore.react.jsx":234,"react":202,"react-router":22}],215:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var ChoreStore = require('../../stores/ChoreStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var ChoreActionCreators = require('../../actions/ChoreActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+
+var ChoreBox = React.createClass({displayName: "ChoreBox",
+
+  getInitialState: function() {
+    return {
+      messages: MessageStore.getAllMessages(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    MessageStore.addChangeListener(this._onChange);
+    MessageActionCreators.loadMessages();
+  },
+
+  componentWillUnmount: function() {
+    MessageStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      messages: MessageStore.getAllMessages(),
+      errors: MessageStore.getErrors()
+    });
+  },
+
+  render: function () {
+    return (
+      React.createElement("div", {className: "chore-box"}, 
+      React.createElement("div", {className: "row"}, 
+        React.createElement("div", {className: "large-3 columns"}, React.createElement("br", null)), 
+        React.createElement("div", {className: "large-6 columns"}, 
+        React.createElement("h1", null, "House Chore "), 
+        React.createElement(ChoreList, {chores:  this.state.chores}), 
+        React.createElement(ChoreForm, {form:  this.state.form, onChoreSubmit:  this.handleChoreSubmit})
+        ), 
+        React.createElement("div", {className: "large-3 columns"}, React.createElement("br", null))
+      )
+
+      )
+    );
+  }
+});
+
+var ChoreList = React.createClass({displayName: "ChoreList",
+  render: function () {
+    var choreNodes = this.props.chores.map(function ( chore ) {
+      return React.createElement(Chore, {chore: chore, key:  chore.id})
+    });
+
+    return (
+      React.createElement("div", {className: "chore-list row"}, 
+        choreNodes 
+      )
+    )
+  }
+});
+
+var Chore = React.createClass({displayName: "Chore",
+  render: function () {
+    return (
+      React.createElement("div", null, 
+      React.createElement("p", null,  this.props.chore.task)
+      )
+    )
+  }
+});
+
+var ChoreForm = React.createClass({displayName: "ChoreForm",
+  handleSubmit: function ( event ) {
+    event.preventDefault();
+    var task = this.refs.task.getDOMNode().value.trim();
+
+    // validate
+    if (!task) {
+      return false;
+    }
+
+    // submit
+    var formData = $( this.refs.form.getDOMNode() ).serialize();
+    this.props.onChoreSubmit( formData, this.props.form.action );
+
+    // reset form
+    this.refs.task.getDOMNode().value = "";
+  },
+  render: function () {
+    return (
+      React.createElement("form", {ref: "form", className: "chore-form", method: "post", onSubmit:  this.handleSubmit}, 
+        React.createElement("fieldset", null, 
+          React.createElement("legend", null, "Create a Chore"), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "task", name: "chore[task]", placeholder: "What's your chore?"})), 
+          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Create Chore"))
+        )
+      )
+    )
+  }
+});
+
+module.exports = ChoreBox;
+
+},{"../../actions/ChoreActionCreators.react.jsx":207,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/ChoreStore.react.jsx":230,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],216:[function(require,module,exports){
 var React = require('react');
 
 var ErrorNotice = React.createClass({displayName: "ErrorNotice",
@@ -25968,7 +26115,7 @@ var ErrorNotice = React.createClass({displayName: "ErrorNotice",
 module.exports = ErrorNotice;
 
 
-},{"react":202}],215:[function(require,module,exports){
+},{"react":202}],217:[function(require,module,exports){
 var React = require('react');
 var HouseRulesAPIDispatcher = require('../../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../../constants/HouseRulesConstants.js');
@@ -25994,11 +26141,11 @@ var MessageNew = React.createClass({displayName: "MessageNew",
   render: function() {
     return (
       React.createElement("div", {className: "row"}, 
-        React.createElement("form", {onSubmit: this._onSubmit, className: "new-story"}, 
-          React.createElement("div", {className: "new-story__body"}, 
-            React.createElement("textarea", {rows: "10", placeholder: "Your story...", name: "content", ref: "content"})
+        React.createElement("form", {onSubmit: this._onSubmit, className: "new-message"}, 
+          React.createElement("div", {className: "new-message__body"}, 
+            React.createElement("textarea", {rows: "10", placeholder: "Your message...", name: "content", ref: "content"})
           ), 
-          React.createElement("div", {className: "new-story__submit"}, 
+          React.createElement("div", {className: "new-message__submit"}, 
             React.createElement("button", {type: "submit"}, "Create")
           )
          )
@@ -26010,7 +26157,7 @@ var MessageNew = React.createClass({displayName: "MessageNew",
 
 module.exports = MessageNew;
 
-},{"../../actions/MessageActionCreators.react.jsx":207,"../../actions/RouteActionCreators.react.jsx":208,"../../constants/HouseRulesConstants.js":225,"../../dispatcher/HouseRulesAPIDispatcher.js":226,"../../stores/SessionStore.react.jsx":231,"../../utils/WebAPIUtils.js":232,"react":202}],216:[function(require,module,exports){
+},{"../../actions/MessageActionCreators.react.jsx":208,"../../actions/RouteActionCreators.react.jsx":209,"../../constants/HouseRulesConstants.js":227,"../../dispatcher/HouseRulesAPIDispatcher.js":228,"../../stores/SessionStore.react.jsx":234,"../../utils/WebAPIUtils.js":235,"react":202}],218:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var MessageStore = require('../../stores/MessageStore.react.jsx');
@@ -26039,7 +26186,7 @@ var MessagePage = React.createClass({displayName: "MessagePage",
 
   _onChange: function() {
     this.setState({
-      message: MessageStore.getMessage(),
+      message: MessageStore.getMessages(),
       errors: MessageStore.getErrors()
     });
   },
@@ -26047,9 +26194,9 @@ var MessagePage = React.createClass({displayName: "MessagePage",
   render: function() {
     return (
       React.createElement("div", {className: "row"}, 
-        React.createElement("div", {className: "story__body"}, this.state.message.content), 
-        React.createElement("div", {className: "story__user"}, this.state.message.author.first_name)
-      )
+        React.createElement("div", {className: "message__body"}, this.state.message.content), 
+        React.createElement("div", {className: "message__body"}, this.state.message.author.first_name)
+       )
      );
   }
 
@@ -26057,7 +26204,7 @@ var MessagePage = React.createClass({displayName: "MessagePage",
 
 module.exports = MessagePage;
 
-},{"../../actions/MessageActionCreators.react.jsx":207,"../../stores/MessageStore.react.jsx":228,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22}],217:[function(require,module,exports){
+},{"../../actions/MessageActionCreators.react.jsx":208,"../../stores/MessageStore.react.jsx":231,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22}],219:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var MessageStore = require('../../stores/MessageStore.react.jsx');
@@ -26113,9 +26260,9 @@ var MessageItem = React.createClass({displayName: "MessageItem",
   render: function() {
     return (
       React.createElement("li", {className: "story"}, 
-        React.createElement("div", {className: "story__body"}, this.props.message.content), 
-        React.createElement("span", {className: "story__user"}, this.props.message.author), 
-        React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.message.created_at))
+        React.createElement("div", {className: "message__body"}, this.props.message.content), 
+        React.createElement("span", {className: "message__user"}, this.props.message.author), 
+        React.createElement("span", {className: "message__date"}, " - ", timeago(this.props.message.created_at))
       )
       );
   }
@@ -26136,7 +26283,7 @@ var MessagesList = React.createClass({displayName: "MessagesList",
 module.exports = MessagesPage;
 
 
-},{"../../actions/MessageActionCreators.react.jsx":207,"../../components/common/ErrorNotice.react.jsx":214,"../../stores/MessageStore.react.jsx":228,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],218:[function(require,module,exports){
+},{"../../actions/MessageActionCreators.react.jsx":208,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/MessageStore.react.jsx":231,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],220:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var MessageStore = require('../../stores/MessageStore.react.jsx');
@@ -26185,6 +26332,7 @@ var MessageBox = React.createClass({displayName: "MessageBox",
 });
 
 var MessageList = React.createClass({displayName: "MessageList",
+
   render: function () {
     var messageNodes = this.props.messages.map(function ( message ) {
       return React.createElement(Message, {message: message, key:  message.id})
@@ -26212,10 +26360,12 @@ var Message = React.createClass({displayName: "Message",
 
 
 var MessageForm = React.createClass({displayName: "MessageForm",
+
   handleSubmit: function ( event ) {
     event.preventDefault();
     var content = this.refs.content.getDOMNode().value;
     MessageActionCreators.createMessage(content);
+
 
     // validate
     if (!content) {
@@ -26225,6 +26375,7 @@ var MessageForm = React.createClass({displayName: "MessageForm",
     // reset form
     this.refs.content.getDOMNode().value = "";
   },
+
   render: function () {
     return (
       React.createElement("form", {ref: "form", className: "message-form", method: "post", onSubmit:  this.handleSubmit}, 
@@ -26237,13 +26388,172 @@ var MessageForm = React.createClass({displayName: "MessageForm",
 
 module.exports = MessageBox;
 
-},{"../../actions/MessageActionCreators.react.jsx":207,"../../components/common/ErrorNotice.react.jsx":214,"../../stores/MessageStore.react.jsx":228,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],219:[function(require,module,exports){
+},{"../../actions/MessageActionCreators.react.jsx":208,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/MessageStore.react.jsx":231,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],221:[function(require,module,exports){
+var React = require('react');
+var HouseRulesAPIDispatcher = require('../../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var SessionStore = require('../../stores/SessionStore.react.jsx');
+var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
+var RouteActionCreators = require('../../actions/RouteActionCreators.react.jsx');
 
-},{}],220:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],221:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],222:[function(require,module,exports){
+var RuleNew = React.createClass({displayName: "RuleNew",
+
+  componentDidMount: function() {
+    if (!SessionStore.isLoggedIn()) {
+      RouteActionCreators.redirect('app');
+    }
+  },
+
+  _onSubmit: function(e) {
+    e.preventDefault();
+    var content = this.refs.content.getDOMNode().value;
+    RuleActionCreators.createRule(content);
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", {className: "row"}, 
+        React.createElement("form", {onSubmit: this._onSubmit, className: "new-rule"}, 
+          React.createElement("div", {className: "new-rule__body"}, 
+            React.createElement("textarea", {rows: "10", placeholder: "Your rule...", name: "content", ref: "content"})
+          ), 
+          React.createElement("div", {className: "new-rule__submit"}, 
+            React.createElement("button", {type: "submit"}, "Create")
+          )
+         )
+       )
+     );
+  }
+
+});
+
+module.exports = RuleNew;
+
+},{"../../actions/RouteActionCreators.react.jsx":209,"../../actions/RuleActionCreators.react.jsx":210,"../../constants/HouseRulesConstants.js":227,"../../dispatcher/HouseRulesAPIDispatcher.js":228,"../../stores/SessionStore.react.jsx":234,"../../utils/WebAPIUtils.js":235,"react":202}],222:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var RuleStore = require('../../stores/RuleStore.react.jsx');
+var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
+var State = require('react-router').State;
+
+var RulePage = React.createClass({displayName: "RulePage",
+
+  mixins: [ State ],
+
+  getInitialState: function() {
+    return {
+      rule: RuleStore.getRule(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    RuleStore.addChangeListener(this._onChange);
+    RuleActionCreators.loadRule(this.getParams().ruleId);
+  },
+
+  componentWillUnmount: function() {
+    RuleStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      rule: RuleStore.getRule(),
+      errors: RuleStore.getErrors()
+    });
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", {className: "row"}, 
+        React.createElement("div", {className: "rule__body"}, this.state.rule.content)
+      )
+     );
+  }
+
+});
+
+module.exports = RulePage;
+
+},{"../../actions/RuleActionCreators.react.jsx":210,"../../stores/RuleStore.react.jsx":233,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22}],223:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var RuleStore = require('../../stores/RuleStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+
+var RulesPage = React.createClass({displayName: "RulesPage",
+
+  getInitialState: function() {
+    return {
+      rules: RuleStore.getAllRules(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    RuleStore.addChangeListener(this._onChange);
+    RuleActionCreators.loadRules();
+  },
+
+  componentWillUnmount: function() {
+    RuleStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      rules: RuleStore.getAllRules(),
+      errors: RuleStore.getErrors()
+    });
+  },
+
+  render: function() {
+    var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
+    return (
+      React.createElement("div", null, 
+        errors, 
+        React.createElement("div", {className: "row"}, 
+          React.createElement(RulesList, {rules: this.state.rules})
+        ), 
+        React.createElement("form", {ref: "form", className: "rule-form", method: "post", onSubmit:  this.handleSubmit}, 
+        React.createElement("p", null, React.createElement("textarea", {ref: "content", name: "rule[content]", placeholder: "Say something..."})), 
+        React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post rule"))
+      )
+      )
+    );
+  }
+});
+
+var RuleItem = React.createClass({displayName: "RuleItem",
+  render: function() {
+    return (
+      React.createElement("li", {className: "rule"}, 
+        React.createElement("div", {className: "rule__body"}, this.props.rule.content)
+      )
+      );
+  }
+});
+
+var RulesList = React.createClass({displayName: "RulesList",
+  render: function() {
+    return (
+      React.createElement("ul", {className: "large-8 medium-10 small-12 small-centered columns"}, 
+        this.props.rules.map(function(rule, index){
+          return React.createElement(RuleItem, {rule: rule, key: "rule-" + index})
+        })
+      )
+    );
+  }
+});
+
+module.exports = RulesPage;
+
+
+},{"../../actions/RuleActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/RuleStore.react.jsx":233,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],224:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var RuleStore = require('../../stores/RuleStore.react.jsx');
@@ -26347,7 +26657,7 @@ var RuleForm = React.createClass({displayName: "RuleForm",
 
 module.exports = RuleBox;
 
-},{"../../actions/RuleActionCreators.react.jsx":209,"../../components/common/ErrorNotice.react.jsx":214,"../../stores/RuleStore.react.jsx":230,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],223:[function(require,module,exports){
+},{"../../actions/RuleActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/RuleStore.react.jsx":233,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],225:[function(require,module,exports){
 var React = require('react');
 var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
 var SessionStore = require('../../stores/SessionStore.react.jsx');
@@ -26407,7 +26717,7 @@ var LoginPage = React.createClass({displayName: "LoginPage",
 module.exports = LoginPage;
 
 
-},{"../../actions/SessionActionCreators.react.jsx":211,"../../components/common/ErrorNotice.react.jsx":214,"../../stores/SessionStore.react.jsx":231,"react":202}],224:[function(require,module,exports){
+},{"../../actions/SessionActionCreators.react.jsx":212,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/SessionStore.react.jsx":234,"react":202}],226:[function(require,module,exports){
 var React = require('react');
 var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
 var SessionStore = require('../../stores/SessionStore.react.jsx');
@@ -26434,14 +26744,17 @@ var SignupPage = React.createClass({displayName: "SignupPage",
   _onSubmit: function(e) {
     e.preventDefault();
     this.setState({ errors: [] });
-    var email = this.refs.email.getDOMNode().value;
     var username = this.refs.username.getDOMNode().value;
+    var email = this.refs.email.getDOMNode().value;
     var password = this.refs.password.getDOMNode().value;
     var passwordConfirmation = this.refs.passwordConfirmation.getDOMNode().value;
+    var firstName = this.refs.firstName.getDOMNode().value;
+    var lastName = this.refs.lastName.getDOMNode().value;
+    var phone = this.refs.phone.getDOMNode().value;    
     if (password !== passwordConfirmation) {
       this.setState({ errors: ['Password and password confirmation should match']});
     } else {
-      SessionActionCreators.signup(email, username, password, passwordConfirmation);
+      SessionActionCreators.signup(username, email, password, passwordConfirmation, firstName, lastName, phone);
     }
   },
 
@@ -26454,20 +26767,32 @@ var SignupPage = React.createClass({displayName: "SignupPage",
           React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
             React.createElement("form", {onSubmit: this._onSubmit}, 
               React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "first-name"}, "First Name"), 
+                React.createElement("input", {type: "text", name: "first-name", ref: "firstName"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
                 React.createElement("label", {name: "email"}, "Email"), 
                 React.createElement("input", {type: "text", name: "email", ref: "email"})
-              ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "username"}, "Username"), 
-                React.createElement("input", {type: "text", name: "username", ref: "username"})
-              ), 
+                ), 
               React.createElement("div", {className: "card--login__field"}, 
                 React.createElement("label", {name: "password"}, "Password"), 
                 React.createElement("input", {type: "password", name: "password", ref: "password"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "password-confirmation"}, "Password Confirmation"), 
+                React.createElement("input", {type: "password-confrimation", name: "password-confirmation", ref: "passwordConfirmation"})
+              ), 
+               React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "username"}, "Username"), 
+                React.createElement("input", {type: "text", name: "username", ref: "username"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "last-name"}, "Last Name"), 
+                React.createElement("input", {type: "test", name: "last-name", ref: "lastName"})
               ), 
               React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "password-confrimation"}, "Password confirmation"), 
-                React.createElement("input", {type: "password", name: "password-confirmation", ref: "passwordConfirmation"})
+                React.createElement("label", {name: "phone"}, "Phone"), 
+                React.createElement("input", {type: "text", name: "phone", ref: "phone"})
               ), 
               React.createElement("button", {type: "submit", className: "card--login__submit"}, "Signup")
             )
@@ -26481,7 +26806,7 @@ var SignupPage = React.createClass({displayName: "SignupPage",
 module.exports = SignupPage;
 
 
-},{"../../actions/SessionActionCreators.react.jsx":211,"../../components/common/ErrorNotice.react.jsx":214,"../../stores/SessionStore.react.jsx":231,"react":202}],225:[function(require,module,exports){
+},{"../../actions/SessionActionCreators.react.jsx":212,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/SessionStore.react.jsx":234,"react":202}],227:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
 var APIRoot = "http://localhost:3002";
@@ -26492,7 +26817,8 @@ module.exports = {
     LOGIN:          APIRoot + "/v1/login",
     REGISTRATION:   APIRoot + "/v1/users",
     MESSAGES:       APIRoot + "/houses/1/messages",
-    RULES:          APIRoot + "/houses/1/rules"
+    RULES:          APIRoot + "/houses/1/rules",
+    CHORES:         APIRoot + "/houses/1/chores"
   },
 
   PayloadSources: keyMirror({
@@ -26519,12 +26845,19 @@ module.exports = {
     LOAD_RULE: null,
     RECEIVE_RULE: null,
     CREATE_RULE: null,
-    RECEIVE_CREATED_RULE: null
+    RECEIVE_CREATED_RULE: null,
+
+    LOAD_CHORES: null,
+    RECEIVE_CHORES: null,
+    LOAD_CHORE: null,
+    RECEIVE_CHORE: null,
+    CREATE_CHORE: null,
+    RECEIVE_CREATED_CHORE: null
   })
 
 };
 
-},{"keymirror":11}],226:[function(require,module,exports){
+},{"keymirror":11}],228:[function(require,module,exports){
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var Dispatcher = require('flux').Dispatcher;
 var assign = require('object-assign');
@@ -26551,7 +26884,7 @@ var HouseRulesAPIDispatcher = assign(new Dispatcher(), {
 });
 
 module.exports = HouseRulesAPIDispatcher;
-},{"../constants/HouseRulesConstants.js":225,"flux":8,"object-assign":12}],227:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"flux":8,"object-assign":12}],229:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
@@ -26571,19 +26904,104 @@ var RuleBox = require('./components/rules/_rule_box.react.jsx');
 
 var SignupPage = require('./components/session/SignupPage.react.jsx');
 
+var ChoreBox = require('./components/chores/ChoreBox.react.jsx');
+
 module.exports = (
   React.createElement(Route, {name: "app", path: "/", handler: HouseRules}, 
-    React.createElement(DefaultRoute, {handler: RuleBox}), 
+    React.createElement(DefaultRoute, {handler: MessageBox}), 
     React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}), 
     React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}), 
     React.createElement(Route, {name: "rules", path: "/houses/:houseId/rules", handler: RuleBox}), 
     React.createElement(Route, {name: "messages", path: "/houses/:houseId/messages", handler: MessageBox}), 
     React.createElement(Route, {name: "message", path: "/messages/:messageId", handler: MessagePage}), 
-    React.createElement(Route, {name: "new-message", path: "/message/new", handler: MessageNew})
+    React.createElement(Route, {name: "new-message", path: "/message/new", handler: MessageNew}), 
+    React.createElement(Route, {name: "chores", path: "/house/:houseId/chores", handler: ChoreBox}), 
+    React.createElement(Route, {name: "chore", path: "/chores/:choreId", handler: ChoreBox}), 
+    React.createElement(Route, {name: "new-chore", path: "/chore/new", handler: ChoreBox})
   )
 );
 
-},{"./components/HouseRules.react.jsx":213,"./components/messages/MessageNew.react.jsx":215,"./components/messages/MessagePage.react.jsx":216,"./components/messages/MessagesPage.react.jsx":217,"./components/messages/_message_box.react.jsx":218,"./components/rules/RuleNew.react.jsx":219,"./components/rules/RulePage.react.jsx":220,"./components/rules/RulesPage.react.jsx":221,"./components/rules/_rule_box.react.jsx":222,"./components/session/LoginPage.react.jsx":223,"./components/session/SignupPage.react.jsx":224,"react":202,"react-router":22}],228:[function(require,module,exports){
+},{"./components/HouseRules.react.jsx":214,"./components/chores/ChoreBox.react.jsx":215,"./components/messages/MessageNew.react.jsx":217,"./components/messages/MessagePage.react.jsx":218,"./components/messages/MessagesPage.react.jsx":219,"./components/messages/_message_box.react.jsx":220,"./components/rules/RuleNew.react.jsx":221,"./components/rules/RulePage.react.jsx":222,"./components/rules/RulesPage.react.jsx":223,"./components/rules/_rule_box.react.jsx":224,"./components/session/LoginPage.react.jsx":225,"./components/session/SignupPage.react.jsx":226,"react":202,"react-router":22}],230:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+var _chores = [];
+var _errors = [];
+var _chore = { task: "" };
+
+var ChoreStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getAllChores: function() {
+    return _chores;
+  },
+
+  getChore: function() {
+    return _chore;
+  },
+
+  getErrors: function() {
+    return _errors;
+  }
+
+});
+
+ChoreStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.type) {
+
+    case ActionTypes.RECEIVE_CHORES:
+      _chores = action.json.chores;
+      ChoreStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_CHORE:
+      if (action.json) {
+        _mchores.unshift(action.json.chore);
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      ChoreStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CHORE:
+      if (action.json) {
+        _chore = action.json.chore;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      ChoreStore.emitChange();
+      break;
+  }
+
+  return true;
+});
+
+module.exports = ChoreStore;
+
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],231:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var EventEmitter = require('events').EventEmitter;
@@ -26663,7 +27081,7 @@ MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
 
 module.exports = MessageStore;
 
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":232,"events":6,"object-assign":12}],229:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],232:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var SessionStore = require('../stores/SessionStore.react.jsx');
@@ -26746,7 +27164,7 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 module.exports = RouteStore;
 
 
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../routes.jsx":227,"../stores/MessageStore.react.jsx":228,"../stores/RuleStore.react.jsx":230,"../stores/SessionStore.react.jsx":231,"events":6,"object-assign":12,"react-router":22}],230:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228,"../routes.jsx":229,"../stores/MessageStore.react.jsx":231,"../stores/RuleStore.react.jsx":233,"../stores/SessionStore.react.jsx":234,"events":6,"object-assign":12,"react-router":22}],233:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var EventEmitter = require('events').EventEmitter;
@@ -26826,7 +27244,7 @@ RuleStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
 module.exports = RuleStore;
 
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":232,"events":6,"object-assign":12}],231:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],234:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var EventEmitter = require('events').EventEmitter;
@@ -26909,7 +27327,7 @@ SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
 module.exports = SessionStore;
 
 
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"events":6,"object-assign":12}],232:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":227,"../dispatcher/HouseRulesAPIDispatcher.js":228,"events":6,"object-assign":12}],235:[function(require,module,exports){
 var ServerActionCreators = require('../actions/ServerActionCreators.react.jsx');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var request = require('superagent');
@@ -26930,11 +27348,15 @@ var APIEndpoints = HouseRulesConstants.APIEndpoints;
 
 module.exports = {
 
-  signup: function(email, username, password, passwordConfirmation) {
+  signup: function(username, firstName, lastName, phone, email, password, passwordConfirmation) {
     request.post(APIEndpoints.REGISTRATION)
       .send({ user: {
         email: email,
         username: username,
+        first_name: firstName,
+        last_name: lastName,
+        phone: phone,
+        email: email,
         password: password,
         password_confirmation: passwordConfirmation
       }})
@@ -26954,7 +27376,7 @@ module.exports = {
 
   login: function(email, password) {
     request.post(APIEndpoints.LOGIN)
-      .send({ username: email, password: password, grant_type: 'password' })
+      .send({ email: email, password: password, grant_type: 'password' })
       .set('Accept', 'application/json')
       .end(function(error, res){
         if (res) {
@@ -27051,9 +27473,50 @@ module.exports = {
           }
         }
       });
+  },
+
+  loadChores: function() {
+    request.get(APIEndpoints.CHORES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveChores(json);
+        }
+      });
+  },
+
+  loadChore: function(choreId) {
+    request.get(APIEndpoints.CHORES + '/' + choreId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveChore(json);
+        }
+      });
+  },
+
+  createChore: function(task) {
+    request.post(APIEndpoints.CHORES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ chore: { task: task } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedChore(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedChore(json, null);
+          }
+        }
+      });
   }
 
 };
 
-
-},{"../actions/ServerActionCreators.react.jsx":210,"../constants/HouseRulesConstants.js":225,"superagent":203}]},{},[1]);
+},{"../actions/ServerActionCreators.react.jsx":211,"../constants/HouseRulesConstants.js":227,"superagent":203}]},{},[1]);

@@ -53,9 +53,9 @@ var MessageItem = React.createClass({
   render: function() {
     return (
       <li className="story">
-        <div className="story__body">{this.props.message.content}</div>
-        <span className="story__user">{this.props.message.author}</span>
-        <span className="story__date"> - {timeago(this.props.message.created_at)}</span>
+        <div className="message__body">{this.props.message.content}</div>
+        <span className="message__user">{this.props.message.author}</span>
+        <span className="message__date"> - {timeago(this.props.message.created_at)}</span>
       </li>
       );
   }

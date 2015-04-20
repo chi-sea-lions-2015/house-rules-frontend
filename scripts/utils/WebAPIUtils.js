@@ -18,11 +18,15 @@ var APIEndpoints = HouseRulesConstants.APIEndpoints;
 
 module.exports = {
 
-  signup: function(email, username, password, passwordConfirmation) {
+  signup: function(username, firstName, lastName, phone, email, password, passwordConfirmation) {
     request.post(APIEndpoints.REGISTRATION)
       .send({ user: {
         email: email,
         username: username,
+        first_name: firstName,
+        last_name: lastName,
+        phone: phone,
+        email: email,
         password: password,
         password_confirmation: passwordConfirmation
       }})
@@ -42,7 +46,7 @@ module.exports = {
 
   login: function(email, password) {
     request.post(APIEndpoints.LOGIN)
-      .send({ username: email, password: password, grant_type: 'password' })
+      .send({ email: email, password: password, grant_type: 'password' })
       .set('Accept', 'application/json')
       .end(function(error, res){
         if (res) {
@@ -139,7 +143,48 @@ module.exports = {
           }
         }
       });
+  },
+
+  loadChores: function() {
+    request.get(APIEndpoints.CHORES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveChores(json);
+        }
+      });
+  },
+
+  loadChore: function(choreId) {
+    request.get(APIEndpoints.CHORES + '/' + choreId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveChore(json);
+        }
+      });
+  },
+
+  createChore: function(task) {
+    request.post(APIEndpoints.CHORES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ chore: { task: task } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedChore(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedChore(json, null);
+          }
+        }
+      });
   }
 
 };
-

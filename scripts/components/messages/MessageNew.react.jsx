@@ -23,11 +23,11 @@ var MessageNew = React.createClass({
   render: function() {
     return (
       <div className="row">
-        <form onSubmit={this._onSubmit} className="new-story">
-          <div className="new-story__body">
-            <textarea rows="10" placeholder="Your story..." name="content" ref="content" />
+        <form onSubmit={this._onSubmit} className="new-message">
+          <div className="new-message__body">
+            <textarea rows="10" placeholder="Your message..." name="content" ref="content" />
           </div>
-          <div className="new-story__submit">
+          <div className="new-message__submit">
             <button type="submit">Create</button>
           </div>
          </form>
