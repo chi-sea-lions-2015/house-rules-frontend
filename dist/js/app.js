@@ -26712,7 +26712,7 @@ module.exports = SignupPage;
 },{"../../actions/SessionActionCreators.react.jsx":212,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/SessionStore.react.jsx":231,"react":202}],224:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
-var APIRoot = "http://localhost:3001";
+var APIRoot = "http://localhost:3002";
 
 module.exports = {
 
@@ -26814,8 +26814,6 @@ module.exports = (
     React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}), 
     React.createElement(Route, {name: "rules", path: "/houses/:houseId/rules", handler: RuleBox}), 
     React.createElement(Route, {name: "messages", path: "/houses/:houseId/messages", handler: MessageBox}), 
-    React.createElement(Route, {name: "message", path: "/messages/:messageId", handler: MessagePage}), 
-    React.createElement(Route, {name: "new-message", path: "/message/new", handler: MessageNew}), 
     React.createElement(Route, {name: "chores", path: "/house/:houseId/chores", handler: ChoreBox}), 
     React.createElement(Route, {name: "chore", path: "/chores/:choreId", handler: ChoreBox}), 
     React.createElement(Route, {name: "new-chore", path: "/chore/new", handler: ChoreBox})
