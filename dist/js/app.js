@@ -25881,16 +25881,61 @@ var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var SessionActionCreators = require('../actions/SessionActionCreators.react.jsx');
 
+var Menu = React.createClass({displayName: "Menu",
+
+  getInitialState: function() {
+    return {
+      visible: false
+    };
+  },
+
+  show: function() {
+    this.setState({ visible: true });
+    document.addEventListener("click", this.hide.bind(this));
+  },
+
+  hide: function() {
+    document.removeEventListener("click", this.hide.bind(this));
+    this.setState({ visible: false });
+  },
+
+  render: function() {
+    return React.createElement("div", {className: "menu"}, 
+      React.createElement("div", {className: (this.state.visible ? "menu-visible " : "") + "menu-" + this.props.alignment}, this.props.children)
+    );
+  }
+});
+
+var MenuItem = React.createClass({displayName: "MenuItem",
+  navigate: function(hash) {
+    window.location.hash = hash;
+  },
+
+  render: function() {
+    return React.createElement("div", {className: "menu-item", onClick: this.navigate.bind(this, this.props.hash)}, this.props.children);
+  }
+});
+
 var Header = React.createClass({displayName: "Header",
 
   propTypes: {
     isLoggedIn: ReactPropTypes.bool,
     email: ReactPropTypes.string
   },
+
   logout: function(e) {
     e.preventDefault();
     SessionActionCreators.logout();
   },
+
+  showLeft: function() {
+    this.refs.left.show();
+  },
+
+  showRight: function() {
+    this.refs.right.show();
+  },
+
   render: function() {
     var rightNav = this.props.isLoggedIn ? (
       React.createElement("ul", {className: "right"}, 
@@ -25910,7 +25955,15 @@ var Header = React.createClass({displayName: "Header",
 
     var leftNav = this.props.isLoggedIn ? (
       React.createElement("ul", {className: "left"}, 
-        React.createElement("li", null, React.createElement(Link, {to: "new-message"}, "New Message"))
+        React.createElement("div", null, 
+          React.createElement("button", {onClick: this.showLeft}, "Show Left Menu!"), 
+
+          React.createElement(Menu, {ref: "left", alignment: "left"}, 
+            React.createElement(MenuItem, {hash: "first-page"}, "First Page"), 
+            React.createElement(MenuItem, {hash: "second-page"}, "Second Page"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Third Page")
+          )
+        )
       )
     ) : (
       React.createElement("div", null)

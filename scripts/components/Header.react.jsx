@@ -4,16 +4,61 @@ var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var SessionActionCreators = require('../actions/SessionActionCreators.react.jsx');
 
+var Menu = React.createClass({
+
+  getInitialState: function() {
+    return {
+      visible: false
+    };
+  },
+
+  show: function() {
+    this.setState({ visible: true });
+    document.addEventListener("click", this.hide.bind(this));
+  },
+
+  hide: function() {
+    document.removeEventListener("click", this.hide.bind(this));
+    this.setState({ visible: false });
+  },
+
+  render: function() {
+    return <div className="menu">
+      <div className={(this.state.visible ? "menu-visible " : "") + "menu-" + this.props.alignment}>{this.props.children}</div>
+    </div>;
+  }
+});
+
+var MenuItem = React.createClass({
+  navigate: function(hash) {
+    window.location.hash = hash;
+  },
+
+  render: function() {
+    return <div className="menu-item" onClick={this.navigate.bind(this, this.props.hash)}>{this.props.children}</div>;
+  }
+});
+
 var Header = React.createClass({
 
   propTypes: {
     isLoggedIn: ReactPropTypes.bool,
     email: ReactPropTypes.string
   },
+
   logout: function(e) {
     e.preventDefault();
     SessionActionCreators.logout();
   },
+
+  showLeft: function() {
+    this.refs.left.show();
+  },
+
+  showRight: function() {
+    this.refs.right.show();
+  },
+
   render: function() {
     var rightNav = this.props.isLoggedIn ? (
       <ul className="right">
@@ -33,7 +78,15 @@ var Header = React.createClass({
 
     var leftNav = this.props.isLoggedIn ? (
       <ul className="left">
-        <li><Link to="new-message">New Message</Link></li>
+        <div>
+          <button onClick={this.showLeft}>Show Left Menu!</button>
+
+          <Menu ref="left" alignment="left">
+            <MenuItem hash="first-page">First Page</MenuItem>
+            <MenuItem hash="second-page">Second Page</MenuItem>
+            <MenuItem hash="third-page">Third Page</MenuItem>
+          </Menu>
+        </div>
       </ul>
     ) : (
       <div></div>
