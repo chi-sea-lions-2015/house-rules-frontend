@@ -89,12 +89,7 @@ var MessageBox = React.createClass({
 var MessageForm = React.createClass({
   handleSubmit: function ( event ) {
     event.preventDefault();
-
-    // var content = this.refs.content.getDOMNode().value.trim();
-
-    var content = this.refs.content.getDOMNode().value;
-    MessageActionCreators.createMessage(content);
-
+    var content = this.refs.content.getDOMNode().value.trim();
 
     // validate
     if (!content) {

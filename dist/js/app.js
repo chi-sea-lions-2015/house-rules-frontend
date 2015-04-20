@@ -25829,6 +25829,28 @@ module.exports = {
       json: json,
       errors: errors
     });
+  },
+
+  receiveItems: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_ITEMS,
+      json: json
+    });
+  },
+
+  receiveItem: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_ITEM,
+      json: json
+    });
+  },
+
+  receiveCreatedItem: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_ITEM,
+      json: json,
+      errors: errors
+    });
   }
 
 };
@@ -26260,12 +26282,7 @@ var MessageBox = React.createClass({displayName: "MessageBox",
 var MessageForm = React.createClass({displayName: "MessageForm",
   handleSubmit: function ( event ) {
     event.preventDefault();
-
-    // var content = this.refs.content.getDOMNode().value.trim();
-
-    var content = this.refs.content.getDOMNode().value;
-    MessageActionCreators.createMessage(content);
-
+    var content = this.refs.content.getDOMNode().value.trim();
 
     // validate
     if (!content) {
@@ -26290,7 +26307,6 @@ var MessageForm = React.createClass({displayName: "MessageForm",
 });
 
 module.exports = MessageBox;
-
 },{"../../actions/MessageActionCreators.react.jsx":208,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/MessageStore.react.jsx":228,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],218:[function(require,module,exports){
 var React = require('react');
 var HouseRulesAPIDispatcher = require('../../dispatcher/HouseRulesAPIDispatcher.js');
@@ -26721,7 +26737,8 @@ module.exports = {
     REGISTRATION:   APIRoot + "/users",
     MESSAGES:       APIRoot + "/houses/1/messages",
     RULES:          APIRoot + "/houses/1/rules",
-    CHORES:         APIRoot + "/houses/1/chores"
+    CHORES:         APIRoot + "/houses/1/chores",
+    ITEMS:          APIRoot + "/houses/1/communal_items"
   },
 
   PayloadSources: keyMirror({
@@ -26755,7 +26772,14 @@ module.exports = {
     LOAD_CHORE: null,
     RECEIVE_CHORE: null,
     CREATE_CHORE: null,
-    RECEIVE_CREATED_CHORE: null
+    RECEIVE_CREATED_CHORE: null,
+
+    LOAD_ITEMS: null,
+    RECEIVE_ITEMS: null,
+    LOAD_ITEM: null,
+    RECEIVE_ITEM: null,
+    CREATE_ITEM: null,
+    RECEIVE_CREATED_ITEM: null
   })
 
 };
@@ -27047,11 +27071,19 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
-      router.transitionTo('app');
+      router.transitionTo('messages');
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:
-      router.transitionTo('app');
+      router.transitionTo('rules');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_CHORE:
+      router.transitionTo('chores');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_ITEM:
+      router.transitionTo('communal_items');
       break;
 
     default:
