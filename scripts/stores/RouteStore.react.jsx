@@ -64,7 +64,6 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
       router.transitionTo('messages');
-
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:

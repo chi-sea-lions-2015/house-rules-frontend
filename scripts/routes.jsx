@@ -6,9 +6,6 @@ var RouteHandler = Router.RouteHandler;
 
 var HouseRules = require('./components/HouseRules.react.jsx');
 var LoginPage = require('./components/session/LoginPage.react.jsx');
-var MessagesPage = require('./components/messages/MessagesPage.react.jsx');
-var MessagePage = require('./components/messages/MessagePage.react.jsx');
-var MessageNew = require('./components/messages/MessageNew.react.jsx');
 var MessageBox = require('./components/messages/_message_box.react.jsx');
 var RulesPage = require('./components/rules/RulesPage.react.jsx');
 var RulePage = require('./components/rules/RulePage.react.jsx');
