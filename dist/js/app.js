@@ -26292,6 +26292,35 @@ var MessageActionCreators = require('../../actions/MessageActionCreators.react.j
 var Router = require('react-router');
 var Link = Router.Link;
 var timeago = require('timeago');
+var APIRoot = "http://localhost:3002";
+
+var Message = React.createClass({displayName: "Message",
+  render: function () {
+    return (
+      React.createElement("li", {className: "story"}, 
+        React.createElement("div", {className: "story__body"}, this.props.message.content), 
+        React.createElement("span", {className: "story__user"}, this.props.message.author), 
+        React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.message.created_at))
+      )
+    )
+  }
+});
+
+
+var MessageList = React.createClass({displayName: "MessageList",
+  render: function () {
+    var msgs = ( Array.isArray(this.props.messages) ? this.props.messages : this.props.messages.messages )
+    var messageNodes = msgs.map(function ( message ) {
+      return React.createElement(Message, {message: message, key:  message.id})
+    });
+
+    return (
+      React.createElement("div", {className: "message-list"}, 
+        messageNodes 
+      )
+    )
+  }
+});
 
 var MessageBox = React.createClass({displayName: "MessageBox",
 
@@ -26318,6 +26347,18 @@ var MessageBox = React.createClass({displayName: "MessageBox",
     });
   },
 
+  handleMessageSubmit: function ( formData, action ) {
+    $.ajax({
+      data: formData,
+      url: APIRoot + "/houses/1/messages",
+      type: "POST",
+      dataType: "json",
+      success: function ( data ) {
+        this.setState({ messages: data });
+      }.bind(this)
+    });
+  },
+
   render: function () {
     return (
       React.createElement("div", {className: "message-box"}, 
@@ -26325,63 +26366,34 @@ var MessageBox = React.createClass({displayName: "MessageBox",
         React.createElement(MessageList, {messages:  this.state.messages}), 
         React.createElement("hr", null), 
         React.createElement("h2", null, "talk to your roomies"), 
-        React.createElement(MessageForm, {form:  this.state.form})
+        React.createElement(MessageForm, {form:  this.state.form, onMessageSubmit:  this.handleMessageSubmit})
       )
     );
   }
 });
 
-var MessageList = React.createClass({displayName: "MessageList",
-
-  render: function () {
-    var messageNodes = this.props.messages.map(function ( message ) {
-      return React.createElement(Message, {message: message, key:  message.id})
-    });
-
-    return (
-      React.createElement("div", {className: "message-list"}, 
-        messageNodes 
-      )
-    )
-  }
-});
-
-var Message = React.createClass({displayName: "Message",
-  render: function () {
-    return (
-      React.createElement("li", {className: "story"}, 
-        React.createElement("div", {className: "story__body"}, this.props.message.content), 
-        React.createElement("span", {className: "story__user"}, this.props.message.author), 
-        React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.message.created_at))
-      )
-    )
-  }
-});
-
-
 var MessageForm = React.createClass({displayName: "MessageForm",
-
   handleSubmit: function ( event ) {
     event.preventDefault();
-    var content = this.refs.content.getDOMNode().value;
-    MessageActionCreators.createMessage(content);
-    console.log(content)
-
+    var content = this.refs.content.getDOMNode().value.trim();
 
     // validate
     if (!content) {
       return false;
     }
 
+    // submit
+    var formData = $( this.refs.form.getDOMNode() ).serialize();
+    this.props.onMessageSubmit( formData, APIRoot + "/houses/1/messages" );
+
     // reset form
     this.refs.content.getDOMNode().value = "";
   },
-
   render: function () {
     return (
-      React.createElement("form", {ref: "form", className: "message-form", method: "post", onSubmit:  this.handleSubmit}, 
+      React.createElement("form", {ref: "form", className: "message-form", action:  APIRoot + "/houses/1/messages", acceptCharset: "UTF-8", method: "post", onSubmit:  this.handleSubmit}, 
         React.createElement("p", null, React.createElement("textarea", {ref: "content", name: "message[content]", placeholder: "Say something..."})), 
-        React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post message"))
+        React.createElement("p", null, React.createElement("button", {type: "submit"}, "post message"))
       )
     )
   }
@@ -27428,7 +27440,7 @@ module.exports = {
             var errorMsgs = _getErrors(res);
             ServerActionCreators.receiveCreatedMessage(null, errorMsgs);
           } else {
-            json = JSON.parse(res.text);
+            json = JSON.parse(res.content);
             ServerActionCreators.receiveCreatedMessage(json, null);
           }
         }

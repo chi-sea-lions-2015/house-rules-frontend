@@ -6,6 +6,7 @@ var MessageActionCreators = require('../../actions/MessageActionCreators.react.j
 var Router = require('react-router');
 var Link = Router.Link;
 var timeago = require('timeago');
+var APIRoot = "http://localhost:3002";
 
 var Message = React.createClass({
   render: function () {
@@ -35,14 +36,18 @@ var MessageList = React.createClass({
 });
 
 var MessageBox = React.createClass({
-  getInitialState: function () {
-    return JSON.parse(this.props.presenter);
+
+  getInitialState: function() {
+    return {
+      messages: MessageStore.getAllMessages(),
+      errors: []
+    };
   },
 
   handleMessageSubmit: function ( formData, action ) {
     $.ajax({
       data: formData,
-      url: action,
+      url: APIRoot + "/houses/1/messages"
       type: "POST",
       dataType: "json",
       success: function ( data ) {
@@ -57,7 +62,7 @@ var MessageBox = React.createClass({
         <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
         <MessageList messages={ this.state.messages } />
         <hr />
-        <h2>post a message</h2>
+        <h2>talk to your roomies</h2>
         <MessageForm form={ this.state.form } onMessageSubmit={ this.handleMessageSubmit } />
       </div>
     );
@@ -86,7 +91,7 @@ var MessageForm = React.createClass({
       <form ref="form" className="message-form" action={ this.props.form.action } acceptCharset="UTF-8" method="post" onSubmit={ this.handleSubmit }>
         <p><input type="hidden" name={ this.props.form.csrf_param } value={ this.props.form.csrf_token } /></p>
         <p><textarea ref="content" name="message[content]" placeholder="Say something..." /></p>
-        <p><button type="submit">talk to your roomies</button></p>
+        <p><button type="submit">post message</button></p>
       </form>
     )
   }

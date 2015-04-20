@@ -6,6 +6,35 @@ var MessageActionCreators = require('../../actions/MessageActionCreators.react.j
 var Router = require('react-router');
 var Link = Router.Link;
 var timeago = require('timeago');
+var APIRoot = "http://localhost:3002";
+
+var Message = React.createClass({
+  render: function () {
+    return (
+      <li className="story">
+        <div className="story__body">{this.props.message.content}</div>
+        <span className="story__user">{this.props.message.author}</span>
+        <span className="story__date"> - {timeago(this.props.message.created_at)}</span>
+      </li>
+    )
+  }
+});
+
+
+var MessageList = React.createClass({
+  render: function () {
+    var msgs = ( Array.isArray(this.props.messages) ? this.props.messages : this.props.messages.messages )
+    var messageNodes = msgs.map(function ( message ) {
+      return <Message message={ message } key={ message.id } />
+    });
+
+    return (
+      <div className="message-list">
+        { messageNodes }
+      </div>
+    )
+  }
+});
 
 var MessageBox = React.createClass({
 
@@ -32,6 +61,18 @@ var MessageBox = React.createClass({
     });
   },
 
+  handleMessageSubmit: function ( formData, action ) {
+    $.ajax({
+      data: formData,
+      url: APIRoot + "/houses/1/messages",
+      type: "POST",
+      dataType: "json",
+      success: function ( data ) {
+        this.setState({ messages: data });
+      }.bind(this)
+    });
+  },
+
   render: function () {
     return (
       <div className="message-box">
@@ -39,63 +80,34 @@ var MessageBox = React.createClass({
         <MessageList messages={ this.state.messages } />
         <hr />
         <h2>talk to your roomies</h2>
-        <MessageForm form={ this.state.form } />
+        <MessageForm form={ this.state.form } onMessageSubmit={ this.handleMessageSubmit } />
       </div>
     );
   }
 });
 
-var MessageList = React.createClass({
-
-  render: function () {
-    var messageNodes = this.props.messages.map(function ( message ) {
-      return <Message message={ message } key={ message.id } />
-    });
-
-    return (
-      <div className="message-list">
-        { messageNodes }
-      </div>
-    )
-  }
-});
-
-var Message = React.createClass({
-  render: function () {
-    return (
-      <li className="story">
-        <div className="story__body">{this.props.message.content}</div>
-        <span className="story__user">{this.props.message.author}</span>
-        <span className="story__date"> - {timeago(this.props.message.created_at)}</span>
-      </li>
-    )
-  }
-});
-
-
 var MessageForm = React.createClass({
-
   handleSubmit: function ( event ) {
     event.preventDefault();
-    var content = this.refs.content.getDOMNode().value;
-    MessageActionCreators.createMessage(content);
-    console.log(content)
-
+    var content = this.refs.content.getDOMNode().value.trim();
 
     // validate
     if (!content) {
       return false;
     }
 
+    // submit
+    var formData = $( this.refs.form.getDOMNode() ).serialize();
+    this.props.onMessageSubmit( formData, APIRoot + "/houses/1/messages" );
+
     // reset form
     this.refs.content.getDOMNode().value = "";
   },
-
   render: function () {
     return (
-      <form ref="form" className="message-form" method="post" onSubmit={ this.handleSubmit }>
+      <form ref="form" className="message-form" action={ APIRoot + "/houses/1/messages" } acceptCharset="UTF-8" method="post" onSubmit={ this.handleSubmit }>
         <p><textarea ref="content" name="message[content]" placeholder="Say something..." /></p>
-        <p><button type="submit">Post message</button></p>
+        <p><button type="submit">post message</button></p>
       </form>
     )
   }
