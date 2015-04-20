@@ -40,8 +40,23 @@ var RuleBox = React.createClass({
         <hr />
         <h4>Create a Rule</h4>
         <RuleForm form={ this.state.form } />
+        <div className="messages_link">
+          <Link to="messages" params={ {houseId: 1} }>
+          <p>Messages</p>
+          </Link>
+        </div>
       </div>
     );
+  }
+});
+
+var Rule = React.createClass({
+  render: function () {
+    return (
+      <li className="story">
+        <div className="story__body">{this.props.rule.content}</div>
+      </li>
+    )
   }
 });
 
@@ -58,17 +73,6 @@ var RuleList = React.createClass({
     )
   }
 });
-
-var Rule = React.createClass({
-  render: function () {
-    return (
-      <li className="story">
-        <div className="story__body">{this.props.rule.content}</div>
-      </li>
-    )
-  }
-});
-
 
 var RuleForm = React.createClass({
   handleSubmit: function ( event ) {
@@ -93,5 +97,6 @@ var RuleForm = React.createClass({
     )
   }
 });
+
 
 module.exports = RuleBox;

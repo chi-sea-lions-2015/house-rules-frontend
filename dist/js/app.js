@@ -26444,9 +26444,24 @@ var RuleBox = React.createClass({displayName: "RuleBox",
         React.createElement(RuleList, {rules:  this.state.rules}), 
         React.createElement("hr", null), 
         React.createElement("h4", null, "Create a Rule"), 
-        React.createElement(RuleForm, {form:  this.state.form})
+        React.createElement(RuleForm, {form:  this.state.form}), 
+        React.createElement("div", {className: "messages_link"}, 
+          React.createElement(Link, {to: "messages", params:  {houseId: 1} }, 
+          React.createElement("p", null, "Messages")
+          )
+        )
       )
     );
+  }
+});
+
+var Rule = React.createClass({displayName: "Rule",
+  render: function () {
+    return (
+      React.createElement("li", {className: "story"}, 
+        React.createElement("div", {className: "story__body"}, this.props.rule.content)
+      )
+    )
   }
 });
 
@@ -26463,17 +26478,6 @@ var RuleList = React.createClass({displayName: "RuleList",
     )
   }
 });
-
-var Rule = React.createClass({displayName: "Rule",
-  render: function () {
-    return (
-      React.createElement("li", {className: "story"}, 
-        React.createElement("div", {className: "story__body"}, this.props.rule.content)
-      )
-    )
-  }
-});
-
 
 var RuleForm = React.createClass({displayName: "RuleForm",
   handleSubmit: function ( event ) {
@@ -26498,6 +26502,7 @@ var RuleForm = React.createClass({displayName: "RuleForm",
     )
   }
 });
+
 
 module.exports = RuleBox;
 
@@ -26887,7 +26892,7 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       router.transitionTo('app');
       break;
 
-    case ActionTypes.RECEIVE_CREATED_Rule:
+    case ActionTypes.RECEIVE_CREATED_RULE:
       router.transitionTo('app');
       break;
 
