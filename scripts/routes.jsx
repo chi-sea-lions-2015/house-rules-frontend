@@ -5,9 +5,9 @@ var DefaultRoute = Router.DefaultRoute;
 
 var HouseRules = require('./components/HouseRules.react.jsx');
 var LoginPage = require('./components/session/LoginPage.react.jsx');
-var MessagesPage = require('./components/messages/MessagesPage.react.jsx');
-var MessagePage = require('./components/messages/MessagePage.react.jsx');
-var MessageNew = require('./components/messages/MessageNew.react.jsx');
+// var MessagesPage = require('./components/messages/MessagesPage.react.jsx');
+// var MessagePage = require('./components/messages/MessagePage.react.jsx');
+// var MessageNew = require('./components/messages/MessageNew.react.jsx');
 var MessageBox = require('./components/messages/_message_box.react.jsx');
 var RulesPage = require('./components/rules/RulesPage.react.jsx');
 var RulePage = require('./components/rules/RulePage.react.jsx');
@@ -26,8 +26,8 @@ module.exports = (
     <Route name="signup" path="/signup" handler={SignupPage}/>
     <Route name="rules" path="/houses/:houseId/rules" handler={RuleBox}/>
     <Route name="messages" path="/houses/:houseId/messages" handler={MessageBox}/>
-    <Route name="message" path="/messages/:messageId" handler={MessagePage} />
-    <Route name="new-message" path="/message/new" handler={MessageNew}/>
+    // <Route name="message" path="/messages/:messageId" handler={MessagePage} />
+    // <Route name="new-message" path="/message/new" handler={MessageNew}/>
     <Route name="chores" path="/house/:houseId/chores" handler={ChoreBox}/>
     <Route name="chore" path="/chores/:choreId" handler={ChoreBox} />
     <Route name="new-chore" path="/chore/new" handler={ChoreBox}/>
