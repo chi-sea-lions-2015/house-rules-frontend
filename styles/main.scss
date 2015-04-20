@@ -124,3 +124,44 @@ body {
     margin: 0;
   }
 }
+
+.menu {
+  display:block;
+}
+
+.menu > div {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  width: 250px;
+  height:100%;
+  transition: -webkit-transform 250ms ease;
+  transition: transform 250ms ease;
+}
+
+.menu .menu-left {
+  background: #273D7A;
+  left: -250px;
+}
+
+.menu .menu-left.menu-visible {
+    -webkit-transform: translate3d(250px, 0, 0);
+    -moz-transform: translate3d(250px, 0, 0);
+    -o-transform: translate3d(250px, 0, 0);
+    -ms-transform: translate3d(250px, 0, 0);
+    transform: translate3d(250px, 0, 0);
+}
+
+.menu > .menu-item {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 10px 15px;
+  border-bottom: solid 1px #555;
+  cursor: pointer;
+  color: #B0B0B0;
+}
+
+.menu > .menu-item:hover {
+    color:#F0F0F0;
+}
