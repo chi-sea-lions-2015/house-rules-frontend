@@ -71,6 +71,14 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       router.transitionTo('rules');
       break;
 
+    case ActionTypes.RECEIVE_CREATED_COMMUNAL_ITEM:
+      router.transitionTo('communal_items');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_CHORE:
+      router.transitionTo('chores');
+      break;
+
     default:
   }
 
