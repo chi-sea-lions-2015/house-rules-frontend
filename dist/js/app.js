@@ -25751,15 +25751,18 @@ var ActionTypes = HouseRulesConstants.ActionTypes;
 
 module.exports = {
 
-  signup: function(email, username, password, passwordConfirmation) {
+  signup: function(username, firstName, lastName, phone, email, password, passwordConfirmation)  {
     HouseRulesAPIDispatcher.handleViewAction({
       type: ActionTypes.SIGNUP_REQUEST,
-      email: email,
       username: username,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      email: email, 
       password: password,
       passwordConfirmation: passwordConfirmation
     });
-    WebAPIUtils.signup(email, username, password, passwordConfirmation);
+    WebAPIUtils.signup(username, firstName, lastName, phone, email, password, passwordConfirmation);
   },
 
   login: function(email, password) {
@@ -26171,14 +26174,17 @@ var SignupPage = React.createClass({displayName: "SignupPage",
   _onSubmit: function(e) {
     e.preventDefault();
     this.setState({ errors: [] });
-    var email = this.refs.email.getDOMNode().value;
     var username = this.refs.username.getDOMNode().value;
+    var email = this.refs.email.getDOMNode().value;
     var password = this.refs.password.getDOMNode().value;
     var passwordConfirmation = this.refs.passwordConfirmation.getDOMNode().value;
+    var firstName = this.refs.firstName.getDOMNode().value;
+    var lastName = this.refs.lastName.getDOMNode().value;
+    var phone = this.refs.phone.getDOMNode().value;    
     if (password !== passwordConfirmation) {
       this.setState({ errors: ['Password and password confirmation should match']});
     } else {
-      SessionActionCreators.signup(email, username, password, passwordConfirmation);
+      SessionActionCreators.signup(username, email, password, passwordConfirmation, firstName, lastName, phone);
     }
   },
 
@@ -26191,20 +26197,32 @@ var SignupPage = React.createClass({displayName: "SignupPage",
           React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
             React.createElement("form", {onSubmit: this._onSubmit}, 
               React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "first-name"}, "First Name"), 
+                React.createElement("input", {type: "text", name: "first-name", ref: "firstName"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
                 React.createElement("label", {name: "email"}, "Email"), 
                 React.createElement("input", {type: "text", name: "email", ref: "email"})
-              ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "username"}, "Username"), 
-                React.createElement("input", {type: "text", name: "username", ref: "username"})
-              ), 
+                ), 
               React.createElement("div", {className: "card--login__field"}, 
                 React.createElement("label", {name: "password"}, "Password"), 
                 React.createElement("input", {type: "password", name: "password", ref: "password"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "password-confirmation"}, "Password Confirmation"), 
+                React.createElement("input", {type: "password-confrimation", name: "password-confirmation", ref: "passwordConfirmation"})
+              ), 
+               React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "username"}, "Username"), 
+                React.createElement("input", {type: "text", name: "username", ref: "username"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "last-name"}, "Last Name"), 
+                React.createElement("input", {type: "test", name: "last-name", ref: "lastName"})
               ), 
               React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "password-confrimation"}, "Password confirmation"), 
-                React.createElement("input", {type: "password", name: "password-confirmation", ref: "passwordConfirmation"})
+                React.createElement("label", {name: "phone"}, "Phone"), 
+                React.createElement("input", {type: "text", name: "phone", ref: "phone"})
               ), 
               React.createElement("button", {type: "submit", className: "card--login__submit"}, "Signup")
             )
@@ -26221,13 +26239,13 @@ module.exports = SignupPage;
 },{"../../actions/SessionActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":213,"../../stores/SessionStore.react.jsx":224,"react":202}],219:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
-var APIRoot = "http://localhost:3000";
+var APIRoot = "http://localhost:3002";
 
 module.exports = {
 
   APIEndpoints: {
-    LOGIN:          APIRoot + "/v1/login",
-    REGISTRATION:   APIRoot + "/v1/users",
+    LOGIN:          APIRoot + "/login",
+    REGISTRATION:   APIRoot + "/users",
     MESSAGES:       APIRoot + "/houses/1/messages"
   },
 
@@ -26566,11 +26584,14 @@ var APIEndpoints = HouseRulesConstants.APIEndpoints;
 
 module.exports = {
 
-  signup: function(email, username, password, passwordConfirmation) {
+  signup: function(username, firstName, lastName, phone, email, password, passwordConfirmation) {
     request.post(APIEndpoints.REGISTRATION)
       .send({ user: { 
-        email: email, 
         username: username,
+        first_name: firstName,
+        last_name: lastName,
+        phone: phone,
+        email: email, 
         password: password,
         password_confirmation: passwordConfirmation
       }})

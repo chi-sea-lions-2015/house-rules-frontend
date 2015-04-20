@@ -6,15 +6,18 @@ var ActionTypes = HouseRulesConstants.ActionTypes;
 
 module.exports = {
 
-  signup: function(email, username, password, passwordConfirmation) {
+  signup: function(username, firstName, lastName, phone, email, password, passwordConfirmation)  {
     HouseRulesAPIDispatcher.handleViewAction({
       type: ActionTypes.SIGNUP_REQUEST,
-      email: email,
       username: username,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      email: email, 
       password: password,
       passwordConfirmation: passwordConfirmation
     });
-    WebAPIUtils.signup(email, username, password, passwordConfirmation);
+    WebAPIUtils.signup(username, firstName, lastName, phone, email, password, passwordConfirmation);
   },
 
   login: function(email, password) {

@@ -1,12 +1,12 @@
 var keyMirror = require('keymirror');
 
-var APIRoot = "http://localhost:3000";
+var APIRoot = "http://localhost:3002";
 
 module.exports = {
 
   APIEndpoints: {
-    LOGIN:          APIRoot + "/v1/login",
-    REGISTRATION:   APIRoot + "/v1/users",
+    LOGIN:          APIRoot + "/login",
+    REGISTRATION:   APIRoot + "/users",
     MESSAGES:       APIRoot + "/houses/1/messages"
   },
 

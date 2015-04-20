@@ -18,11 +18,14 @@ var APIEndpoints = HouseRulesConstants.APIEndpoints;
 
 module.exports = {
 
-  signup: function(email, username, password, passwordConfirmation) {
+  signup: function(username, firstName, lastName, phone, email, password, passwordConfirmation) {
     request.post(APIEndpoints.REGISTRATION)
       .send({ user: { 
-        email: email, 
         username: username,
+        first_name: firstName,
+        last_name: lastName,
+        phone: phone,
+        email: email, 
         password: password,
         password_confirmation: passwordConfirmation
       }})
