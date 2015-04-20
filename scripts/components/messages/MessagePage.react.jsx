@@ -26,7 +26,7 @@ var MessagePage = React.createClass({
 
   _onChange: function() {
     this.setState({
-      message: MessageStore.getMessage(),
+      message: MessageStore.getMessages(),
       errors: MessageStore.getErrors()
     });
   },
