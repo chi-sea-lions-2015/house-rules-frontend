@@ -25932,8 +25932,8 @@ var Header = React.createClass({displayName: "Header",
     this.refs.left.show();
   },
 
-  showRight: function() {
-    this.refs.right.show();
+  hideLeft: function() {
+    this.refs.left.hide();
   },
 
   render: function() {
@@ -25956,12 +25956,18 @@ var Header = React.createClass({displayName: "Header",
     var leftNav = this.props.isLoggedIn ? (
       React.createElement("ul", {className: "left"}, 
         React.createElement("div", null, 
-          React.createElement("button", {onClick: this.showLeft}, "Show Left Menu!"), 
+          React.createElement("button", {className: "menu-button", onMouseOver: this.showLeft, onClick: this.showLeft}, "my hizz-ous"), 
 
           React.createElement(Menu, {ref: "left", alignment: "left"}, 
-            React.createElement(MenuItem, {hash: "first-page"}, "First Page"), 
-            React.createElement(MenuItem, {hash: "second-page"}, "Second Page"), 
-            React.createElement(MenuItem, {hash: "third-page"}, "Third Page")
+            React.createElement(MenuItem, {hash: "first-page"}, "Fridge"), 
+            React.createElement(MenuItem, {hash: "second-page"}, "Chores"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Events"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Inventory"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Bills"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Rules"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Roommates"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "House Info"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Profile")
           )
         )
       )
@@ -25971,17 +25977,10 @@ var Header = React.createClass({displayName: "Header",
 
     return (
       React.createElement("nav", {className: "top-bar", "data-topbar": true, role: "navigation"}, 
-        React.createElement("ul", {className: "title-area"}, 
-          React.createElement("li", {className: "name"}, 
-            React.createElement("h1", null, React.createElement("strong", null, "Menu"))
-          ), 
-          React.createElement("li", {className: "toggle-topbar menu-icon"}, React.createElement("a", {href: "#"}, React.createElement("span", null, "Menu")))
-        ), 
-
         React.createElement("section", {className: "top-bar-section"}, 
+          leftNav, 
           rightNav, 
-          React.createElement("div", {className: "top-logo"}, "House Rules"), 
-          leftNav
+          React.createElement("div", {className: "top-logo"}, "House Rules")
         )
       )
     );

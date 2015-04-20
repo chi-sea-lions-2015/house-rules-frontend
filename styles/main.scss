@@ -140,7 +140,8 @@ body {
 }
 
 .menu .menu-left {
-  background: #273D7A;
+  position: fixed;
+  background: #333333;
   left: -250px;
 }
 
@@ -152,7 +153,7 @@ body {
     transform: translate3d(250px, 0, 0);
 }
 
-.menu > .menu-item {
+.menu .menu-item {
   float: left;
   width: 100%;
   margin: 0;
@@ -162,6 +163,15 @@ body {
   color: #B0B0B0;
 }
 
-.menu > .menu-item:hover {
-    color:#F0F0F0;
+.menu .menu-item:hover {
+  color:#F0F0F0;
+}
+
+.menu-button {
+  background: #333333;
+}
+
+.menu-button:hover {
+  background: #333333;
+  color:#F0F0F0;
 }

@@ -55,8 +55,8 @@ var Header = React.createClass({
     this.refs.left.show();
   },
 
-  showRight: function() {
-    this.refs.right.show();
+  hideLeft: function() {
+    this.refs.left.hide();
   },
 
   render: function() {
@@ -79,12 +79,18 @@ var Header = React.createClass({
     var leftNav = this.props.isLoggedIn ? (
       <ul className="left">
         <div>
-          <button onClick={this.showLeft}>Show Left Menu!</button>
+          <button className="menu-button" onMouseOver={this.showLeft} onClick={this.showLeft}>my hizz-ous</button>
 
           <Menu ref="left" alignment="left">
-            <MenuItem hash="first-page">First Page</MenuItem>
-            <MenuItem hash="second-page">Second Page</MenuItem>
-            <MenuItem hash="third-page">Third Page</MenuItem>
+            <MenuItem hash="first-page">Fridge</MenuItem>
+            <MenuItem hash="second-page">Chores</MenuItem>
+            <MenuItem hash="third-page">Events</MenuItem>
+            <MenuItem hash="third-page">Inventory</MenuItem>
+            <MenuItem hash="third-page">Bills</MenuItem>
+            <MenuItem hash="third-page">Rules</MenuItem>
+            <MenuItem hash="third-page">Roommates</MenuItem>
+            <MenuItem hash="third-page">House Info</MenuItem>
+            <MenuItem hash="third-page">Profile</MenuItem>
           </Menu>
         </div>
       </ul>
@@ -94,17 +100,10 @@ var Header = React.createClass({
 
     return (
       <nav className="top-bar" data-topbar role="navigation">
-        <ul className="title-area">
-          <li className="name">
-            <h1><strong>Menu</strong></h1>
-          </li>
-          <li className="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
-
         <section className="top-bar-section">
+          {leftNav}
           {rightNav}
           <div className="top-logo">House Rules</div>
-          {leftNav}
         </section>
       </nav>
     );
