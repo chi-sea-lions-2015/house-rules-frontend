@@ -41,7 +41,6 @@ var MessageStore = assign({}, EventEmitter.prototype, {
 
 MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   var action = payload.action;
-
   switch(action.type) {
 
     case ActionTypes.RECEIVE_MESSAGES:
@@ -51,7 +50,9 @@ MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
 
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
       if (action.json) {
-        _messages.unshift(action.json.message);
+        //ALTERED TO MAKE FUNCTIONAL!!!
+        //API MODIFIED TO SENT ONE MESSAGE!!!
+        _messages.push(action.json);
         _errors = [];
       }
       if (action.errors) {

@@ -6,8 +6,25 @@ var MessageActionCreators = require('../../actions/MessageActionCreators.react.j
 var Router = require('react-router');
 var Link = Router.Link;
 var timeago = require('timeago');
+var RouteHandler = Router.RouteHandler
 
 var MessageBox = React.createClass({
+
+  // handleMessageSubmit: function(message) {
+  //   $.ajax({
+  //     url: this.props.url,
+  //     dataType: 'json',
+  //     type: 'POST',
+  //     data: message,
+  //     success: function(data) {
+  //       console.log("YAYYYA!")
+
+  //     }.bind(this),
+  //     error: function(xhr, status err) {
+  //       console.error(this.props.url status, err.toString());
+  //     }.bind(this)
+  //   });
+  // },
 
   getInitialState: function() {
     return {
@@ -39,7 +56,8 @@ var MessageBox = React.createClass({
         <MessageList messages={ this.state.messages } />
         <hr />
         <h2>talk to your roomies</h2>
-        <MessageForm form={ this.state.form } />
+        <MessageForm onMessageSubmit={this.handleMessageSubmit} form={ this.state.form } />
+        <RouteHandler/>
       </div>
     );
   }
@@ -80,7 +98,6 @@ var MessageForm = React.createClass({
     var content = this.refs.content.getDOMNode().value;
     MessageActionCreators.createMessage(content);
 
-
     // validate
     if (!content) {
       return false;
@@ -99,5 +116,8 @@ var MessageForm = React.createClass({
     )
   }
 });
+
+
+
 
 module.exports = MessageBox;

@@ -15,7 +15,7 @@ module.exports = {
 
   loadRule: function(ruleId) {
     HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_MESSAGE,
+      type: ActionTypes.LOAD_RULE,
       ruleId: ruleId
     });
     WebAPIUtils.loadRule(ruleId);
