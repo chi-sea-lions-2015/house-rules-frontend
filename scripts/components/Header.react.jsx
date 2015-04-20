@@ -22,7 +22,7 @@ var Header = React.createClass({
           <ul className="dropdown">
             <li><a href='#' onClick={this.logout}>Logout</a></li>
           </ul>
-        </li> 
+        </li>
       </ul>
     ) : (
       <ul className="right">
@@ -50,6 +50,7 @@ var Header = React.createClass({
 
         <section className="top-bar-section">
           {rightNav}
+          <div className="top-logo">House Rules</div>
           {leftNav}
         </section>
       </nav>

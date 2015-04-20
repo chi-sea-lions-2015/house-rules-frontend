@@ -25833,6 +25833,7 @@ var Header = React.createClass({displayName: "Header",
 
         React.createElement("section", {className: "top-bar-section"}, 
           rightNav, 
+          React.createElement("div", {className: "top-logo"}, "House Rules"), 
           leftNav
         )
       )
