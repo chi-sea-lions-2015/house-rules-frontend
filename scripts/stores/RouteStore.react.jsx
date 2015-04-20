@@ -64,11 +64,19 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
-      router.transitionTo('app');
+      router.transitionTo('messages');
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:
-      router.transitionTo('app');
+      router.transitionTo('rules');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_CHORE:
+      router.transitionTo('chores');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_ITEM:
+      router.transitionTo('communal_items');
       break;
 
     default:
