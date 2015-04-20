@@ -26,7 +26,7 @@ module.exports = {
         first_name: firstName,
         last_name: lastName,
         phone: phone,
-        email: email, 
+        email: email,
         password: password,
         password_confirmation: passwordConfirmation
       }})
@@ -61,7 +61,7 @@ module.exports = {
       });
   },
 
-loadMessages: function() {
+  loadMessages: function() {
     request.get(APIEndpoints.MESSAGES)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
@@ -98,6 +98,48 @@ loadMessages: function() {
           } else {
             json = JSON.parse(res.text);
             ServerActionCreators.receiveCreatedMessage(json, null);
+          }
+        }
+      });
+  },
+
+  loadRules: function() {
+    request.get(APIEndpoints.RULES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveRules(json);
+        }
+      });
+  },
+
+  loadRule: function(ruleId) {
+    request.get(APIEndpoints.RULES + '/' + ruleId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveRule(json);
+        }
+      });
+  },
+
+  createRule: function(content) {
+    request.post(APIEndpoints.RULES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ rule: { content: content } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedRule(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedRule(json, null);
           }
         }
       });
@@ -146,4 +188,3 @@ loadMessages: function() {
   }
 
 };
-

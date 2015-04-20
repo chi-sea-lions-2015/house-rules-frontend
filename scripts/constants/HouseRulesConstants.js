@@ -5,9 +5,10 @@ var APIRoot = "http://localhost:3000";
 module.exports = {
 
   APIEndpoints: {
-    LOGIN:          APIRoot + "/login",
-    REGISTRATION:   APIRoot + "/users",
+    LOGIN:          APIRoot + "/v1/login",
+    REGISTRATION:   APIRoot + "/v1/users",
     MESSAGES:       APIRoot + "/houses/1/messages",
+    RULES:          APIRoot + "/houses/1/rules",
     CHORES:         APIRoot + "/houses/1/chores"
   },
 
@@ -17,11 +18,10 @@ module.exports = {
   }),
 
   ActionTypes: keyMirror({
-    // Session
+
     LOGIN_REQUEST: null,
     LOGIN_RESPONSE: null,
 
-    // Routes
     REDIRECT: null,
 
     LOAD_MESSAGES: null,
@@ -30,6 +30,13 @@ module.exports = {
     RECEIVE_MESSAGE: null,
     CREATE_MESSAGE: null,
     RECEIVE_CREATED_MESSAGE: null,
+
+    LOAD_RULES: null,
+    RECEIVE_RULES: null,
+    LOAD_RULE: null,
+    RECEIVE_RULE: null,
+    CREATE_RULE: null,
+    RECEIVE_CREATED_RULE: null,
 
     LOAD_CHORES: null,
     RECEIVE_CHORES: null,

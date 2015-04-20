@@ -33,6 +33,28 @@ module.exports = {
       json: json,
       errors: errors
     });
+  },
+
+  receiveRules: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_RULES,
+      json: json
+    });
+  },
+
+  receiveRule: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_RULE,
+      json: json
+    });
+  },
+
+  receiveCreatedRule: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_RULE,
+      json: json,
+      errors: errors
+    });
   }
 
 };

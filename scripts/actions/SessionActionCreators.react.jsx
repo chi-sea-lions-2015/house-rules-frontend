@@ -34,6 +34,6 @@ module.exports = {
       type: ActionTypes.LOGOUT
     });
   }
-  
+
 };
 
