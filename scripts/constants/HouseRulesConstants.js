@@ -7,7 +7,7 @@ module.exports = {
   APIEndpoints: {
     LOGIN:          APIRoot + "/login",
     REGISTRATION:   APIRoot + "/users",
-    MESSAGES:       APIRoot + "/houses/1/messages"
+    MESSAGES:       APIRoot + "/houses/1/messages",
     CHORES:         APIRoot + "/houses/1/chores"
   },
 

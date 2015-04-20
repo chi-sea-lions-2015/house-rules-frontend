@@ -46,7 +46,7 @@ module.exports = {
 
   login: function(email, password) {
     request.post(APIEndpoints.LOGIN)
-      .send({ username: email, password: password, grant_type: 'password' })
+      .send({ email: email, password: password, grant_type: 'password' })
       .set('Accept', 'application/json')
       .end(function(error, res){
         if (res) {
@@ -61,11 +61,7 @@ module.exports = {
       });
   },
 
-<<<<<<< HEAD
 loadMessages: function() {
-=======
-  loadMessages: function() {
->>>>>>> 1b10e59f711606aa473cbc197bd9aa96b4e58798
     request.get(APIEndpoints.MESSAGES)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
@@ -89,14 +85,8 @@ loadMessages: function() {
       });
   },
 
-<<<<<<< HEAD
-
-  createMessage: function(title, body) {
-    request.post(APIEndpoints.STORIES)
-=======
   createMessage: function(content) {
     request.post(APIEndpoints.MESSAGES)
->>>>>>> 1b10e59f711606aa473cbc197bd9aa96b4e58798
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
       .send({ message: { content: content } })
@@ -108,8 +98,6 @@ loadMessages: function() {
           } else {
             json = JSON.parse(res.text);
             ServerActionCreators.receiveCreatedMessage(json, null);
-<<<<<<< HEAD
-=======
           }
         }
       });
@@ -152,7 +140,6 @@ loadMessages: function() {
           } else {
             json = JSON.parse(res.text);
             ServerActionCreators.receiveCreatedChore(json, null);
->>>>>>> 1b10e59f711606aa473cbc197bd9aa96b4e58798
           }
         }
       });
