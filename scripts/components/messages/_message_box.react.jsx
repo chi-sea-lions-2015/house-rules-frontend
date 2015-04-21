@@ -57,6 +57,7 @@ var MessageBox = React.createClass({
       <div className="row">
       <div className="large-3 columns"><br /></div>
       <div className="large-6 columns">
+      <h3>House Messages:</h3>
       <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
       <MessageList messages={ this.state.messages } />
       <hr />

@@ -38,6 +38,7 @@ var RuleBox = React.createClass({
       <div className="row">
       <div className="large-3 columns"><br /></div>
       <div className="large-6 columns">
+        <h3>House Rules:</h3>
         <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
         <RuleList rules={ this.state.rules } />
         <hr />
@@ -53,8 +54,8 @@ var RuleBox = React.createClass({
 var Rule = React.createClass({
   render: function () {
     return (
-      <li className="story">
-        <div className="story__body">{this.props.rule.content}</div>
+      <li>
+        {this.props.rule.content}
       </li>
     )
   }
