@@ -185,6 +185,51 @@ module.exports = {
           }
         }
       });
+  },
+
+  loadItems: function() {
+    request.get(APIEndpoints.ITEMS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveItems(json);
+        }
+      });
+  },
+
+  loadItem: function(itemId) {
+    request.get(APIEndpoints.ITEMS + '/' + itemId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveItem(json);
+        }
+      });
+  },
+
+  createItem: function(name, brand, quantity, stock_level) {
+    request.post(APIEndpoints.ITEMS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ item: { name: name, brand: brand, quantity: quantity, stock_level: stock_level } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedItem(null, errorMsgs);
+          } else {
+            console.log("*******");
+            console.log(res);
+            json = JSON.parse(res.name);
+            console.log(json);
+            ServerActionCreators.receiveCreatedItem(json, null);
+          }
+        }
+      });
   }
 
 };

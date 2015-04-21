@@ -55,6 +55,29 @@ module.exports = {
       json: json,
       errors: errors
     });
+  },
+
+  receiveItems: function(json) {
+    console.log(json);
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_ITEMS,
+      json: json
+    });
+  },
+
+  receiveItem: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_ITEM,
+      json: json
+    });
+  },
+
+  receiveCreatedItem: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_ITEM,
+      json: json,
+      errors: errors
+    });
   }
 
 };

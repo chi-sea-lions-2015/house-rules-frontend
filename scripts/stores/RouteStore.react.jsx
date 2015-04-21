@@ -3,6 +3,7 @@ var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var MessageStore = require('../stores/MessageStore.react.jsx');
 var RuleStore = require('../stores/RuleStore.react.jsx');
+var ItemStore = require('../stores/ItemStore.react.jsx');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
@@ -44,7 +45,8 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   HouseRulesAPIDispatcher.waitFor([
     SessionStore.dispatchToken,
     MessageStore.dispatchToken,
-    RuleStore.dispatchToken
+    RuleStore.dispatchToken,
+    ItemStore.dispatchToken
   ]);
 
   var action = payload.action;
@@ -68,7 +70,11 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:
-      router.transitionTo('rule');
+      router.transitionTo('rules');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_ITEM:
+      router.transitionTo('items');
       break;
 
     default:

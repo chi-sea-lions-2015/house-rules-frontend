@@ -74,6 +74,8 @@ var MessageBox = React.createClass({
   },
 
   render: function () {
+    console.log(this.state);
+    console.log("state");
     return (
       <div className="message-box">
         <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />

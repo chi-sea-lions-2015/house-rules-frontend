@@ -7,7 +7,7 @@ router.run(function (Handler, state) {
   React.render(React.createElement(Handler, null), document.getElementById('content'));
 });
 
-},{"./stores/RouteStore.react.jsx":229,"react":202}],2:[function(require,module,exports){
+},{"./stores/RouteStore.react.jsx":232,"react":202}],2:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -25682,7 +25682,41 @@ module.exports = {
 
 };
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225,"../utils/WebAPIUtils.js":232}],208:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../utils/WebAPIUtils.js":235}],208:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
+  loadItems: function() {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_ITEMS
+    });
+    WebAPIUtils.loadItems();
+  },
+
+  loadItem: function(itemId) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_ITEM,
+      itemId: itemId
+    });
+    WebAPIUtils.loadItem(itemId);
+  },
+
+  createItem: function(name) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.CREATE_ITEM,
+      name: name
+    });
+    WebAPIUtils.createItem(name);
+  }
+
+};
+
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../utils/WebAPIUtils.js":235}],209:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var WebAPIUtils = require('../utils/WebAPIUtils.js');
@@ -25717,7 +25751,7 @@ module.exports = {
 };
 
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225,"../utils/WebAPIUtils.js":232}],209:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../utils/WebAPIUtils.js":235}],210:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 
@@ -25736,7 +25770,7 @@ module.exports = {
 
 
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225}],210:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227}],211:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var WebAPIUtils = require('../utils/WebAPIUtils.js');
@@ -25771,7 +25805,7 @@ module.exports = {
 };
 
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225,"../utils/WebAPIUtils.js":232}],211:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../utils/WebAPIUtils.js":235}],212:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 
@@ -25829,11 +25863,34 @@ module.exports = {
       json: json,
       errors: errors
     });
+  },
+
+  receiveItems: function(json) {
+    console.log(json);
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_ITEMS,
+      json: json
+    });
+  },
+
+  receiveItem: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_ITEM,
+      json: json
+    });
+  },
+
+  receiveCreatedItem: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_ITEM,
+      json: json,
+      errors: errors
+    });
   }
 
 };
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225}],212:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227}],213:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var WebAPIUtils = require('../utils/WebAPIUtils.js');
@@ -25874,7 +25931,7 @@ module.exports = {
 };
 
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225,"../utils/WebAPIUtils.js":232}],213:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../utils/WebAPIUtils.js":235}],214:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
@@ -25990,7 +26047,7 @@ var Header = React.createClass({displayName: "Header",
 module.exports = Header;
 
 
-},{"../actions/SessionActionCreators.react.jsx":212,"react":202,"react-router":22}],214:[function(require,module,exports){
+},{"../actions/SessionActionCreators.react.jsx":213,"react":202,"react-router":22}],215:[function(require,module,exports){
 var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('../components/Header.react.jsx');
@@ -26038,7 +26095,7 @@ var HouseRules = React.createClass({displayName: "HouseRules",
 module.exports = HouseRules;
 
 
-},{"../components/Header.react.jsx":213,"../stores/RouteStore.react.jsx":229,"../stores/SessionStore.react.jsx":231,"react":202,"react-router":22}],215:[function(require,module,exports){
+},{"../components/Header.react.jsx":214,"../stores/RouteStore.react.jsx":232,"../stores/SessionStore.react.jsx":234,"react":202,"react-router":22}],216:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var ChoreStore = require('../../stores/ChoreStore.react.jsx');
@@ -26147,7 +26204,7 @@ var ChoreForm = React.createClass({displayName: "ChoreForm",
 
 module.exports = ChoreBox;
 
-},{"../../actions/ChoreActionCreators.react.jsx":207,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/ChoreStore.react.jsx":227,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],216:[function(require,module,exports){
+},{"../../actions/ChoreActionCreators.react.jsx":207,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/ChoreStore.react.jsx":229,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],217:[function(require,module,exports){
 var React = require('react');
 
 var ErrorNotice = React.createClass({displayName: "ErrorNotice",
@@ -26167,7 +26224,150 @@ var ErrorNotice = React.createClass({displayName: "ErrorNotice",
 module.exports = ErrorNotice;
 
 
-},{"react":202}],217:[function(require,module,exports){
+},{"react":202}],218:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var ItemStore = require('../../stores/ItemStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var ItemActionCreators = require('../../actions/ItemActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+var APIRoot = "http://localhost:3002";
+
+var ItemBox = React.createClass({displayName: "ItemBox",
+
+  getInitialState: function() {
+    return {
+      items: ItemStore.getAllItems(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    ItemStore.addChangeListener(this._onChange);
+    ItemActionCreators.loadItems();
+  },
+
+  componentWillUnmount: function() {
+    ItemStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      items: ItemStore.getAllItems(),
+      errors: ItemStore.getErrors()
+    });
+  },
+
+  handleItemSubmit: function ( formData, action ) {
+    $.ajax({
+      data: formData,
+      url: APIRoot + "/houses/1/communal_items",
+      type: "POST",
+      dataType: "json",
+      success: function ( data ) {
+        console.log("^^^^^^^");
+        console.log(data);
+        this.setState({ items: data });
+      }.bind(this)
+    });
+  },
+
+  render: function () {
+    console.log("state");
+    console.log(this.state.form);
+    return (
+      React.createElement("div", {className: "item-box"}, 
+        React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
+        React.createElement(ItemList, {items:  this.state.items}), 
+        React.createElement("hr", null), 
+        React.createElement(ItemForm, {form:  this.state.form, onItemSubmit:  this.handleItemSubmit})
+      )
+    );
+  }
+});
+
+var Item = React.createClass({displayName: "Item",
+  render: function () {
+    return (
+      React.createElement("li", {className: "story"}, 
+        React.createElement("div", {className: "story__name"}, this.props.item.name), 
+        React.createElement("div", {className: "story__brand"}, this.props.item.brand), 
+        React.createElement("div", {className: "story__quantity"}, this.props.item.quantity), 
+        React.createElement("div", {className: "story__stock"}, this.props.item.stock_level)
+      )
+    )
+  }
+});
+
+
+var ItemList = React.createClass({displayName: "ItemList",
+
+  render: function () {
+    var itemNodes = this.props.items.map(function ( item ) {
+      return React.createElement(Item, {item: item })
+    });
+
+    return (
+      React.createElement("div", {className: "item-list"}, 
+        React.createElement("h2", null, "Communal Items"), 
+        itemNodes 
+      )
+    )
+  }
+});
+
+
+var ItemForm = React.createClass({displayName: "ItemForm",
+  handleSubmit: function ( event ) {
+    event.preventDefault();
+
+    // var content = this.refs.content.getDOMNode().value.trim();
+
+    var name = this.refs.name.getDOMNode().value;
+    ItemActionCreators.createItem(name);
+    var brand = this.refs.stock.getDOMNode().value;
+    ItemActionCreators.createItem(brand);
+    var quantity = this.refs.stock.getDOMNode().value;
+    ItemActionCreators.createItem(quantity);
+    var stock_level = this.refs.stock.getDOMNode().value;
+    ItemActionCreators.createItem(stock_level);
+
+    // validate
+    if (!name) {
+      return false;
+    }
+    if (!stock_level) {
+      return false;
+    }
+
+    // submit
+    var formData = $( this.refs.form.getDOMNode() ).serialize();
+    this.props.onItemSubmit( formData, APIRoot + "/houses/1/communal_items" );
+
+    // reset form
+    this.refs.name.getDOMNode().value = "";
+    this.refs.brand.getDOMNode().value = "";
+    this.refs.quantity.getDOMNode().value = "";
+    this.refs.stock.getDOMNode().value = "";
+  },
+  render: function () {
+    return (
+      React.createElement("form", {ref: "form", className: "item-form", action:  APIRoot + "/houses/1/communal_items", acceptCharset: "UTF-8", method: "post", onSubmit:  this.handleSubmit}, 
+        React.createElement("p", null, React.createElement("input", {ref: "name", name: "item[name]", placeholder: "What's the communal item?"})), 
+        React.createElement("p", null, React.createElement("input", {ref: "brand", name: "item[brand]", placeholder: "What's the brand?"})), 
+        React.createElement("p", null, React.createElement("input", {ref: "quantity", name: "item[quantity]", placeholder: "How many?"})), 
+        React.createElement("p", null, React.createElement("input", {ref: "stock", name: "item[stock_level]", placeholder: "What's the stock status?"})), 
+        React.createElement("p", null, React.createElement("button", {type: "submit"}, "post item"))
+      )
+    )
+  }
+});
+
+module.exports = ItemBox;
+
+},{"../../actions/ItemActionCreators.react.jsx":208,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/ItemStore.react.jsx":230,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],219:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var MessageStore = require('../../stores/MessageStore.react.jsx');
@@ -26244,6 +26444,8 @@ var MessageBox = React.createClass({displayName: "MessageBox",
   },
 
   render: function () {
+    console.log(this.state);
+    console.log("state");
     return (
       React.createElement("div", {className: "message-box"}, 
         React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
@@ -26285,7 +26487,7 @@ var MessageForm = React.createClass({displayName: "MessageForm",
 
 module.exports = MessageBox;
 
-},{"../../actions/MessageActionCreators.react.jsx":208,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/MessageStore.react.jsx":228,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],218:[function(require,module,exports){
+},{"../../actions/MessageActionCreators.react.jsx":209,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/MessageStore.react.jsx":231,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],220:[function(require,module,exports){
 var React = require('react');
 var HouseRulesAPIDispatcher = require('../../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../../constants/HouseRulesConstants.js');
@@ -26327,7 +26529,7 @@ var RuleNew = React.createClass({displayName: "RuleNew",
 
 module.exports = RuleNew;
 
-},{"../../actions/RouteActionCreators.react.jsx":209,"../../actions/RuleActionCreators.react.jsx":210,"../../constants/HouseRulesConstants.js":224,"../../dispatcher/HouseRulesAPIDispatcher.js":225,"../../stores/SessionStore.react.jsx":231,"../../utils/WebAPIUtils.js":232,"react":202}],219:[function(require,module,exports){
+},{"../../actions/RouteActionCreators.react.jsx":210,"../../actions/RuleActionCreators.react.jsx":211,"../../constants/HouseRulesConstants.js":226,"../../dispatcher/HouseRulesAPIDispatcher.js":227,"../../stores/SessionStore.react.jsx":234,"../../utils/WebAPIUtils.js":235,"react":202}],221:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var RuleStore = require('../../stores/RuleStore.react.jsx');
@@ -26373,7 +26575,7 @@ var RulePage = React.createClass({displayName: "RulePage",
 
 module.exports = RulePage;
 
-},{"../../actions/RuleActionCreators.react.jsx":210,"../../stores/RuleStore.react.jsx":230,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22}],220:[function(require,module,exports){
+},{"../../actions/RuleActionCreators.react.jsx":211,"../../stores/RuleStore.react.jsx":233,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22}],222:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var RuleStore = require('../../stores/RuleStore.react.jsx');
@@ -26450,7 +26652,7 @@ var RulesList = React.createClass({displayName: "RulesList",
 module.exports = RulesPage;
 
 
-},{"../../actions/RuleActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/RuleStore.react.jsx":230,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],221:[function(require,module,exports){
+},{"../../actions/RuleActionCreators.react.jsx":211,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/RuleStore.react.jsx":233,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],223:[function(require,module,exports){
 var React = require('react');
 var WebAPIUtils = require('../../utils/WebAPIUtils.js');
 var RuleStore = require('../../stores/RuleStore.react.jsx');
@@ -26554,7 +26756,7 @@ var RuleForm = React.createClass({displayName: "RuleForm",
 
 module.exports = RuleBox;
 
-},{"../../actions/RuleActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/RuleStore.react.jsx":230,"../../utils/WebAPIUtils.js":232,"react":202,"react-router":22,"timeago":206}],222:[function(require,module,exports){
+},{"../../actions/RuleActionCreators.react.jsx":211,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/RuleStore.react.jsx":233,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],224:[function(require,module,exports){
 var React = require('react');
 var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
 var SessionStore = require('../../stores/SessionStore.react.jsx');
@@ -26614,7 +26816,7 @@ var LoginPage = React.createClass({displayName: "LoginPage",
 module.exports = LoginPage;
 
 
-},{"../../actions/SessionActionCreators.react.jsx":212,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/SessionStore.react.jsx":231,"react":202}],223:[function(require,module,exports){
+},{"../../actions/SessionActionCreators.react.jsx":213,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/SessionStore.react.jsx":234,"react":202}],225:[function(require,module,exports){
 var React = require('react');
 var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
 var SessionStore = require('../../stores/SessionStore.react.jsx');
@@ -26703,7 +26905,7 @@ var SignupPage = React.createClass({displayName: "SignupPage",
 module.exports = SignupPage;
 
 
-},{"../../actions/SessionActionCreators.react.jsx":212,"../../components/common/ErrorNotice.react.jsx":216,"../../stores/SessionStore.react.jsx":231,"react":202}],224:[function(require,module,exports){
+},{"../../actions/SessionActionCreators.react.jsx":213,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/SessionStore.react.jsx":234,"react":202}],226:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
 var APIRoot = "http://localhost:3002";
@@ -26715,7 +26917,8 @@ module.exports = {
     REGISTRATION:   APIRoot + "/users",
     MESSAGES:       APIRoot + "/houses/1/messages",
     RULES:          APIRoot + "/houses/1/rules",
-    CHORES:         APIRoot + "/houses/1/chores"
+    CHORES:         APIRoot + "/houses/1/chores",
+    ITEMS:          APIRoot + "/houses/1/communal_items"
   },
 
   PayloadSources: keyMirror({
@@ -26749,12 +26952,19 @@ module.exports = {
     LOAD_CHORE: null,
     RECEIVE_CHORE: null,
     CREATE_CHORE: null,
-    RECEIVE_CREATED_CHORE: null
+    RECEIVE_CREATED_CHORE: null,
+
+    LOAD_ITEMS: null,
+    RECEIVE_ITEMS: null,
+    LOAD_ITEM: null,
+    RECEIVE_ITEM: null,
+    CREATE_ITEM: null,
+    RECEIVE_CREATED_ITEM: null
   })
 
 };
 
-},{"keymirror":11}],225:[function(require,module,exports){
+},{"keymirror":11}],227:[function(require,module,exports){
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var Dispatcher = require('flux').Dispatcher;
 var assign = require('object-assign');
@@ -26782,7 +26992,7 @@ var HouseRulesAPIDispatcher = assign(new Dispatcher(), {
 
 module.exports = HouseRulesAPIDispatcher;
 
-},{"../constants/HouseRulesConstants.js":224,"flux":8,"object-assign":12}],226:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"flux":8,"object-assign":12}],228:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
@@ -26801,6 +27011,8 @@ var SignupPage = require('./components/session/SignupPage.react.jsx');
 
 var ChoreBox = require('./components/chores/ChoreBox.react.jsx');
 
+var ItemBox = require('./components/items/_item_box.react.jsx');
+
 module.exports = (
   React.createElement(Route, {name: "app", path: "/", handler: HouseRules}, 
     React.createElement(DefaultRoute, {handler: MessageBox}), 
@@ -26810,11 +27022,12 @@ module.exports = (
     React.createElement(Route, {name: "messages", path: "/houses/:houseId/messages", handler: MessageBox}), 
     React.createElement(Route, {name: "chores", path: "/house/:houseId/chores", handler: ChoreBox}), 
     React.createElement(Route, {name: "chore", path: "/chores/:choreId", handler: ChoreBox}), 
-    React.createElement(Route, {name: "new-chore", path: "/chore/new", handler: ChoreBox})
+    React.createElement(Route, {name: "new-chore", path: "/chore/new", handler: ChoreBox}), 
+    React.createElement(Route, {name: "items", path: "/houses/:houseId/items", handler: ItemBox})
   )
 );
 
-},{"./components/HouseRules.react.jsx":214,"./components/chores/ChoreBox.react.jsx":215,"./components/messages/_message_box.react.jsx":217,"./components/rules/RuleNew.react.jsx":218,"./components/rules/RulePage.react.jsx":219,"./components/rules/RulesPage.react.jsx":220,"./components/rules/_rule_box.react.jsx":221,"./components/session/LoginPage.react.jsx":222,"./components/session/SignupPage.react.jsx":223,"react":202,"react-router":22}],227:[function(require,module,exports){
+},{"./components/HouseRules.react.jsx":215,"./components/chores/ChoreBox.react.jsx":216,"./components/items/_item_box.react.jsx":218,"./components/messages/_message_box.react.jsx":219,"./components/rules/RuleNew.react.jsx":220,"./components/rules/RulePage.react.jsx":221,"./components/rules/RulesPage.react.jsx":222,"./components/rules/_rule_box.react.jsx":223,"./components/session/LoginPage.react.jsx":224,"./components/session/SignupPage.react.jsx":225,"react":202,"react-router":22}],229:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var EventEmitter = require('events').EventEmitter;
@@ -26894,7 +27107,87 @@ ChoreStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
 module.exports = ChoreStore;
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225,"../utils/WebAPIUtils.js":232,"events":6,"object-assign":12}],228:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],230:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+var _items = [];
+var _errors = [];
+var _item = { content: "", author: { first_name: "" } };
+
+var ItemStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getAllItems: function() {
+    return _items;
+  },
+
+  getItem: function() {
+    return _item;
+  },
+
+  getErrors: function() {
+    return _errors;
+  }
+
+});
+
+ItemStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.type) {
+
+    case ActionTypes.RECEIVE_ITEMS:
+      _items = action.json.communal_items;
+      ItemStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_ITEM:
+      if (action.json) {
+        debugger;
+        _items.unshift(action.json.item);
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      ItemStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_ITEM:
+      if (action.json) {
+        _item = action.json.item;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      ItemStore.emitChange();
+      break;
+  }
+
+  return true;
+});
+
+module.exports = ItemStore;
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],231:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var EventEmitter = require('events').EventEmitter;
@@ -26974,12 +27267,13 @@ MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
 
 module.exports = MessageStore;
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225,"../utils/WebAPIUtils.js":232,"events":6,"object-assign":12}],229:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],232:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var MessageStore = require('../stores/MessageStore.react.jsx');
 var RuleStore = require('../stores/RuleStore.react.jsx');
+var ItemStore = require('../stores/ItemStore.react.jsx');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
@@ -27021,7 +27315,8 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   HouseRulesAPIDispatcher.waitFor([
     SessionStore.dispatchToken,
     MessageStore.dispatchToken,
-    RuleStore.dispatchToken
+    RuleStore.dispatchToken,
+    ItemStore.dispatchToken
   ]);
 
   var action = payload.action;
@@ -27045,7 +27340,11 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:
-      router.transitionTo('rule');
+      router.transitionTo('rules');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_ITEM:
+      router.transitionTo('items');
       break;
 
     default:
@@ -27057,7 +27356,7 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 module.exports = RouteStore;
 
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225,"../routes.jsx":226,"../stores/MessageStore.react.jsx":228,"../stores/RuleStore.react.jsx":230,"../stores/SessionStore.react.jsx":231,"events":6,"object-assign":12,"react-router":22}],230:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../routes.jsx":228,"../stores/ItemStore.react.jsx":230,"../stores/MessageStore.react.jsx":231,"../stores/RuleStore.react.jsx":233,"../stores/SessionStore.react.jsx":234,"events":6,"object-assign":12,"react-router":22}],233:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var EventEmitter = require('events').EventEmitter;
@@ -27137,7 +27436,7 @@ RuleStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
 module.exports = RuleStore;
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225,"../utils/WebAPIUtils.js":232,"events":6,"object-assign":12}],231:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],234:[function(require,module,exports){
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var EventEmitter = require('events').EventEmitter;
@@ -27220,7 +27519,7 @@ SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
 module.exports = SessionStore;
 
 
-},{"../constants/HouseRulesConstants.js":224,"../dispatcher/HouseRulesAPIDispatcher.js":225,"events":6,"object-assign":12}],232:[function(require,module,exports){
+},{"../constants/HouseRulesConstants.js":226,"../dispatcher/HouseRulesAPIDispatcher.js":227,"events":6,"object-assign":12}],235:[function(require,module,exports){
 var ServerActionCreators = require('../actions/ServerActionCreators.react.jsx');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var request = require('superagent');
@@ -27408,8 +27707,53 @@ module.exports = {
           }
         }
       });
+  },
+
+  loadItems: function() {
+    request.get(APIEndpoints.ITEMS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveItems(json);
+        }
+      });
+  },
+
+  loadItem: function(itemId) {
+    request.get(APIEndpoints.ITEMS + '/' + itemId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveItem(json);
+        }
+      });
+  },
+
+  createItem: function(name, brand, quantity, stock_level) {
+    request.post(APIEndpoints.ITEMS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ item: { name: name, brand: brand, quantity: quantity, stock_level: stock_level } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedItem(null, errorMsgs);
+          } else {
+            console.log("*******");
+            console.log(res);
+            json = JSON.parse(res.name);
+            console.log(json);
+            ServerActionCreators.receiveCreatedItem(json, null);
+          }
+        }
+      });
   }
 
 };
 
-},{"../actions/ServerActionCreators.react.jsx":211,"../constants/HouseRulesConstants.js":224,"superagent":203}]},{},[1]);
+},{"../actions/ServerActionCreators.react.jsx":212,"../constants/HouseRulesConstants.js":226,"superagent":203}]},{},[1]);
