@@ -145,7 +145,49 @@ module.exports = {
       });
   },
 
-    loadItems: function() {
+  loadEvents: function() {
+    request.get(APIEndpoints.EVENTS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveEvents(json);
+        }
+      });
+  },
+
+  loadEvent: function(eventId) {
+    request.get(APIEndpoints.EVENTS + '/' + eventId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveEvent(json);
+        }
+      });
+  },
+
+  createEvent: function(name, date, description) {
+    request.post(APIEndpoints.EVENTS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ evnet: { name: name, date: date, description: description } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedEvent(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedEvent(json, null);
+          }
+        }
+      });
+  },
+
+  loadItems: function() {
     request.get(APIEndpoints.ITEMS)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
@@ -158,6 +200,7 @@ module.exports = {
   },
 
   loadItem: function(itemId) {
+    debugger;
     request.get(APIEndpoints.ITEMS + '/' + itemId)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
@@ -169,18 +212,18 @@ module.exports = {
       });
   },
 
-  createItem: function(name) {
+  createItem: function(name, brand, quantity, stock_level) {
     request.post(APIEndpoints.ITEMS)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ item: { name: name } })
+      .send({ communal_item: { name: name, brand: brand, quantity: quantity, stock_level: stock_level } })
       .end(function(error, res){
         if (res) {
           if (res.error) {
             var errorMsgs = _getErrors(res);
             ServerActionCreators.receiveCreatedItem(null, errorMsgs);
           } else {
-            json = JSON.parse(res.text);
+            json = JSON.parse(res.name);
             ServerActionCreators.receiveCreatedItem(json, null);
           }
         }

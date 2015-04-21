@@ -3,6 +3,8 @@ var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var MessageStore = require('../stores/MessageStore.react.jsx');
 var RuleStore = require('../stores/RuleStore.react.jsx');
+var EventStore = require('../stores/EventStore.react.jsx');
+var ItemStore = require('../stores/ItemStore.react.jsx');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
@@ -44,7 +46,9 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   HouseRulesAPIDispatcher.waitFor([
     SessionStore.dispatchToken,
     MessageStore.dispatchToken,
-    RuleStore.dispatchToken
+    RuleStore.dispatchToken,
+    EventStore.dispatchToken,
+    ItemStore.dispatchToken
   ]);
 
   var action = payload.action;
@@ -66,6 +70,7 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       break;
       //THIS IS HOW YOU MAINTAIN THE HOUSE_ID
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
+      debugger;
       router.transitionTo('messages', action.json );
       break;
 
@@ -74,7 +79,11 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.RECEIVE_CREATED_COMMUNAL_ITEM:
-      router.transitionTo('communal_items');
+      router.transitionTo('items');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_EVENT:
+      router.transitionTo('events');
       break;
 
     case ActionTypes.RECEIVE_CREATED_CHORE:
