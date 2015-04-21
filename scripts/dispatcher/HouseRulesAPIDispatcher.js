@@ -15,6 +15,7 @@ var HouseRulesAPIDispatcher = assign(new Dispatcher(), {
   },
 
   handleViewAction: function(action) {
+    alert('here')
     var payload = {
       source: PayloadSources.VIEW_ACTION,
       action: action
