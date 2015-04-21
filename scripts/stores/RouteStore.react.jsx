@@ -1,7 +1,10 @@
 var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
 var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
 var SessionStore = require('../stores/SessionStore.react.jsx');
-var StoryStore = require('../stores/StoryStore.react.jsx');
+var MessageStore = require('../stores/MessageStore.react.jsx');
+var RuleStore = require('../stores/RuleStore.react.jsx');
+var EventStore = require('../stores/EventStore.react.jsx');
+var ItemStore = require('../stores/ItemStore.react.jsx');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
@@ -17,7 +20,7 @@ var ActionTypes = HouseRulesConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var RouteStore = assign({}, EventEmitter.prototype, {
-  
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -42,11 +45,14 @@ var RouteStore = assign({}, EventEmitter.prototype, {
 RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   HouseRulesAPIDispatcher.waitFor([
     SessionStore.dispatchToken,
-    StoryStore.dispatchToken
+    MessageStore.dispatchToken,
+    RuleStore.dispatchToken,
+    EventStore.dispatchToken,
+    ItemStore.dispatchToken
   ]);
 
   var action = payload.action;
-  
+
   switch(action.type) {
 
     case ActionTypes.REDIRECT:
@@ -55,21 +61,39 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
     case ActionTypes.LOGIN_RESPONSE:
       if (SessionStore.isLoggedIn()) {
-        router.transitionTo('app');
+        router.transitionTo('messages');
         // Dirty hack, need to figure this out
-        $(document).foundation();
       }
       break;
-    
-    case ActionTypes.RECEIVE_CREATED_STORY:
-      router.transitionTo('app');
+
+    case ActionTypes.CREATE_MESSAGE:
+      break;
+      //THIS IS HOW YOU MAINTAIN THE HOUSE_ID
+    case ActionTypes.RECEIVE_CREATED_MESSAGE:
+      router.transitionTo('messages', action.json );
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_RULE:
+    debugger;
+      router.transitionTo('rules', action.json.rule);
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_COMMUNAL_ITEM:
+      router.transitionTo('items');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_EVENT:
+      router.transitionTo('events', action.json.event);
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_CHORE:
+      router.transitionTo('chores', action.json.chore);
       break;
 
     default:
   }
-  
+
   return true;
 });
 
 module.exports = RouteStore;
-
