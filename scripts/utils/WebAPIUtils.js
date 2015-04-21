@@ -116,7 +116,8 @@ module.exports = {
   },
 
   loadRule: function(ruleId) {
-    request.get(APIEndpoints.RULES + '/' + ruleId)
+    debugger;
+    request.get(APIEndpoints.RULE)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
       .end(function(error, res){

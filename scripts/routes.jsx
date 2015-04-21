@@ -14,6 +14,8 @@ var ItemBox = require('./components/items/_items_box.react.jsx');
 var EventBox = require('./components/events/_event_box.react.jsx');
 var UserBox = require('./components/users/UserBox.react.jsx');
 
+var RuleEditBox = require('./components/rules/_rule_edit_box.react.jsx');
+
 module.exports = (
   <Route name="app" path="/" handler={HouseRules}>
     <DefaultRoute handler={LoginPage} />
@@ -25,5 +27,7 @@ module.exports = (
     <Route name="items" path="/houses/:house_id/communal_items" handler={ItemBox}/>
     <Route name="events" path="/houses/:house_id/events" handler={EventBox}/>
     <Route name="user" path="/users/:user_id" handler={UserBox}/>
+
+    <Route name="rule_edit" path="/houses/:house_id/rules/:rule_id/edit" handler={RuleEditBox}/>
   </Route>
 );

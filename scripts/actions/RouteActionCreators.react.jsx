@@ -6,6 +6,7 @@ var ActionTypes = HouseRulesConstants.ActionTypes;
 module.exports = {
 
   redirect: function(route) {
+  	debugger;
     HouseRulesAPIDispatcher.handleViewAction({
       type: ActionTypes.REDIRECT,
       route: route

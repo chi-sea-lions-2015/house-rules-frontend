@@ -9,9 +9,12 @@ module.exports = {
     REGISTRATION:   APIRoot + "/users",
     MESSAGES:       APIRoot + "/houses/1/messages",
     RULES:          APIRoot + "/houses/1/rules",
+    RULE:           APIRoot + "/houses/1/rules/1",
     CHORES:         APIRoot + "/houses/1/chores",
     EVENTS:          APIRoot + "/houses/1/events",
     ITEMS:          APIRoot + "/houses/1/communal_items"
+
+
   },
 
   PayloadSources: keyMirror({

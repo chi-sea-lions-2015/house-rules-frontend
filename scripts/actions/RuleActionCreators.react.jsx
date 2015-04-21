@@ -14,6 +14,7 @@ module.exports = {
   },
 
   loadRule: function(ruleId) {
+    debugger;
     HouseRulesAPIDispatcher.handleViewAction({
       type: ActionTypes.LOAD_RULE,
       ruleId: ruleId
