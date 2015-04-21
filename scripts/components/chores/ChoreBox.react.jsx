@@ -78,6 +78,8 @@ var ChoreForm = React.createClass({
   handleSubmit: function ( event ) {
     event.preventDefault();
     var task = this.refs.task.getDOMNode().value.trim();
+    ChoreActionCreators.createChore(task);
+
 
     // validate
     if (!task) {
@@ -85,8 +87,6 @@ var ChoreForm = React.createClass({
     }
 
     // submit
-    var formData = $( this.refs.form.getDOMNode() ).serialize();
-    this.props.onChoreSubmit( formData, this.props.form.action );
 
     // reset form
     this.refs.task.getDOMNode().value = "";

@@ -87,7 +87,7 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.RECEIVE_CREATED_CHORE:
-      router.transitionTo('chores');
+      router.transitionTo('chores', action.json.chore);
       break;
 
     default:
