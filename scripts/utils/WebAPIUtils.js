@@ -200,6 +200,7 @@ module.exports = {
   },
 
   loadItem: function(itemId) {
+    debugger;
     request.get(APIEndpoints.ITEMS + '/' + itemId)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
@@ -215,17 +216,14 @@ module.exports = {
     request.post(APIEndpoints.ITEMS)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ item: { name: name, brand: brand, quantity: quantity, stock_level: stock_level } })
+      .send({ communal_item: { name: name, brand: brand, quantity: quantity, stock_level: stock_level } })
       .end(function(error, res){
         if (res) {
           if (res.error) {
             var errorMsgs = _getErrors(res);
             ServerActionCreators.receiveCreatedItem(null, errorMsgs);
           } else {
-            console.log("*******");
-            console.log(res);
             json = JSON.parse(res.name);
-            console.log(json);
             ServerActionCreators.receiveCreatedItem(json, null);
           }
         }

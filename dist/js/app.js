@@ -7,7 +7,2321 @@ router.run(function (Handler, state) {
   React.render(React.createElement(Handler, null), document.getElementById('content'));
 });
 
-},{"./stores/RouteStore.react.jsx":232,"react":202}],2:[function(require,module,exports){
+},{"./stores/RouteStore.react.jsx":27,"react":231}],2:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
+  loadChores: function() {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_CHORES
+    });
+    WebAPIUtils.loadChores();
+  },
+
+  loadChore: function(choreId) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_CHORE,
+      choreId: choreId
+    });
+    WebAPIUtils.loadChore(choreId);
+  },
+
+  createChore: function(task) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.CREATE_CHORE,
+      task: task
+    });
+    WebAPIUtils.createChore(task);
+  }
+
+};
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30}],3:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
+  loadEvents: function() {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_EVENTS
+    });
+    WebAPIUtils.loadEvents();
+  },
+
+  loadEvent: function(eventId) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_EVENT,
+      eventId: eventId
+    });
+    WebAPIUtils.loadEvent(eventId);
+  },
+
+
+  createEvent: function(name, date, description) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.CREATE_EVENT,
+      name: name,
+      date: date,
+      description: description
+    });
+    WebAPIUtils.createEvent(name, date, description);
+  }
+
+};
+
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30}],4:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
+  loadItems: function() {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_ITEMS
+    });
+    WebAPIUtils.loadItems();
+  },
+
+  loadItem: function(itemId) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_ITEM,
+      itemId: itemId
+    });
+    WebAPIUtils.loadItem(itemId);
+  },
+
+
+  createItem: function(name, brand, quantity, stock_level) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.CREATE_ITEM,
+      name: name,
+      brand: brand,
+      quantity: quantity,
+      stock_level: stock_level
+    });
+    WebAPIUtils.createItem(name, brand, quantity, stock_level);
+  }
+
+};
+
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30}],5:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
+  loadMessages: function() {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_MESSAGES
+    });
+    WebAPIUtils.loadMessages();
+  },
+
+  loadMessage: function(messageId) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_MESSAGE,
+      messageId: messageId
+    });
+    WebAPIUtils.loadMessage(messageId);
+  },
+
+  createMessage: function(content) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.CREATE_MESSAGE,
+      content: content
+    });
+    WebAPIUtils.createMessage(content);
+  }
+
+};
+
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30}],6:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
+  loadRules: function() {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_RULES
+    });
+    WebAPIUtils.loadRules();
+  },
+
+  loadRule: function(ruleId) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_RULE,
+      ruleId: ruleId
+    });
+    WebAPIUtils.loadRule(ruleId);
+  },
+
+  createRule: function(content) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.CREATE_RULE,
+      content: content
+    });
+    WebAPIUtils.createRule(content);
+  }
+
+};
+
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30}],7:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
+  receiveLogin: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.LOGIN_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
+  receiveMessages: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_MESSAGES,
+      json: json
+    });
+  },
+
+  receiveMessage: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_MESSAGE,
+      json: json
+    });
+  },
+
+  receiveCreatedMessage: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_MESSAGE,
+      json: json,
+      errors: errors
+    });
+  },
+
+  receiveRules: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_RULES,
+      json: json
+    });
+  },
+
+  receiveRule: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_RULE,
+      json: json
+    });
+  },
+
+  receiveCreatedRule: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_RULE,
+      json: json,
+      errors: errors
+    });
+  },
+
+  receiveEvents: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_EVENTS,
+      json: json
+    });
+  },
+
+  receiveEvent: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_EVENT,
+      json: json
+    });
+  },
+
+  receiveCreatedEvent: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_EVENT,
+      json: json,
+      errors: errors
+    });
+  },
+
+  receiveItems: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_ITEMS,
+      json: json
+    });
+  },
+
+  receiveItem: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_ITEM,
+      json: json
+    });
+  },
+
+  receiveCreatedItem: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_ITEM,
+      json: json,
+      errors: errors
+    });
+  }
+
+};
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21}],8:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+
+module.exports = {
+
+  signup: function(username, email, password, passwordConfirmation, firstName, lastName, phone)  {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.SIGNUP_REQUEST,
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      email: email, 
+      password: password,
+      passwordConfirmation: passwordConfirmation
+    });
+    WebAPIUtils.signup(username, firstName, lastName, phone, email, password, passwordConfirmation);
+  },
+
+  login: function(email, password) {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOGIN_REQUEST,
+      email: email,
+      password: password
+    });
+    WebAPIUtils.login(email, password);
+  },
+
+  logout: function() {
+    HouseRulesAPIDispatcher.handleViewAction({
+      type: ActionTypes.LOGOUT
+    });
+  }
+
+};
+
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30}],9:[function(require,module,exports){
+var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
+var ReactPropTypes = React.PropTypes;
+var SessionActionCreators = require('../actions/SessionActionCreators.react.jsx');
+
+var Menu = React.createClass({displayName: "Menu",
+
+  getInitialState: function() {
+    return {
+      visible: false
+    };
+  },
+
+  show: function() {
+    this.setState({ visible: true });
+    document.addEventListener("click", this.hide.bind(this));
+  },
+
+  hide: function() {
+    document.removeEventListener("click", this.hide.bind(this));
+    this.setState({ visible: false });
+  },
+
+  render: function() {
+    return React.createElement("div", {className: "menu"}, 
+      React.createElement("div", {className: (this.state.visible ? "menu-visible " : "") + "menu-" + this.props.alignment}, this.props.children)
+    );
+  }
+});
+
+var MenuItem = React.createClass({displayName: "MenuItem",
+  navigate: function(hash) {
+    window.location.hash = hash;
+  },
+
+  render: function() {
+    return React.createElement("div", {className: "menu-item", onClick: this.navigate.bind(this, this.props.hash)}, this.props.children);
+  }
+});
+
+var Header = React.createClass({displayName: "Header",
+
+  propTypes: {
+    isLoggedIn: ReactPropTypes.bool,
+    email: ReactPropTypes.string,
+    houseName: ReactPropTypes.string
+  },
+
+  logout: function(e) {
+    e.preventDefault();
+    SessionActionCreators.logout();
+  },
+
+  showLeft: function() {
+    this.refs.left.show();
+  },
+
+  hideLeft: function() {
+    this.refs.left.hide();
+  },
+
+  render: function() {
+    var rightNav = this.props.isLoggedIn ? (
+      React.createElement("ul", {className: "right"}, 
+        React.createElement("li", {className: "has-dropdown"}, 
+          React.createElement("a", {href: "#"}, this.props.email), 
+          React.createElement("ul", {className: "dropdown"}, 
+            React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.logout}, "Logout"))
+          )
+        )
+      )
+    ) : (
+      React.createElement("ul", {className: "right"}, 
+        React.createElement("li", null, React.createElement(Link, {to: "login"}, "Login")), 
+        React.createElement("li", null, React.createElement(Link, {to: "signup"}, "Sign up"))
+      )
+    );
+
+console.log(this.props)
+    var leftNav = this.props.isLoggedIn ? (
+      React.createElement("ul", {className: "left"}, 
+        React.createElement("div", null, 
+          React.createElement("button", {className: "menu-button", onMouseOver: this.showLeft, onClick: this.showLeft}, this.props.houseName), 
+
+          React.createElement(Menu, {ref: "left", alignment: "left"}, 
+            React.createElement(MenuItem, {hash: "first-page"}, "Fridge"), 
+            React.createElement(MenuItem, {hash: "second-page"}, "Chores"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Events"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Inventory"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Bills"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Rules"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Roommates"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "House Info"), 
+            React.createElement(MenuItem, {hash: "third-page"}, "Profile")
+          )
+        )
+      )
+    ) : (
+      React.createElement("div", null)
+    );
+
+    return (
+      React.createElement("nav", {className: "top-bar", "data-topbar": true, role: "navigation"}, 
+        React.createElement("section", {className: "top-bar-section"}, 
+          leftNav, 
+          rightNav, 
+          React.createElement("div", {className: "top-logo"}, "House Rules")
+        )
+      )
+    );
+  }
+});
+
+module.exports = Header;
+
+
+},{"../actions/SessionActionCreators.react.jsx":8,"react":231,"react-router":51}],10:[function(require,module,exports){
+var React = require('react');
+var RouteHandler = require('react-router').RouteHandler;
+var Header = require('../components/Header.react.jsx');
+var SessionStore = require('../stores/SessionStore.react.jsx');
+var RouteStore = require('../stores/RouteStore.react.jsx');
+
+function getStateFromStores() {
+  return {
+    isLoggedIn: SessionStore.isLoggedIn(),
+    email: SessionStore.getEmail()
+  };
+}
+
+var HouseRules = React.createClass({displayName: "HouseRules",
+
+  getInitialState: function() {
+    return getStateFromStores();
+  },
+
+  componentDidMount: function() {
+    SessionStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    SessionStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState(getStateFromStores());
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", {className: "app"}, 
+        React.createElement(Header, {
+          isLoggedIn: this.state.isLoggedIn, 
+          email: this.state.email, 
+          houseName: this.state.houseName}), 
+        React.createElement(RouteHandler, null)
+      )
+    );
+  }
+
+});
+
+module.exports = HouseRules;
+
+
+},{"../components/Header.react.jsx":9,"../stores/RouteStore.react.jsx":27,"../stores/SessionStore.react.jsx":29,"react":231,"react-router":51}],11:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var ChoreStore = require('../../stores/ChoreStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var ChoreActionCreators = require('../../actions/ChoreActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+
+var ChoreBox = React.createClass({displayName: "ChoreBox",
+
+  getInitialState: function() {
+    return {
+      messages: ChoreStore.getAllChores(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    ChoreStore.addChangeListener(this._onChange);
+    ChoreActionCreators.loadChores();
+  },
+
+  componentWillUnmount: function() {
+    ChoreStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      messages: ChoreStore.loadChores(),
+      errors: ChoreStore.getErrors()
+    });
+  },
+
+  render: function () {
+    return (
+      React.createElement("div", {className: "chore-box"}, 
+      React.createElement("div", {className: "row"}, 
+        React.createElement("div", {className: "large-3 columns"}, React.createElement("br", null)), 
+        React.createElement("div", {className: "large-6 columns"}, 
+        React.createElement("h1", null, "House Chore "), 
+        React.createElement(ChoreList, {chores:  this.state.chores}), 
+        React.createElement(ChoreForm, {form:  this.state.form, onChoreSubmit:  this.handleChoreSubmit})
+        ), 
+        React.createElement("div", {className: "large-3 columns"}, React.createElement("br", null))
+      )
+
+      )
+    );
+  }
+});
+
+var ChoreList = React.createClass({displayName: "ChoreList",
+  render: function () {
+    var choreNodes = this.props.chores.map(function ( chore ) {
+      return React.createElement(Chore, {chore: chore, key:  chore.id})
+    });
+
+    return (
+      React.createElement("div", {className: "chore-list row"}, 
+        choreNodes 
+      )
+    )
+  }
+});
+
+var Chore = React.createClass({displayName: "Chore",
+  render: function () {
+    return (
+      React.createElement("div", null, 
+      React.createElement("p", null,  this.props.chore.task)
+      )
+    )
+  }
+});
+
+var ChoreForm = React.createClass({displayName: "ChoreForm",
+  handleSubmit: function ( event ) {
+    event.preventDefault();
+    var task = this.refs.task.getDOMNode().value.trim();
+
+    // validate
+    if (!task) {
+      return false;
+    }
+
+    // submit
+    var formData = $( this.refs.form.getDOMNode() ).serialize();
+    this.props.onChoreSubmit( formData, this.props.form.action );
+
+    // reset form
+    this.refs.task.getDOMNode().value = "";
+  },
+  render: function () {
+    return (
+      React.createElement("form", {ref: "form", className: "chore-form", method: "post", onSubmit:  this.handleSubmit}, 
+        React.createElement("fieldset", null, 
+          React.createElement("legend", null, "Create a Chore"), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "task", name: "chore[task]", placeholder: "What's your chore?"})), 
+          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Create Chore"))
+        )
+      )
+    )
+  }
+});
+
+module.exports = ChoreBox;
+
+},{"../../actions/ChoreActionCreators.react.jsx":2,"../../components/common/ErrorNotice.react.jsx":12,"../../stores/ChoreStore.react.jsx":23,"../../utils/WebAPIUtils.js":30,"react":231,"react-router":51,"timeago":235}],12:[function(require,module,exports){
+var React = require('react');
+
+var ErrorNotice = React.createClass({displayName: "ErrorNotice",
+  render: function() {
+    return (
+      React.createElement("div", {className: "error-notice"}, 
+        React.createElement("ul", null, 
+          this.props.errors.map(function(error, index){
+            return React.createElement("li", {className: "error-notice__error", key: "error-"+index}, error);
+          })
+        )
+      )
+      );
+  }
+});
+
+module.exports = ErrorNotice;
+
+
+},{"react":231}],13:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var EventStore = require('../../stores/EventStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var EventActionCreators = require('../../actions/EventActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+var APIRoot = "http://localhost:3002";
+
+var Event = React.createClass({displayName: "Event",
+  render: function () {
+    return (
+      React.createElement("li", {className: "story"}, 
+        React.createElement("div", {className: "story__body"}, this.props.event.name), 
+        React.createElement("div", {className: "story__date"}, this.props.event.date), 
+        React.createElement("div", {className: "story__description"}, this.props.event.description)
+      )
+    )
+  }
+});
+
+var EventList = React.createClass({displayName: "EventList",
+  render: function () {
+    var eventNodes = this.props.events.map(function ( event ) {
+      return React.createElement(Event, {event: event, key:  event.id})
+    });
+
+    return (
+      React.createElement("div", {className: "event-list"}, 
+        eventNodes 
+      )
+    )
+  }
+});
+
+var EventBox = React.createClass({displayName: "EventBox",
+
+  getInitialState: function() {
+    return {
+      events: EventStore.getAllEvents(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    EventStore.addChangeListener(this._onChange);
+    EventActionCreators.loadEvents();
+  },
+
+  componentWillUnmount: function() {
+    EventStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      events: EventStore.getAllEvents(),
+      errors: EventStore.getErrors()
+    });
+  },
+
+  render: function () {
+    return (
+      React.createElement("div", {className: "event-box"}, 
+        React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
+        React.createElement(EventList, {events:  this.state.events}), 
+        React.createElement("hr", null), 
+        React.createElement("h4", null, "Create an Event"), 
+        React.createElement(EventForm, {form:  this.state.form})
+        )
+    );
+  }
+});
+
+var EventForm = React.createClass({displayName: "EventForm",
+  handleSubmit: function ( event ) {
+    event.preventDefault();
+    var name = this.refs.name.getDOMNode().value;
+    var date = this.refs.date.getDOMNode().value;
+    var description = this.refs.description.getDOMNode().value;
+    EventActionCreators.createEvent(name, date, description);
+
+    // var formData = $( this.refs.form.getDOMNode() ).serialize();
+    // ItemActionCreators.createItem(formData)
+    if (!name) {
+      return false;
+    }
+    if (!date) {
+      return false;
+    }
+
+    // reset form
+    this.refs.name.getDOMNode().value = "";
+    this.refs.date.getDOMNode().value = "";
+    this.refs.description.getDOMNode().value = "";
+
+  },
+  render: function () {
+    return (
+      React.createElement("form", {ref: "form", className: "event-form", method: "post", onSubmit:  this.handleSubmit}, 
+        React.createElement("fieldset", null, 
+          React.createElement("legend", null, "Create an Event"), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "name", name: "event[name]", placeholder: "What's the event name?"})), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "date", name: "event[date]", placeholder: "What date?"})), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "description", name: "event[description]", placeholder: "What description?"})), 
+          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post Event"))
+        )
+      )
+    )
+  }
+});
+
+module.exports = EventBox;
+
+},{"../../actions/EventActionCreators.react.jsx":3,"../../components/common/ErrorNotice.react.jsx":12,"../../stores/EventStore.react.jsx":24,"../../utils/WebAPIUtils.js":30,"react":231,"react-router":51,"timeago":235}],14:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var ItemStore = require('../../stores/ItemStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var ItemActionCreators = require('../../actions/ItemActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+var APIRoot = "http://localhost:3002";
+
+var Item = React.createClass({displayName: "Item",
+  render: function () {
+    return (
+      React.createElement("li", {className: "story"}, 
+        React.createElement("div", {className: "story__body"}, this.props.item.name)
+      )
+    )
+  }
+});
+
+var ItemList = React.createClass({displayName: "ItemList",
+  render: function () {
+    var itemNodes = this.props.items.map(function ( item ) {
+      return React.createElement(Item, {item: item, key:  item.id})
+    });
+
+    return (
+      React.createElement("div", {className: "item-list"}, 
+        itemNodes 
+      )
+    )
+  }
+});
+
+var ItemBox = React.createClass({displayName: "ItemBox",
+
+  getInitialState: function() {
+    return {
+      items: ItemStore.getAllItems(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    ItemStore.addChangeListener(this._onChange);
+    ItemActionCreators.loadItems();
+  },
+
+  componentWillUnmount: function() {
+    ItemStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      items: ItemStore.getAllItems(),
+      errors: ItemStore.getErrors()
+    });
+  },
+
+  render: function () {
+    return (
+      React.createElement("div", {className: "item-box"}, 
+        React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
+        React.createElement(ItemList, {items:  this.state.items}), 
+        React.createElement("hr", null), 
+        React.createElement("h4", null, "Create an Item"), 
+        React.createElement(ItemForm, {form:  this.state.form})
+        )
+    );
+  }
+});
+
+var ItemForm = React.createClass({displayName: "ItemForm",
+  handleSubmit: function ( event ) {
+    event.preventDefault();
+    var name = this.refs.name.getDOMNode().value;
+    var brand = this.refs.brand.getDOMNode().value;
+    var quantity = this.refs.quantity.getDOMNode().value;
+    var stock_level = this.refs.stock_level.getDOMNode().value;
+    ItemActionCreators.createItem(name, brand, quantity, stock_level);
+
+    // var formData = $( this.refs.form.getDOMNode() ).serialize();
+    // ItemActionCreators.createItem(formData)
+    if (!name) {
+      return false;
+    }
+
+    // reset form
+    this.refs.name.getDOMNode().value = "";
+  },
+  render: function () {
+    return (
+      React.createElement("form", {ref: "form", className: "item-form", method: "post", onSubmit:  this.handleSubmit}, 
+        React.createElement("fieldset", null, 
+          React.createElement("legend", null, "Create an Item"), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "name", name: "communal_item[name]", placeholder: "What's the item?"})), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "brand", name: "communal_item[brand]", placeholder: "What brand?"})), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "quantity", name: "communal_item[quantity]", placeholder: "What quantity?"})), 
+          React.createElement("p", null, React.createElement("select", {ref: "stock_level", name: "communal_item[stock_level]"}, 
+              React.createElement("option", {value: "high"}, "High"), 
+              React.createElement("option", {value: "low"}, "Low"), 
+              React.createElement("option", {value: "out"}, "Out")
+              )), 
+          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post item"))
+        )
+      )
+    )
+  }
+});
+
+module.exports = ItemBox;
+
+},{"../../actions/ItemActionCreators.react.jsx":4,"../../components/common/ErrorNotice.react.jsx":12,"../../stores/ItemStore.react.jsx":25,"../../utils/WebAPIUtils.js":30,"react":231,"react-router":51,"timeago":235}],15:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var MessageStore = require('../../stores/MessageStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var MessageActionCreators = require('../../actions/MessageActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+var RouteHandler = Router.RouteHandler
+
+var MessageBox = React.createClass({displayName: "MessageBox",
+
+  // handleMessageSubmit: function(message) {
+  //   $.ajax({
+  //     url: this.props.url,
+  //     dataType: 'json',
+  //     type: 'POST',
+  //     data: message,
+  //     success: function(data) {
+  //       console.log("YAYYYA!")
+
+  //     }.bind(this),
+  //     error: function(xhr, status err) {
+  //       console.error(this.props.url status, err.toString());
+  //     }.bind(this)
+  //   });
+  // },
+
+  getInitialState: function() {
+    return {
+      messages: MessageStore.getAllMessages(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    MessageStore.addChangeListener(this._onChange);
+    MessageActionCreators.loadMessages();
+  },
+
+  componentWillUnmount: function() {
+    MessageStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      messages: MessageStore.getAllMessages(),
+      errors: MessageStore.getErrors()
+    });
+  },
+
+  render: function () {
+    console.log(this.state);
+    console.log("state");
+    return (
+      React.createElement("div", {className: "message-box"}, 
+      React.createElement("div", {className: "row"}, 
+      React.createElement("div", {class: "small-6 large-2 columns"}, React.createElement("br", null)), 
+      React.createElement("div", {class: "small-6 large-8 columns"}, 
+      React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
+      React.createElement(MessageList, {messages:  this.state.messages}), 
+      React.createElement("hr", null), 
+      React.createElement("h2", null, "talk to your roomies"), 
+      React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit, form:  this.state.form}), 
+      React.createElement(RouteHandler, null)
+      ), 
+      React.createElement("div", {className: "large-3 columns"}, React.createElement("br", null))
+      ))
+      );
+  }
+});
+
+var MessageList = React.createClass({displayName: "MessageList",
+
+  render: function () {
+    var messageNodes = this.props.messages.map(function ( message ) {
+      return React.createElement(Message, {message: message, key:  message.id})
+    });
+
+    return (
+      React.createElement("div", {className: "message-list"}, 
+      messageNodes 
+      )
+      )
+  }
+});
+
+var Message = React.createClass({displayName: "Message",
+  render: function () {
+    return (
+      React.createElement("li", {className: "story"}, 
+      React.createElement("div", {className: "story__body"}, this.props.message.content), 
+
+      console.log(this.props.message.content), 
+      console.log(this), 
+
+      React.createElement("span", {className: "story__user"}, this.props.message.author), 
+      React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.message.created_at))
+      )
+      )
+  }
+});
+
+
+var MessageForm = React.createClass({displayName: "MessageForm",
+
+  handleSubmit: function ( event ) {
+    event.preventDefault();
+    var content = this.refs.content.getDOMNode().value;
+    MessageActionCreators.createMessage(content);
+
+    // validate
+    if (!content) {
+      return false;
+    }
+
+    // reset form
+    this.refs.content.getDOMNode().value = "";
+  },
+
+  render: function () {
+    return (
+      React.createElement("form", {ref: "form", className: "message-form", method: "post", onSubmit:  this.handleSubmit}, 
+        React.createElement("fieldset", null, 
+          React.createElement("legend", null, "Create a Message"), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "content", name: "message[content]", placeholder: "Say something..."})), 
+          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post message"))
+        )
+      )
+      )
+  }
+});
+
+
+
+
+module.exports = MessageBox;
+
+},{"../../actions/MessageActionCreators.react.jsx":5,"../../components/common/ErrorNotice.react.jsx":12,"../../stores/MessageStore.react.jsx":26,"../../utils/WebAPIUtils.js":30,"react":231,"react-router":51,"timeago":235}],16:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var RuleStore = require('../../stores/RuleStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+
+var RuleBox = React.createClass({displayName: "RuleBox",
+
+  getInitialState: function() {
+    return {
+      rules: RuleStore.getAllRules(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    RuleStore.addChangeListener(this._onChange);
+    RuleActionCreators.loadRules();
+  },
+
+  componentWillUnmount: function() {
+    RuleStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      rules: RuleStore.getAllRules(),
+      errors: RuleStore.getErrors()
+    });
+  },
+
+  render: function () {
+    return (
+      React.createElement("div", {className: "rule-box"}, 
+        React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
+        React.createElement(RuleList, {rules:  this.state.rules}), 
+        React.createElement("hr", null), 
+        React.createElement("h4", null, "Create a Rule"), 
+        React.createElement(RuleForm, {form:  this.state.form})
+        )
+    );
+  }
+});
+
+var Rule = React.createClass({displayName: "Rule",
+  render: function () {
+    return (
+      React.createElement("li", {className: "story"}, 
+        React.createElement("div", {className: "story__body"}, this.props.rule.content)
+      )
+    )
+  }
+});
+
+var RuleList = React.createClass({displayName: "RuleList",
+  render: function () {
+    var ruleNodes = this.props.rules.map(function ( rule ) {
+      return React.createElement(Rule, {rule: rule, key:  rule.id})
+    });
+
+    return (
+      React.createElement("div", {className: "rule-list"}, 
+        ruleNodes 
+      )
+    )
+  }
+});
+
+var RuleForm = React.createClass({displayName: "RuleForm",
+  handleSubmit: function ( event ) {
+    event.preventDefault();
+    var content = this.refs.content.getDOMNode().value;
+    RuleActionCreators.createRule(content);
+
+    // validate
+    if (!content) {
+      return false;
+    }
+
+    // reset form
+    this.refs.content.getDOMNode().value = "";
+  },
+  render: function () {
+    return (
+      React.createElement("form", {ref: "form", className: "rule-form", method: "post", onSubmit:  this.handleSubmit}, 
+        React.createElement("fieldset", null, 
+          React.createElement("legend", null, "Create a Message"), 
+          React.createElement("p", null, React.createElement("textarea", {ref: "content", name: "rule[content]", placeholder: "Create a rule..."})), 
+          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post rule"))
+        )
+      )
+    )
+  }
+});
+
+
+module.exports = RuleBox;
+
+},{"../../actions/RuleActionCreators.react.jsx":6,"../../components/common/ErrorNotice.react.jsx":12,"../../stores/RuleStore.react.jsx":28,"../../utils/WebAPIUtils.js":30,"react":231,"react-router":51,"timeago":235}],17:[function(require,module,exports){
+var React = require('react');
+var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
+var SessionStore = require('../../stores/SessionStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+
+var LoginPage = React.createClass({displayName: "LoginPage",
+
+  getInitialState: function() {
+    return { errors: [] };
+  },
+ 
+  componentDidMount: function() {
+    SessionStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    SessionStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({ errors: SessionStore.getErrors() });
+  },
+
+  _onSubmit: function(e) {
+    e.preventDefault();
+    this.setState({ errors: [] });
+    var email = this.refs.email.getDOMNode().value;
+    var password = this.refs.password.getDOMNode().value;
+    SessionActionCreators.login(email, password);
+  },
+
+  render: function() {
+    var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
+    return (
+      React.createElement("div", null, 
+        errors, 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
+            React.createElement("form", {onSubmit: this._onSubmit}, 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "email"}, "Email"), 
+                React.createElement("input", {type: "text", name: "email", ref: "email"})
+              ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "password"}, "Password"), 
+                React.createElement("input", {type: "password", name: "password", ref: "password"})
+              ), 
+              React.createElement("button", {type: "submit", className: "card--login__submit"}, "Login")
+            )
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = LoginPage;
+
+
+},{"../../actions/SessionActionCreators.react.jsx":8,"../../components/common/ErrorNotice.react.jsx":12,"../../stores/SessionStore.react.jsx":29,"react":231}],18:[function(require,module,exports){
+var React = require('react');
+var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
+var SessionStore = require('../../stores/SessionStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+
+var SignupPage = React.createClass({displayName: "SignupPage",
+
+  getInitialState: function() {
+    return { errors: [] };
+  },
+ 
+  componentDidMount: function() {
+    SessionStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    SessionStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({ errors: SessionStore.getErrors() });
+  },
+
+  _onSubmit: function(e) {
+    e.preventDefault();
+    this.setState({ errors: [] });
+    var username = this.refs.username.getDOMNode().value;
+    var email = this.refs.email.getDOMNode().value;
+    var password = this.refs.password.getDOMNode().value;
+    var passwordConfirmation = this.refs.passwordConfirmation.getDOMNode().value;
+    var firstName = this.refs.firstName.getDOMNode().value;
+    var lastName = this.refs.lastName.getDOMNode().value;
+    var phone = this.refs.phone.getDOMNode().value;    
+    if (password !== passwordConfirmation) {
+      this.setState({ errors: ['Password and password confirmation should match']});
+    } else {
+      SessionActionCreators.signup(username, email, password, passwordConfirmation, firstName, lastName, phone);
+    }
+  },
+
+  render: function() {
+    var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
+    return (
+      React.createElement("div", null, 
+        errors, 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
+            React.createElement("form", {onSubmit: this._onSubmit}, 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "first-name"}, "First Name"), 
+                React.createElement("input", {type: "text", name: "first-name", ref: "firstName"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "email"}, "Email"), 
+                React.createElement("input", {type: "text", name: "email", ref: "email"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "password"}, "Password"), 
+                React.createElement("input", {type: "password", name: "password", ref: "password"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "password-confirmation"}, "Password Confirmation"), 
+                React.createElement("input", {type: "password-confrimation", name: "password-confirmation", ref: "passwordConfirmation"})
+              ), 
+               React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "username"}, "Username"), 
+                React.createElement("input", {type: "text", name: "username", ref: "username"})
+                ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "last-name"}, "Last Name"), 
+                React.createElement("input", {type: "test", name: "last-name", ref: "lastName"})
+              ), 
+              React.createElement("div", {className: "card--login__field"}, 
+                React.createElement("label", {name: "phone"}, "Phone"), 
+                React.createElement("input", {type: "text", name: "phone", ref: "phone"})
+              ), 
+              React.createElement("button", {type: "submit", className: "card--login__submit"}, "Signup")
+            )
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = SignupPage;
+
+
+},{"../../actions/SessionActionCreators.react.jsx":8,"../../components/common/ErrorNotice.react.jsx":12,"../../stores/SessionStore.react.jsx":29,"react":231}],19:[function(require,module,exports){
+var React = require('react');
+var WebAPIUtils = require('../../utils/WebAPIUtils.js');
+var RuleStore = require('../../stores/RuleStore.react.jsx');
+var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
+var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
+var timeago = require('timeago');
+
+var UserBox = React.createClass({displayName: "UserBox",
+
+  getInitialState: function() {
+    return {
+      rules: UserStore.getUser(),
+      errors: []
+    };
+  },
+
+  componentDidMount: function() {
+    UserStore.addChangeListener(this._onChange);
+    UserActionCreators.loadUser();
+  },
+
+  componentWillUnmount: function() {
+    UserStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState({
+      user: UserStore.getUser(),
+      errors: UserStore.getErrors()
+    });
+  },
+
+  render: function () {
+    return (
+      React.createElement("div", {className: "user-box"}, 
+        React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
+        React.createElement(User, {user:  this.state.user}), 
+        React.createElement("hr", null)
+      )
+    );
+  }
+});
+
+var User = React.createClass({displayName: "User",
+  render: function () {
+    return (
+      React.createElement("li", {className: "story"}, 
+        React.createElement("div", {className: "story__body"}, this.props.user.first_name, " ", this.props.user.last_name)
+      )
+    )
+  }
+});
+
+
+module.exports = UserBox;
+
+},{"../../actions/RuleActionCreators.react.jsx":6,"../../components/common/ErrorNotice.react.jsx":12,"../../stores/RuleStore.react.jsx":28,"../../utils/WebAPIUtils.js":30,"react":231,"react-router":51,"timeago":235}],20:[function(require,module,exports){
+var keyMirror = require('keymirror');
+
+var APIRoot = "http://localhost:3002";
+
+module.exports = {
+
+  APIEndpoints: {
+    LOGIN:          APIRoot + "/login",
+    REGISTRATION:   APIRoot + "/users",
+    MESSAGES:       APIRoot + "/houses/1/messages",
+    RULES:          APIRoot + "/houses/1/rules",
+    CHORES:         APIRoot + "/houses/1/chores",
+    EVENTS:          APIRoot + "/houses/1/events",
+    ITEMS:          APIRoot + "/houses/1/communal_items"
+  },
+
+  PayloadSources: keyMirror({
+    SERVER_ACTION: null,
+    VIEW_ACTION: null
+  }),
+
+  ActionTypes: keyMirror({
+
+    LOGIN_REQUEST: null,
+    LOGIN_RESPONSE: null,
+
+    REDIRECT: null,
+
+    LOAD_MESSAGES: null,
+    RECEIVE_MESSAGES: null,
+    LOAD_MESSAGE: null,
+    RECEIVE_MESSAGE: null,
+    CREATE_MESSAGE: null,
+    RECEIVE_CREATED_MESSAGE: null,
+
+    LOAD_RULES: null,
+    RECEIVE_RULES: null,
+    LOAD_RULE: null,
+    RECEIVE_RULE: null,
+    CREATE_RULE: null,
+    RECEIVE_CREATED_RULE: null,
+
+    LOAD_CHORES: null,
+    RECEIVE_CHORES: null,
+    LOAD_CHORE: null,
+    RECEIVE_CHORE: null,
+    CREATE_CHORE: null,
+    RECEIVE_CREATED_CHORE: null,
+
+    LOAD_EVENTS: null,
+    RECEIVE_EVENTS: null,
+    LOAD_EVENT: null,
+    RECEIVE_EVENT: null,
+    CREATE_EVENT: null,
+    RECEIVE_CREATED_EVENT: null,
+
+    LOAD_ITEMS: null,
+    RECEIVE_ITEMS: null,
+    LOAD_ITEM: null,
+    RECEIVE_ITEM: null,
+    CREATE_ITEM: null,
+    RECEIVE_CREATED_ITEM: null,
+
+    LOAD_USER: null,
+    RECEIVE_USER: null,
+  })
+
+};
+
+},{"keymirror":40}],21:[function(require,module,exports){
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var Dispatcher = require('flux').Dispatcher;
+var assign = require('object-assign');
+
+var PayloadSources = HouseRulesConstants.PayloadSources;
+
+var HouseRulesAPIDispatcher = assign(new Dispatcher(), {
+
+  handleServerAction: function(action) {
+    var payload = {
+      source: PayloadSources.SERVER_ACTION,
+      action: action
+    };
+    this.dispatch(payload);
+  },
+
+  handleViewAction: function(action) {
+    var payload = {
+      source: PayloadSources.VIEW_ACTION,
+      action: action
+    };
+    this.dispatch(payload);
+  }
+});
+
+module.exports = HouseRulesAPIDispatcher;
+
+},{"../constants/HouseRulesConstants.js":20,"flux":37,"object-assign":41}],22:[function(require,module,exports){
+var React = require('react');
+var Router = require('react-router');
+var Route = Router.Route;
+var DefaultRoute = Router.DefaultRoute;
+var RouteHandler = Router.RouteHandler;
+
+var HouseRules = require('./components/HouseRules.react.jsx');
+var LoginPage = require('./components/session/LoginPage.react.jsx');
+var MessageBox = require('./components/messages/_message_box.react.jsx');
+var RuleBox = require('./components/rules/_rule_box.react.jsx');
+var SignupPage = require('./components/session/SignupPage.react.jsx');
+var ChoreBox = require('./components/chores/ChoreBox.react.jsx');
+var ItemBox = require('./components/items/_items_box.react.jsx');
+var EventBox = require('./components/events/_event_box.react.jsx');
+var UserBox = require('./components/users/UserBox.react.jsx');
+
+
+module.exports = (
+  React.createElement(Route, {name: "app", path: "/", handler: HouseRules}, 
+    React.createElement(DefaultRoute, {handler: MessageBox}), 
+    React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}), 
+    React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}), 
+    React.createElement(Route, {name: "rules", path: "/houses/:house_id/rules", handler: RuleBox}), 
+    React.createElement(Route, {name: "messages", path: "/houses/:house_id/messages", handler: MessageBox}), 
+    React.createElement(Route, {name: "chores", path: "/houses/:house_id/chores", handler: ChoreBox}), 
+    React.createElement(Route, {name: "items", path: "/houses/:house_id/items", handler: ItemBox}), 
+    React.createElement(Route, {name: "events", path: "/houses/:house_id/events", handler: EventBox}), 
+    React.createElement(Route, {name: "user", path: "/users/:user_id", handler: UserBox})
+  )
+);
+
+},{"./components/HouseRules.react.jsx":10,"./components/chores/ChoreBox.react.jsx":11,"./components/events/_event_box.react.jsx":13,"./components/items/_items_box.react.jsx":14,"./components/messages/_message_box.react.jsx":15,"./components/rules/_rule_box.react.jsx":16,"./components/session/LoginPage.react.jsx":17,"./components/session/SignupPage.react.jsx":18,"./components/users/UserBox.react.jsx":19,"react":231,"react-router":51}],23:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+var _chores = [];
+var _errors = [];
+var _chore = { task: "" };
+
+var ChoreStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getAllChores: function() {
+    return _chores;
+  },
+
+  getChore: function() {
+    return _chore;
+  },
+
+  getErrors: function() {
+    return _errors;
+  }
+
+});
+
+ChoreStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.type) {
+
+    case ActionTypes.RECEIVE_CHORES:
+      _chores = action.json.chores;
+      ChoreStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_CHORE:
+      if (action.json) {
+        _mchores.unshift(action.json.chore);
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      ChoreStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CHORE:
+      if (action.json) {
+        _chore = action.json.chore;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      ChoreStore.emitChange();
+      break;
+  }
+
+  return true;
+});
+
+module.exports = ChoreStore;
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30,"events":35,"object-assign":41}],24:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+var _events = [];
+var _errors = [];
+var _event = { content: ""};
+
+var EventStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getAllEvents: function() {
+    return _events;
+  },
+
+  getEvent: function() {
+    return _event;
+  },
+
+  getErrors: function() {
+    return _errors;
+  }
+
+});
+
+EventStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.type) {
+
+    case ActionTypes.RECEIVE_EVENTS:
+      _events = action.json.events;
+      EventStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_EVENT:
+      if (action.json) {
+        _events.push(action.json);
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      EventStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_EVENT:
+      if (action.json) {
+        _event = action.json.event;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      EventStore.emitChange();
+      break;
+  }
+
+  return true;
+});
+
+module.exports = EventStore;
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30,"events":35,"object-assign":41}],25:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+var _items = [];
+var _errors = [];
+var _item = { content: "", author: { first_name: "" } };
+
+var ItemStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getAllItems: function() {
+    return _items;
+  },
+
+  getItem: function() {
+    return _item;
+  },
+
+  getErrors: function() {
+    return _errors;
+  }
+
+});
+
+ItemStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.type) {
+
+    case ActionTypes.RECEIVE_ITEMS:
+      _items = action.json.communal_items;
+      ItemStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_ITEM:
+      if (action.json) {
+        _items.unshift(action.json.communal_item);
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      ItemStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_ITEM:
+      if (action.json) {
+        _item = action.json.communal_items;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      ItemStore.emitChange();
+      break;
+  }
+
+  return true;
+});
+
+module.exports = ItemStore;
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30,"events":35,"object-assign":41}],26:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+var _messages = [];
+var _errors = [];
+var _message = { content: "", author: { first_name: "" } };
+
+var MessageStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getAllMessages: function() {
+    return _messages;
+  },
+
+  getMessage: function() {
+    return _message;
+  },
+
+  getErrors: function() {
+    return _errors;
+  }
+
+});
+
+MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  var action = payload.action;
+  switch(action.type) {
+
+    case ActionTypes.RECEIVE_MESSAGES:
+      _messages = action.json.messages;
+      MessageStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_MESSAGE:
+      if (action.json) {
+        //ALTERED TO MAKE FUNCTIONAL!!!
+        //API MODIFIED TO SENT ONE MESSAGE!!!
+        _messages.push(action.json);
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      MessageStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_MESSAGE:
+      if (action.json) {
+        _message = action.json.message;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      MessageStore.emitChange();
+      break;
+  }
+
+  return true;
+});
+
+module.exports = MessageStore;
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30,"events":35,"object-assign":41}],27:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var SessionStore = require('../stores/SessionStore.react.jsx');
+var MessageStore = require('../stores/MessageStore.react.jsx');
+var RuleStore = require('../stores/RuleStore.react.jsx');
+var EventStore = require('../stores/EventStore.react.jsx');
+var ItemStore = require('../stores/ItemStore.react.jsx');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+
+var Router = require('react-router');
+var routes = require('../routes.jsx');
+
+var router = Router.create({
+  routes: routes,
+  location: null // Router.HistoryLocation
+});
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+var RouteStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function() {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getRouter: function() {
+    return router;
+  },
+
+  redirectHome: function() {
+    router.transitionTo('app');
+  }
+});
+
+RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  HouseRulesAPIDispatcher.waitFor([
+    SessionStore.dispatchToken,
+    MessageStore.dispatchToken,
+    RuleStore.dispatchToken,
+    EventStore.dispatchToken,
+    ItemStore.dispatchToken
+  ]);
+
+  var action = payload.action;
+
+  switch(action.type) {
+
+    case ActionTypes.REDIRECT:
+      router.transitionTo(action.route);
+      break;
+
+    case ActionTypes.LOGIN_RESPONSE:
+      if (SessionStore.isLoggedIn()) {
+        router.transitionTo('app');
+        // Dirty hack, need to figure this out
+      }
+      break;
+
+    case ActionTypes.CREATE_MESSAGE:
+      break;
+      //THIS IS HOW YOU MAINTAIN THE HOUSE_ID
+    case ActionTypes.RECEIVE_CREATED_MESSAGE:
+      debugger;
+      router.transitionTo('messages', action.json );
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_RULE:
+      router.transitionTo('rules');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_COMMUNAL_ITEM:
+      router.transitionTo('items');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_EVENT:
+      router.transitionTo('events');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_CHORE:
+      router.transitionTo('chores');
+      break;
+
+    default:
+  }
+
+  return true;
+});
+
+module.exports = RouteStore;
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../routes.jsx":22,"../stores/EventStore.react.jsx":24,"../stores/ItemStore.react.jsx":25,"../stores/MessageStore.react.jsx":26,"../stores/RuleStore.react.jsx":28,"../stores/SessionStore.react.jsx":29,"events":35,"object-assign":41,"react-router":51}],28:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+var WebAPIUtils = require('../utils/WebAPIUtils.js');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+var _rules = [];
+var _errors = [];
+var _rule = { content: ""};
+
+var RuleStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getAllRules: function() {
+    return _rules;
+  },
+
+  getRule: function() {
+    return _rule;
+  },
+
+  getErrors: function() {
+    return _errors;
+  }
+
+});
+
+RuleStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.type) {
+
+    case ActionTypes.RECEIVE_RULES:
+      _rules = action.json.rules;
+      RuleStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_RULE:
+      if (action.json) {
+        _rules.push(action.json);
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      RuleStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_RULE:
+      if (action.json) {
+        _rule = action.json.rule;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      RuleStore.emitChange();
+      break;
+  }
+
+  return true;
+});
+
+module.exports = RuleStore;
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"../utils/WebAPIUtils.js":30,"events":35,"object-assign":41}],29:[function(require,module,exports){
+var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var EventEmitter = require('events').EventEmitter;
+var assign = require('object-assign');
+
+var ActionTypes = HouseRulesConstants.ActionTypes;
+var CHANGE_EVENT = 'change';
+
+// Load an access token from the session storage, you might want to implement
+// a 'remember me' using localSgorage
+var _accessToken = sessionStorage.getItem('accessToken');
+var _email = sessionStorage.getItem('email');
+var _houseName = sessionStorage.getItem('houseName');
+var _errors = [];
+
+var SessionStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  isLoggedIn: function() {
+    return _accessToken ? true : false;
+  },
+
+  getAccessToken: function() {
+    return _accessToken;
+  },
+
+  getEmail: function() {
+    return _email;
+  },
+
+  getHouseName: function() {
+    return _houseName;
+  },
+
+  getErrors: function() {
+    return _errors;
+  }
+
+});
+
+SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.type) {
+
+    case ActionTypes.LOGIN_RESPONSE:
+      if (action.json && action.json.access_token) {
+        _accessToken = action.json.access_token;
+        _email = action.json.email;
+        _houseName = action.json.house_name;
+        // Token will always live in the session, so that the API can grab it with no hassle
+        sessionStorage.setItem('accessToken', _accessToken);
+        sessionStorage.setItem('email', _email);
+        sessionStorage.setItem('houseName', _houseName);
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      SessionStore.emitChange();
+      break;
+
+    case ActionTypes.LOGOUT:
+      _accessToken = null;
+      _email = null;
+      _houseName = null;
+      sessionStorage.removeItem('accessToken');
+      sessionStorage.removeItem('email');
+      sessionStorage.removeItem('houseName');
+      SessionStore.emitChange();
+      break;
+
+    default:
+  }
+
+  return true;
+});
+
+module.exports = SessionStore;
+
+
+},{"../constants/HouseRulesConstants.js":20,"../dispatcher/HouseRulesAPIDispatcher.js":21,"events":35,"object-assign":41}],30:[function(require,module,exports){
+var ServerActionCreators = require('../actions/ServerActionCreators.react.jsx');
+var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
+var request = require('superagent');
+
+function _getErrors(res) {
+  var errorMsgs = ["Something went wrong, please try again"];
+  if ((json = JSON.parse(res.text))) {
+    if (json['errors']) {
+      errorMsgs = json['errors'];
+    } else if (json['error']) {
+      errorMsgs = [json['error']];
+    }
+  }
+  return errorMsgs;
+}
+
+var APIEndpoints = HouseRulesConstants.APIEndpoints;
+
+module.exports = {
+
+  signup: function(username, firstName, lastName, phone, email, password, passwordConfirmation) {
+    request.post(APIEndpoints.REGISTRATION)
+      .send({ user: {
+        email: email,
+        username: username,
+        first_name: firstName,
+        last_name: lastName,
+        phone: phone,
+        email: email,
+        password: password,
+        password_confirmation: passwordConfirmation
+      }})
+      .set('Accept', 'application/json')
+      .end(function(error, res) {
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveLogin(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveLogin(json, null);
+          }
+        }
+      });
+  },
+
+  login: function(email, password) {
+    request.post(APIEndpoints.LOGIN)
+      .send({ email: email, password: password, grant_type: 'password' })
+      .set('Accept', 'application/json')
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveLogin(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveLogin(json, null);
+          }
+        }
+      });
+  },
+
+  loadMessages: function() {
+    request.get(APIEndpoints.MESSAGES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveMessages(json);
+        }
+      });
+  },
+
+  loadMessage: function(messageId) {
+    request.get(APIEndpoints.MESSAGES + '/' + messageId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveMessage(json);
+        }
+      });
+  },
+
+  createMessage: function(content) {
+    request.post(APIEndpoints.MESSAGES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ message: { content: content } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedMessage(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedMessage(json, null);
+          }
+        }
+      });
+  },
+
+  loadRules: function() {
+    request.get(APIEndpoints.RULES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveRules(json);
+        }
+      });
+  },
+
+  loadRule: function(ruleId) {
+    request.get(APIEndpoints.RULES + '/' + ruleId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveRule(json);
+        }
+      });
+  },
+
+  createRule: function(content) {
+    request.post(APIEndpoints.RULES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ rule: { content: content } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedRule(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedRule(json, null);
+          }
+        }
+      });
+  },
+
+  loadEvents: function() {
+    request.get(APIEndpoints.EVENTS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveEvents(json);
+        }
+      });
+  },
+
+  loadEvent: function(eventId) {
+    request.get(APIEndpoints.EVENTS + '/' + eventId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveEvent(json);
+        }
+      });
+  },
+
+  createEvent: function(name, date, description) {
+    request.post(APIEndpoints.EVENTS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ evnet: { name: name, date: date, description: description } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedEvent(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedEvent(json, null);
+          }
+        }
+      });
+  },
+
+  loadItems: function() {
+    request.get(APIEndpoints.ITEMS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveItems(json);
+        }
+      });
+  },
+
+  loadItem: function(itemId) {
+    debugger;
+    request.get(APIEndpoints.ITEMS + '/' + itemId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveItem(json);
+        }
+      });
+  },
+
+  createItem: function(name, brand, quantity, stock_level) {
+    request.post(APIEndpoints.ITEMS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ communal_item: { name: name, brand: brand, quantity: quantity, stock_level: stock_level } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedItem(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.name);
+            ServerActionCreators.receiveCreatedItem(json, null);
+          }
+        }
+      });
+  },
+
+  loadChores: function() {
+    request.get(APIEndpoints.CHORES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveChores(json);
+        }
+      });
+  },
+
+  loadChore: function(choreId) {
+    request.get(APIEndpoints.CHORES + '/' + choreId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveChore(json);
+        }
+      });
+  },
+
+  createChore: function(task) {
+    request.post(APIEndpoints.CHORES)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ chore: { task: task } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedChore(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedChore(json, null);
+          }
+        }
+      });
+  },
+
+  loadUser: function(userId) {
+    request.get(APIEndpoints.USERS + '/' + userId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveUser(json);
+        }
+      });
+  },
+
+};
+
+},{"../actions/ServerActionCreators.react.jsx":7,"../constants/HouseRulesConstants.js":20,"superagent":232}],31:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -1340,7 +3654,7 @@ function decodeUtf8Char (str) {
   }
 }
 
-},{"base64-js":3,"ieee754":4,"is-array":5}],3:[function(require,module,exports){
+},{"base64-js":32,"ieee754":33,"is-array":34}],32:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -1466,7 +3780,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	exports.fromByteArray = uint8ToBase64
 }(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
 
-},{}],4:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -1552,7 +3866,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],5:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 
 /**
  * isArray
@@ -1587,7 +3901,7 @@ module.exports = isArray || function (val) {
   return !! val && '[object Array]' == str.call(val);
 };
 
-},{}],6:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -1890,7 +4204,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],7:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1950,7 +4264,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],8:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 /**
  * Copyright (c) 2014, Facebook, Inc.
  * All rights reserved.
@@ -1962,7 +4276,7 @@ process.umask = function() { return 0; };
 
 module.exports.Dispatcher = require('./lib/Dispatcher')
 
-},{"./lib/Dispatcher":9}],9:[function(require,module,exports){
+},{"./lib/Dispatcher":38}],38:[function(require,module,exports){
 /*
  * Copyright (c) 2014, Facebook, Inc.
  * All rights reserved.
@@ -2214,7 +4528,7 @@ var _prefix = 'ID_';
 
 module.exports = Dispatcher;
 
-},{"./invariant":10}],10:[function(require,module,exports){
+},{"./invariant":39}],39:[function(require,module,exports){
 /**
  * Copyright (c) 2014, Facebook, Inc.
  * All rights reserved.
@@ -2269,7 +4583,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 
-},{}],11:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -2324,7 +4638,7 @@ var keyMirror = function(obj) {
 
 module.exports = keyMirror;
 
-},{}],12:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -2363,7 +4677,7 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],13:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /**
  * Actions that modify the URL.
  */
@@ -2388,7 +4702,7 @@ var LocationActions = {
 
 module.exports = LocationActions;
 
-},{}],14:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 var LocationActions = require('../actions/LocationActions');
 
 /**
@@ -2417,7 +4731,7 @@ var ImitateBrowserBehavior = {
 
 module.exports = ImitateBrowserBehavior;
 
-},{"../actions/LocationActions":13}],15:[function(require,module,exports){
+},{"../actions/LocationActions":42}],44:[function(require,module,exports){
 /**
  * A scroll behavior that always scrolls to the top of the page
  * after a transition.
@@ -2432,7 +4746,7 @@ var ScrollToTopBehavior = {
 
 module.exports = ScrollToTopBehavior;
 
-},{}],16:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 var React = require('react');
 var FakeNode = require('../mixins/FakeNode');
 var PropTypes = require('../utils/PropTypes');
@@ -2459,7 +4773,7 @@ var DefaultRoute = React.createClass({
 
 module.exports = DefaultRoute;
 
-},{"../mixins/FakeNode":26,"../utils/PropTypes":37,"react":202}],17:[function(require,module,exports){
+},{"../mixins/FakeNode":55,"../utils/PropTypes":66,"react":231}],46:[function(require,module,exports){
 var React = require('react');
 var classSet = require('react/lib/cx');
 var assign = require('react/lib/Object.assign');
@@ -2568,7 +4882,7 @@ var Link = React.createClass({
 
 module.exports = Link;
 
-},{"../mixins/Navigation":27,"../mixins/State":31,"react":202,"react/lib/Object.assign":81,"react/lib/cx":160}],18:[function(require,module,exports){
+},{"../mixins/Navigation":56,"../mixins/State":60,"react":231,"react/lib/Object.assign":110,"react/lib/cx":189}],47:[function(require,module,exports){
 var React = require('react');
 var FakeNode = require('../mixins/FakeNode');
 var PropTypes = require('../utils/PropTypes');
@@ -2596,7 +4910,7 @@ var NotFoundRoute = React.createClass({
 
 module.exports = NotFoundRoute;
 
-},{"../mixins/FakeNode":26,"../utils/PropTypes":37,"react":202}],19:[function(require,module,exports){
+},{"../mixins/FakeNode":55,"../utils/PropTypes":66,"react":231}],48:[function(require,module,exports){
 var React = require('react');
 var FakeNode = require('../mixins/FakeNode');
 var PropTypes = require('../utils/PropTypes');
@@ -2622,7 +4936,7 @@ var Redirect = React.createClass({
 
 module.exports = Redirect;
 
-},{"../mixins/FakeNode":26,"../utils/PropTypes":37,"react":202}],20:[function(require,module,exports){
+},{"../mixins/FakeNode":55,"../utils/PropTypes":66,"react":231}],49:[function(require,module,exports){
 var React = require('react');
 var FakeNode = require('../mixins/FakeNode');
 
@@ -2681,7 +4995,7 @@ var Route = React.createClass({
 
 module.exports = Route;
 
-},{"../mixins/FakeNode":26,"react":202}],21:[function(require,module,exports){
+},{"../mixins/FakeNode":55,"react":231}],50:[function(require,module,exports){
 var React = require('react');
 var RouteHandlerMixin = require('../mixins/RouteHandler');
 
@@ -2709,7 +5023,7 @@ var RouteHandler = React.createClass({
 
 module.exports = RouteHandler;
 
-},{"../mixins/RouteHandler":29,"react":202}],22:[function(require,module,exports){
+},{"../mixins/RouteHandler":58,"react":231}],51:[function(require,module,exports){
 exports.DefaultRoute = require('./components/DefaultRoute');
 exports.Link = require('./components/Link');
 exports.NotFoundRoute = require('./components/NotFoundRoute');
@@ -2732,7 +5046,7 @@ exports.run = require('./utils/runRouter');
 
 exports.History = require('./utils/History');
 
-},{"./behaviors/ImitateBrowserBehavior":14,"./behaviors/ScrollToTopBehavior":15,"./components/DefaultRoute":16,"./components/Link":17,"./components/NotFoundRoute":18,"./components/Redirect":19,"./components/Route":20,"./components/RouteHandler":21,"./locations/HashLocation":23,"./locations/HistoryLocation":24,"./locations/RefreshLocation":25,"./mixins/Navigation":27,"./mixins/State":31,"./utils/History":34,"./utils/createRouter":40,"./utils/runRouter":44}],23:[function(require,module,exports){
+},{"./behaviors/ImitateBrowserBehavior":43,"./behaviors/ScrollToTopBehavior":44,"./components/DefaultRoute":45,"./components/Link":46,"./components/NotFoundRoute":47,"./components/Redirect":48,"./components/Route":49,"./components/RouteHandler":50,"./locations/HashLocation":52,"./locations/HistoryLocation":53,"./locations/RefreshLocation":54,"./mixins/Navigation":56,"./mixins/State":60,"./utils/History":63,"./utils/createRouter":69,"./utils/runRouter":73}],52:[function(require,module,exports){
 var LocationActions = require('../actions/LocationActions');
 var History = require('../utils/History');
 var Path = require('../utils/Path');
@@ -2859,7 +5173,7 @@ var HashLocation = {
 
 module.exports = HashLocation;
 
-},{"../actions/LocationActions":13,"../utils/History":34,"../utils/Path":35}],24:[function(require,module,exports){
+},{"../actions/LocationActions":42,"../utils/History":63,"../utils/Path":64}],53:[function(require,module,exports){
 var LocationActions = require('../actions/LocationActions');
 var History = require('../utils/History');
 var Path = require('../utils/Path');
@@ -2955,7 +5269,7 @@ var HistoryLocation = {
 
 module.exports = HistoryLocation;
 
-},{"../actions/LocationActions":13,"../utils/History":34,"../utils/Path":35}],25:[function(require,module,exports){
+},{"../actions/LocationActions":42,"../utils/History":63,"../utils/Path":64}],54:[function(require,module,exports){
 var HistoryLocation = require('./HistoryLocation');
 var History = require('../utils/History');
 var Path = require('../utils/Path');
@@ -2987,7 +5301,7 @@ var RefreshLocation = {
 
 module.exports = RefreshLocation;
 
-},{"../utils/History":34,"../utils/Path":35,"./HistoryLocation":24}],26:[function(require,module,exports){
+},{"../utils/History":63,"../utils/Path":64,"./HistoryLocation":53}],55:[function(require,module,exports){
 var invariant = require('react/lib/invariant');
 
 var FakeNode = {
@@ -3004,7 +5318,7 @@ var FakeNode = {
 
 module.exports = FakeNode;
 
-},{"react/lib/invariant":182}],27:[function(require,module,exports){
+},{"react/lib/invariant":211}],56:[function(require,module,exports){
 var React = require('react');
 
 /**
@@ -3078,7 +5392,7 @@ var Navigation = {
 
 module.exports = Navigation;
 
-},{"react":202}],28:[function(require,module,exports){
+},{"react":231}],57:[function(require,module,exports){
 var React = require('react');
 
 /**
@@ -3108,7 +5422,7 @@ var NavigationContext = {
 
 module.exports = NavigationContext;
 
-},{"react":202}],29:[function(require,module,exports){
+},{"react":231}],58:[function(require,module,exports){
 var React = require('react');
 
 module.exports = {
@@ -3151,7 +5465,7 @@ module.exports = {
     return route ? React.createElement(route.handler, props || this.props) : null;
   }
 };
-},{"react":202}],30:[function(require,module,exports){
+},{"react":231}],59:[function(require,module,exports){
 var invariant = require('react/lib/invariant');
 var canUseDOM = require('react/lib/ExecutionEnvironment').canUseDOM;
 var getWindowScrollPosition = require('../utils/getWindowScrollPosition');
@@ -3236,7 +5550,7 @@ var Scrolling = {
 
 module.exports = Scrolling;
 
-},{"../utils/getWindowScrollPosition":42,"react/lib/ExecutionEnvironment":76,"react/lib/invariant":182}],31:[function(require,module,exports){
+},{"../utils/getWindowScrollPosition":71,"react/lib/ExecutionEnvironment":105,"react/lib/invariant":211}],60:[function(require,module,exports){
 var React = require('react');
 
 /**
@@ -3315,7 +5629,7 @@ var State = {
 
 module.exports = State;
 
-},{"react":202}],32:[function(require,module,exports){
+},{"react":231}],61:[function(require,module,exports){
 var React = require('react');
 var assign = require('react/lib/Object.assign');
 var Path = require('../utils/Path');
@@ -3418,7 +5732,7 @@ var StateContext = {
 
 module.exports = StateContext;
 
-},{"../utils/Path":35,"react":202,"react/lib/Object.assign":81}],33:[function(require,module,exports){
+},{"../utils/Path":64,"react":231,"react/lib/Object.assign":110}],62:[function(require,module,exports){
 /**
  * Represents a cancellation caused by navigating away
  * before the previous transition has fully resolved.
@@ -3427,7 +5741,7 @@ function Cancellation() { }
 
 module.exports = Cancellation;
 
-},{}],34:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 var invariant = require('react/lib/invariant');
 var canUseDOM = require('react/lib/ExecutionEnvironment').canUseDOM;
 
@@ -3458,7 +5772,7 @@ var History = {
 
 module.exports = History;
 
-},{"react/lib/ExecutionEnvironment":76,"react/lib/invariant":182}],35:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":105,"react/lib/invariant":211}],64:[function(require,module,exports){
 var invariant = require('react/lib/invariant');
 var merge = require('qs/lib/utils').merge;
 var qs = require('qs');
@@ -3638,7 +5952,7 @@ var Path = {
 
 module.exports = Path;
 
-},{"qs":46,"qs/lib/utils":50,"react/lib/invariant":182}],36:[function(require,module,exports){
+},{"qs":75,"qs/lib/utils":79,"react/lib/invariant":211}],65:[function(require,module,exports){
 var Promise = require('when/lib/Promise');
 
 // TODO: Use process.env.NODE_ENV check + envify to enable
@@ -3646,7 +5960,7 @@ var Promise = require('when/lib/Promise');
 
 module.exports = Promise;
 
-},{"when/lib/Promise":51}],37:[function(require,module,exports){
+},{"when/lib/Promise":80}],66:[function(require,module,exports){
 var PropTypes = {
 
   /**
@@ -3661,7 +5975,7 @@ var PropTypes = {
 
 module.exports = PropTypes;
 
-},{}],38:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 /**
  * Encapsulates a redirect to the given route.
  */
@@ -3673,7 +5987,7 @@ function Redirect(to, params, query) {
 
 module.exports = Redirect;
 
-},{}],39:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 var assign = require('react/lib/Object.assign');
 var reversedArray = require('./reversedArray');
 var Redirect = require('./Redirect');
@@ -3804,7 +6118,7 @@ assign(Transition.prototype, {
 
 module.exports = Transition;
 
-},{"./Promise":36,"./Redirect":38,"./reversedArray":43,"react/lib/Object.assign":81}],40:[function(require,module,exports){
+},{"./Promise":65,"./Redirect":67,"./reversedArray":72,"react/lib/Object.assign":110}],69:[function(require,module,exports){
 (function (process){
 /* jshint -W058 */
 var React = require('react');
@@ -4302,7 +6616,7 @@ function createRouter(options) {
 module.exports = createRouter;
 
 }).call(this,require('_process'))
-},{"../actions/LocationActions":13,"../behaviors/ImitateBrowserBehavior":14,"../components/RouteHandler":21,"../locations/HashLocation":23,"../locations/HistoryLocation":24,"../locations/RefreshLocation":25,"../mixins/NavigationContext":28,"../mixins/Scrolling":30,"../mixins/StateContext":32,"./Cancellation":33,"./History":34,"./Path":35,"./PropTypes":37,"./Redirect":38,"./Transition":39,"./createRoutesFromChildren":41,"./supportsHistory":45,"_process":7,"react":202,"react/lib/ExecutionEnvironment":76,"react/lib/invariant":182,"react/lib/warning":201}],41:[function(require,module,exports){
+},{"../actions/LocationActions":42,"../behaviors/ImitateBrowserBehavior":43,"../components/RouteHandler":50,"../locations/HashLocation":52,"../locations/HistoryLocation":53,"../locations/RefreshLocation":54,"../mixins/NavigationContext":57,"../mixins/Scrolling":59,"../mixins/StateContext":61,"./Cancellation":62,"./History":63,"./Path":64,"./PropTypes":66,"./Redirect":67,"./Transition":68,"./createRoutesFromChildren":70,"./supportsHistory":74,"_process":36,"react":231,"react/lib/ExecutionEnvironment":105,"react/lib/invariant":211,"react/lib/warning":230}],70:[function(require,module,exports){
 /* jshint -W084 */
 var React = require('react');
 var warning = require('react/lib/warning');
@@ -4469,7 +6783,7 @@ function createRoutesFromChildren(children, parentRoute, namedRoutes) {
 
 module.exports = createRoutesFromChildren;
 
-},{"../components/DefaultRoute":16,"../components/NotFoundRoute":18,"../components/Redirect":19,"../components/Route":20,"./Path":35,"react":202,"react/lib/invariant":182,"react/lib/warning":201}],42:[function(require,module,exports){
+},{"../components/DefaultRoute":45,"../components/NotFoundRoute":47,"../components/Redirect":48,"../components/Route":49,"./Path":64,"react":231,"react/lib/invariant":211,"react/lib/warning":230}],71:[function(require,module,exports){
 var invariant = require('react/lib/invariant');
 var canUseDOM = require('react/lib/ExecutionEnvironment').canUseDOM;
 
@@ -4490,14 +6804,14 @@ function getWindowScrollPosition() {
 
 module.exports = getWindowScrollPosition;
 
-},{"react/lib/ExecutionEnvironment":76,"react/lib/invariant":182}],43:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":105,"react/lib/invariant":211}],72:[function(require,module,exports){
 function reversedArray(array) {
   return array.slice(0).reverse();
 }
 
 module.exports = reversedArray;
 
-},{}],44:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 var createRouter = require('./createRouter');
 
 /**
@@ -4547,7 +6861,7 @@ function runRouter(routes, location, callback) {
 
 module.exports = runRouter;
 
-},{"./createRouter":40}],45:[function(require,module,exports){
+},{"./createRouter":69}],74:[function(require,module,exports){
 function supportsHistory() {
   /*! taken from modernizr
    * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
@@ -4567,10 +6881,10 @@ function supportsHistory() {
 
 module.exports = supportsHistory;
 
-},{}],46:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 module.exports = require('./lib');
 
-},{"./lib":47}],47:[function(require,module,exports){
+},{"./lib":76}],76:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -4587,7 +6901,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":48,"./stringify":49}],48:[function(require,module,exports){
+},{"./parse":77,"./stringify":78}],77:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -4743,7 +7057,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":50}],49:[function(require,module,exports){
+},{"./utils":79}],78:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -4803,7 +7117,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":50}],50:[function(require,module,exports){
+},{"./utils":79}],79:[function(require,module,exports){
 (function (Buffer){
 // Load modules
 
@@ -4946,7 +7260,7 @@ exports.isBuffer = function (obj) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":2}],51:[function(require,module,exports){
+},{"buffer":31}],80:[function(require,module,exports){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
 /** @author John Hann */
@@ -4965,7 +7279,7 @@ define(function (require) {
 });
 })(typeof define === 'function' && define.amd ? define : function (factory) { module.exports = factory(require); });
 
-},{"./Scheduler":53,"./async":54,"./makePromise":55}],52:[function(require,module,exports){
+},{"./Scheduler":82,"./async":83,"./makePromise":84}],81:[function(require,module,exports){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
 /** @author John Hann */
@@ -5037,7 +7351,7 @@ define(function() {
 });
 }(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(); }));
 
-},{}],53:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
 /** @author John Hann */
@@ -5121,7 +7435,7 @@ define(function(require) {
 });
 }(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(require); }));
 
-},{"./Queue":52}],54:[function(require,module,exports){
+},{"./Queue":81}],83:[function(require,module,exports){
 (function (process){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
@@ -5196,7 +7510,7 @@ define(function(require) {
 }(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(require); }));
 
 }).call(this,require('_process'))
-},{"_process":7}],55:[function(require,module,exports){
+},{"_process":36}],84:[function(require,module,exports){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
 /** @author John Hann */
@@ -5994,7 +8308,7 @@ define(function() {
 });
 }(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(); }));
 
-},{}],56:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -6021,7 +8335,7 @@ var AutoFocusMixin = {
 
 module.exports = AutoFocusMixin;
 
-},{"./focusNode":167}],57:[function(require,module,exports){
+},{"./focusNode":196}],86:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  * All rights reserved.
@@ -6243,7 +8557,7 @@ var BeforeInputEventPlugin = {
 
 module.exports = BeforeInputEventPlugin;
 
-},{"./EventConstants":70,"./EventPropagators":75,"./ExecutionEnvironment":76,"./SyntheticInputEvent":144,"./keyOf":189}],58:[function(require,module,exports){
+},{"./EventConstants":99,"./EventPropagators":104,"./ExecutionEnvironment":105,"./SyntheticInputEvent":173,"./keyOf":218}],87:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -6362,7 +8676,7 @@ var CSSProperty = {
 
 module.exports = CSSProperty;
 
-},{}],59:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -6497,7 +8811,7 @@ var CSSPropertyOperations = {
 module.exports = CSSPropertyOperations;
 
 }).call(this,require('_process'))
-},{"./CSSProperty":58,"./ExecutionEnvironment":76,"./camelizeStyleName":155,"./dangerousStyleValue":161,"./hyphenateStyleName":180,"./memoizeStringOnly":191,"./warning":201,"_process":7}],60:[function(require,module,exports){
+},{"./CSSProperty":87,"./ExecutionEnvironment":105,"./camelizeStyleName":184,"./dangerousStyleValue":190,"./hyphenateStyleName":209,"./memoizeStringOnly":220,"./warning":230,"_process":36}],89:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -6597,7 +8911,7 @@ PooledClass.addPoolingTo(CallbackQueue);
 module.exports = CallbackQueue;
 
 }).call(this,require('_process'))
-},{"./Object.assign":81,"./PooledClass":82,"./invariant":182,"_process":7}],61:[function(require,module,exports){
+},{"./Object.assign":110,"./PooledClass":111,"./invariant":211,"_process":36}],90:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -6979,7 +9293,7 @@ var ChangeEventPlugin = {
 
 module.exports = ChangeEventPlugin;
 
-},{"./EventConstants":70,"./EventPluginHub":72,"./EventPropagators":75,"./ExecutionEnvironment":76,"./ReactUpdates":134,"./SyntheticEvent":142,"./isEventSupported":183,"./isTextInputElement":185,"./keyOf":189}],62:[function(require,module,exports){
+},{"./EventConstants":99,"./EventPluginHub":101,"./EventPropagators":104,"./ExecutionEnvironment":105,"./ReactUpdates":163,"./SyntheticEvent":171,"./isEventSupported":212,"./isTextInputElement":214,"./keyOf":218}],91:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -7004,7 +9318,7 @@ var ClientReactRootIndex = {
 
 module.exports = ClientReactRootIndex;
 
-},{}],63:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -7263,7 +9577,7 @@ var CompositionEventPlugin = {
 
 module.exports = CompositionEventPlugin;
 
-},{"./EventConstants":70,"./EventPropagators":75,"./ExecutionEnvironment":76,"./ReactInputSelection":114,"./SyntheticCompositionEvent":140,"./getTextContentAccessor":177,"./keyOf":189}],64:[function(require,module,exports){
+},{"./EventConstants":99,"./EventPropagators":104,"./ExecutionEnvironment":105,"./ReactInputSelection":143,"./SyntheticCompositionEvent":169,"./getTextContentAccessor":206,"./keyOf":218}],93:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -7438,7 +9752,7 @@ var DOMChildrenOperations = {
 module.exports = DOMChildrenOperations;
 
 }).call(this,require('_process'))
-},{"./Danger":67,"./ReactMultiChildUpdateTypes":120,"./getTextContentAccessor":177,"./invariant":182,"_process":7}],65:[function(require,module,exports){
+},{"./Danger":96,"./ReactMultiChildUpdateTypes":149,"./getTextContentAccessor":206,"./invariant":211,"_process":36}],94:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -7737,7 +10051,7 @@ var DOMProperty = {
 module.exports = DOMProperty;
 
 }).call(this,require('_process'))
-},{"./invariant":182,"_process":7}],66:[function(require,module,exports){
+},{"./invariant":211,"_process":36}],95:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -7934,7 +10248,7 @@ var DOMPropertyOperations = {
 module.exports = DOMPropertyOperations;
 
 }).call(this,require('_process'))
-},{"./DOMProperty":65,"./escapeTextForBrowser":165,"./memoizeStringOnly":191,"./warning":201,"_process":7}],67:[function(require,module,exports){
+},{"./DOMProperty":94,"./escapeTextForBrowser":194,"./memoizeStringOnly":220,"./warning":230,"_process":36}],96:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -8120,7 +10434,7 @@ var Danger = {
 module.exports = Danger;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":76,"./createNodesFromMarkup":159,"./emptyFunction":163,"./getMarkupWrap":174,"./invariant":182,"_process":7}],68:[function(require,module,exports){
+},{"./ExecutionEnvironment":105,"./createNodesFromMarkup":188,"./emptyFunction":192,"./getMarkupWrap":203,"./invariant":211,"_process":36}],97:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8160,7 +10474,7 @@ var DefaultEventPluginOrder = [
 
 module.exports = DefaultEventPluginOrder;
 
-},{"./keyOf":189}],69:[function(require,module,exports){
+},{"./keyOf":218}],98:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8300,7 +10614,7 @@ var EnterLeaveEventPlugin = {
 
 module.exports = EnterLeaveEventPlugin;
 
-},{"./EventConstants":70,"./EventPropagators":75,"./ReactMount":118,"./SyntheticMouseEvent":146,"./keyOf":189}],70:[function(require,module,exports){
+},{"./EventConstants":99,"./EventPropagators":104,"./ReactMount":147,"./SyntheticMouseEvent":175,"./keyOf":218}],99:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8372,7 +10686,7 @@ var EventConstants = {
 
 module.exports = EventConstants;
 
-},{"./keyMirror":188}],71:[function(require,module,exports){
+},{"./keyMirror":217}],100:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -8462,7 +10776,7 @@ var EventListener = {
 module.exports = EventListener;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":163,"_process":7}],72:[function(require,module,exports){
+},{"./emptyFunction":192,"_process":36}],101:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -8738,7 +11052,7 @@ var EventPluginHub = {
 module.exports = EventPluginHub;
 
 }).call(this,require('_process'))
-},{"./EventPluginRegistry":73,"./EventPluginUtils":74,"./accumulateInto":152,"./forEachAccumulated":168,"./invariant":182,"_process":7}],73:[function(require,module,exports){
+},{"./EventPluginRegistry":102,"./EventPluginUtils":103,"./accumulateInto":181,"./forEachAccumulated":197,"./invariant":211,"_process":36}],102:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -9018,7 +11332,7 @@ var EventPluginRegistry = {
 module.exports = EventPluginRegistry;
 
 }).call(this,require('_process'))
-},{"./invariant":182,"_process":7}],74:[function(require,module,exports){
+},{"./invariant":211,"_process":36}],103:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -9239,7 +11553,7 @@ var EventPluginUtils = {
 module.exports = EventPluginUtils;
 
 }).call(this,require('_process'))
-},{"./EventConstants":70,"./invariant":182,"_process":7}],75:[function(require,module,exports){
+},{"./EventConstants":99,"./invariant":211,"_process":36}],104:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -9381,7 +11695,7 @@ var EventPropagators = {
 module.exports = EventPropagators;
 
 }).call(this,require('_process'))
-},{"./EventConstants":70,"./EventPluginHub":72,"./accumulateInto":152,"./forEachAccumulated":168,"_process":7}],76:[function(require,module,exports){
+},{"./EventConstants":99,"./EventPluginHub":101,"./accumulateInto":181,"./forEachAccumulated":197,"_process":36}],105:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -9426,7 +11740,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],77:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -9618,7 +11932,7 @@ var HTMLDOMPropertyConfig = {
 
 module.exports = HTMLDOMPropertyConfig;
 
-},{"./DOMProperty":65,"./ExecutionEnvironment":76}],78:[function(require,module,exports){
+},{"./DOMProperty":94,"./ExecutionEnvironment":105}],107:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -9774,7 +12088,7 @@ var LinkedValueUtils = {
 module.exports = LinkedValueUtils;
 
 }).call(this,require('_process'))
-},{"./ReactPropTypes":127,"./invariant":182,"_process":7}],79:[function(require,module,exports){
+},{"./ReactPropTypes":156,"./invariant":211,"_process":36}],108:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -9824,7 +12138,7 @@ var LocalEventTrapMixin = {
 module.exports = LocalEventTrapMixin;
 
 }).call(this,require('_process'))
-},{"./ReactBrowserEventEmitter":85,"./accumulateInto":152,"./forEachAccumulated":168,"./invariant":182,"_process":7}],80:[function(require,module,exports){
+},{"./ReactBrowserEventEmitter":114,"./accumulateInto":181,"./forEachAccumulated":197,"./invariant":211,"_process":36}],109:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -9882,7 +12196,7 @@ var MobileSafariClickEventPlugin = {
 
 module.exports = MobileSafariClickEventPlugin;
 
-},{"./EventConstants":70,"./emptyFunction":163}],81:[function(require,module,exports){
+},{"./EventConstants":99,"./emptyFunction":192}],110:[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -9929,7 +12243,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],82:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -10045,7 +12359,7 @@ var PooledClass = {
 module.exports = PooledClass;
 
 }).call(this,require('_process'))
-},{"./invariant":182,"_process":7}],83:[function(require,module,exports){
+},{"./invariant":211,"_process":36}],112:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -10233,7 +12547,7 @@ React.version = '0.12.2';
 module.exports = React;
 
 }).call(this,require('_process'))
-},{"./DOMPropertyOperations":66,"./EventPluginUtils":74,"./ExecutionEnvironment":76,"./Object.assign":81,"./ReactChildren":86,"./ReactComponent":87,"./ReactCompositeComponent":89,"./ReactContext":90,"./ReactCurrentOwner":91,"./ReactDOM":92,"./ReactDOMComponent":94,"./ReactDefaultInjection":104,"./ReactElement":107,"./ReactElementValidator":108,"./ReactInstanceHandles":115,"./ReactLegacyElement":116,"./ReactMount":118,"./ReactMultiChild":119,"./ReactPerf":123,"./ReactPropTypes":127,"./ReactServerRendering":131,"./ReactTextComponent":133,"./deprecated":162,"./onlyChild":193,"_process":7}],84:[function(require,module,exports){
+},{"./DOMPropertyOperations":95,"./EventPluginUtils":103,"./ExecutionEnvironment":105,"./Object.assign":110,"./ReactChildren":115,"./ReactComponent":116,"./ReactCompositeComponent":118,"./ReactContext":119,"./ReactCurrentOwner":120,"./ReactDOM":121,"./ReactDOMComponent":123,"./ReactDefaultInjection":133,"./ReactElement":136,"./ReactElementValidator":137,"./ReactInstanceHandles":144,"./ReactLegacyElement":145,"./ReactMount":147,"./ReactMultiChild":148,"./ReactPerf":152,"./ReactPropTypes":156,"./ReactServerRendering":160,"./ReactTextComponent":162,"./deprecated":191,"./onlyChild":222,"_process":36}],113:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -10276,7 +12590,7 @@ var ReactBrowserComponentMixin = {
 module.exports = ReactBrowserComponentMixin;
 
 }).call(this,require('_process'))
-},{"./ReactEmptyComponent":109,"./ReactMount":118,"./invariant":182,"_process":7}],85:[function(require,module,exports){
+},{"./ReactEmptyComponent":138,"./ReactMount":147,"./invariant":211,"_process":36}],114:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -10631,7 +12945,7 @@ var ReactBrowserEventEmitter = assign({}, ReactEventEmitterMixin, {
 
 module.exports = ReactBrowserEventEmitter;
 
-},{"./EventConstants":70,"./EventPluginHub":72,"./EventPluginRegistry":73,"./Object.assign":81,"./ReactEventEmitterMixin":111,"./ViewportMetrics":151,"./isEventSupported":183}],86:[function(require,module,exports){
+},{"./EventConstants":99,"./EventPluginHub":101,"./EventPluginRegistry":102,"./Object.assign":110,"./ReactEventEmitterMixin":140,"./ViewportMetrics":180,"./isEventSupported":212}],115:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -10781,7 +13095,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 }).call(this,require('_process'))
-},{"./PooledClass":82,"./traverseAllChildren":200,"./warning":201,"_process":7}],87:[function(require,module,exports){
+},{"./PooledClass":111,"./traverseAllChildren":229,"./warning":230,"_process":36}],116:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -11224,7 +13538,7 @@ var ReactComponent = {
 module.exports = ReactComponent;
 
 }).call(this,require('_process'))
-},{"./Object.assign":81,"./ReactElement":107,"./ReactOwner":122,"./ReactUpdates":134,"./invariant":182,"./keyMirror":188,"_process":7}],88:[function(require,module,exports){
+},{"./Object.assign":110,"./ReactElement":136,"./ReactOwner":151,"./ReactUpdates":163,"./invariant":211,"./keyMirror":217,"_process":36}],117:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -11346,7 +13660,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 }).call(this,require('_process'))
-},{"./ReactDOMIDOperations":96,"./ReactMarkupChecksum":117,"./ReactMount":118,"./ReactPerf":123,"./ReactReconcileTransaction":129,"./getReactRootElementInContainer":176,"./invariant":182,"./setInnerHTML":196,"_process":7}],89:[function(require,module,exports){
+},{"./ReactDOMIDOperations":125,"./ReactMarkupChecksum":146,"./ReactMount":147,"./ReactPerf":152,"./ReactReconcileTransaction":158,"./getReactRootElementInContainer":205,"./invariant":211,"./setInnerHTML":225,"_process":36}],118:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -12786,7 +15100,7 @@ var ReactCompositeComponent = {
 module.exports = ReactCompositeComponent;
 
 }).call(this,require('_process'))
-},{"./Object.assign":81,"./ReactComponent":87,"./ReactContext":90,"./ReactCurrentOwner":91,"./ReactElement":107,"./ReactElementValidator":108,"./ReactEmptyComponent":109,"./ReactErrorUtils":110,"./ReactLegacyElement":116,"./ReactOwner":122,"./ReactPerf":123,"./ReactPropTransferer":124,"./ReactPropTypeLocationNames":125,"./ReactPropTypeLocations":126,"./ReactUpdates":134,"./instantiateReactComponent":181,"./invariant":182,"./keyMirror":188,"./keyOf":189,"./mapObject":190,"./monitorCodeUse":192,"./shouldUpdateReactComponent":198,"./warning":201,"_process":7}],90:[function(require,module,exports){
+},{"./Object.assign":110,"./ReactComponent":116,"./ReactContext":119,"./ReactCurrentOwner":120,"./ReactElement":136,"./ReactElementValidator":137,"./ReactEmptyComponent":138,"./ReactErrorUtils":139,"./ReactLegacyElement":145,"./ReactOwner":151,"./ReactPerf":152,"./ReactPropTransferer":153,"./ReactPropTypeLocationNames":154,"./ReactPropTypeLocations":155,"./ReactUpdates":163,"./instantiateReactComponent":210,"./invariant":211,"./keyMirror":217,"./keyOf":218,"./mapObject":219,"./monitorCodeUse":221,"./shouldUpdateReactComponent":227,"./warning":230,"_process":36}],119:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -12848,7 +15162,7 @@ var ReactContext = {
 
 module.exports = ReactContext;
 
-},{"./Object.assign":81}],91:[function(require,module,exports){
+},{"./Object.assign":110}],120:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -12882,7 +15196,7 @@ var ReactCurrentOwner = {
 
 module.exports = ReactCurrentOwner;
 
-},{}],92:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -13065,7 +15379,7 @@ var ReactDOM = mapObject({
 module.exports = ReactDOM;
 
 }).call(this,require('_process'))
-},{"./ReactElement":107,"./ReactElementValidator":108,"./ReactLegacyElement":116,"./mapObject":190,"_process":7}],93:[function(require,module,exports){
+},{"./ReactElement":136,"./ReactElementValidator":137,"./ReactLegacyElement":145,"./mapObject":219,"_process":36}],122:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -13130,7 +15444,7 @@ var ReactDOMButton = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMButton;
 
-},{"./AutoFocusMixin":56,"./ReactBrowserComponentMixin":84,"./ReactCompositeComponent":89,"./ReactDOM":92,"./ReactElement":107,"./keyMirror":188}],94:[function(require,module,exports){
+},{"./AutoFocusMixin":85,"./ReactBrowserComponentMixin":113,"./ReactCompositeComponent":118,"./ReactDOM":121,"./ReactElement":136,"./keyMirror":217}],123:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -13617,7 +15931,7 @@ assign(
 module.exports = ReactDOMComponent;
 
 }).call(this,require('_process'))
-},{"./CSSPropertyOperations":59,"./DOMProperty":65,"./DOMPropertyOperations":66,"./Object.assign":81,"./ReactBrowserComponentMixin":84,"./ReactBrowserEventEmitter":85,"./ReactComponent":87,"./ReactMount":118,"./ReactMultiChild":119,"./ReactPerf":123,"./escapeTextForBrowser":165,"./invariant":182,"./isEventSupported":183,"./keyOf":189,"./monitorCodeUse":192,"_process":7}],95:[function(require,module,exports){
+},{"./CSSPropertyOperations":88,"./DOMProperty":94,"./DOMPropertyOperations":95,"./Object.assign":110,"./ReactBrowserComponentMixin":113,"./ReactBrowserEventEmitter":114,"./ReactComponent":116,"./ReactMount":147,"./ReactMultiChild":148,"./ReactPerf":152,"./escapeTextForBrowser":194,"./invariant":211,"./isEventSupported":212,"./keyOf":218,"./monitorCodeUse":221,"_process":36}],124:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -13667,7 +15981,7 @@ var ReactDOMForm = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMForm;
 
-},{"./EventConstants":70,"./LocalEventTrapMixin":79,"./ReactBrowserComponentMixin":84,"./ReactCompositeComponent":89,"./ReactDOM":92,"./ReactElement":107}],96:[function(require,module,exports){
+},{"./EventConstants":99,"./LocalEventTrapMixin":108,"./ReactBrowserComponentMixin":113,"./ReactCompositeComponent":118,"./ReactDOM":121,"./ReactElement":136}],125:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -13853,7 +16167,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 }).call(this,require('_process'))
-},{"./CSSPropertyOperations":59,"./DOMChildrenOperations":64,"./DOMPropertyOperations":66,"./ReactMount":118,"./ReactPerf":123,"./invariant":182,"./setInnerHTML":196,"_process":7}],97:[function(require,module,exports){
+},{"./CSSPropertyOperations":88,"./DOMChildrenOperations":93,"./DOMPropertyOperations":95,"./ReactMount":147,"./ReactPerf":152,"./invariant":211,"./setInnerHTML":225,"_process":36}],126:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -13901,7 +16215,7 @@ var ReactDOMImg = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMImg;
 
-},{"./EventConstants":70,"./LocalEventTrapMixin":79,"./ReactBrowserComponentMixin":84,"./ReactCompositeComponent":89,"./ReactDOM":92,"./ReactElement":107}],98:[function(require,module,exports){
+},{"./EventConstants":99,"./LocalEventTrapMixin":108,"./ReactBrowserComponentMixin":113,"./ReactCompositeComponent":118,"./ReactDOM":121,"./ReactElement":136}],127:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -14079,7 +16393,7 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
 module.exports = ReactDOMInput;
 
 }).call(this,require('_process'))
-},{"./AutoFocusMixin":56,"./DOMPropertyOperations":66,"./LinkedValueUtils":78,"./Object.assign":81,"./ReactBrowserComponentMixin":84,"./ReactCompositeComponent":89,"./ReactDOM":92,"./ReactElement":107,"./ReactMount":118,"./ReactUpdates":134,"./invariant":182,"_process":7}],99:[function(require,module,exports){
+},{"./AutoFocusMixin":85,"./DOMPropertyOperations":95,"./LinkedValueUtils":107,"./Object.assign":110,"./ReactBrowserComponentMixin":113,"./ReactCompositeComponent":118,"./ReactDOM":121,"./ReactElement":136,"./ReactMount":147,"./ReactUpdates":163,"./invariant":211,"_process":36}],128:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -14132,7 +16446,7 @@ var ReactDOMOption = ReactCompositeComponent.createClass({
 module.exports = ReactDOMOption;
 
 }).call(this,require('_process'))
-},{"./ReactBrowserComponentMixin":84,"./ReactCompositeComponent":89,"./ReactDOM":92,"./ReactElement":107,"./warning":201,"_process":7}],100:[function(require,module,exports){
+},{"./ReactBrowserComponentMixin":113,"./ReactCompositeComponent":118,"./ReactDOM":121,"./ReactElement":136,"./warning":230,"_process":36}],129:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -14316,7 +16630,7 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMSelect;
 
-},{"./AutoFocusMixin":56,"./LinkedValueUtils":78,"./Object.assign":81,"./ReactBrowserComponentMixin":84,"./ReactCompositeComponent":89,"./ReactDOM":92,"./ReactElement":107,"./ReactUpdates":134}],101:[function(require,module,exports){
+},{"./AutoFocusMixin":85,"./LinkedValueUtils":107,"./Object.assign":110,"./ReactBrowserComponentMixin":113,"./ReactCompositeComponent":118,"./ReactDOM":121,"./ReactElement":136,"./ReactUpdates":163}],130:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -14525,7 +16839,7 @@ var ReactDOMSelection = {
 
 module.exports = ReactDOMSelection;
 
-},{"./ExecutionEnvironment":76,"./getNodeForCharacterOffset":175,"./getTextContentAccessor":177}],102:[function(require,module,exports){
+},{"./ExecutionEnvironment":105,"./getNodeForCharacterOffset":204,"./getTextContentAccessor":206}],131:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -14666,7 +16980,7 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
 module.exports = ReactDOMTextarea;
 
 }).call(this,require('_process'))
-},{"./AutoFocusMixin":56,"./DOMPropertyOperations":66,"./LinkedValueUtils":78,"./Object.assign":81,"./ReactBrowserComponentMixin":84,"./ReactCompositeComponent":89,"./ReactDOM":92,"./ReactElement":107,"./ReactUpdates":134,"./invariant":182,"./warning":201,"_process":7}],103:[function(require,module,exports){
+},{"./AutoFocusMixin":85,"./DOMPropertyOperations":95,"./LinkedValueUtils":107,"./Object.assign":110,"./ReactBrowserComponentMixin":113,"./ReactCompositeComponent":118,"./ReactDOM":121,"./ReactElement":136,"./ReactUpdates":163,"./invariant":211,"./warning":230,"_process":36}],132:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -14739,7 +17053,7 @@ var ReactDefaultBatchingStrategy = {
 
 module.exports = ReactDefaultBatchingStrategy;
 
-},{"./Object.assign":81,"./ReactUpdates":134,"./Transaction":150,"./emptyFunction":163}],104:[function(require,module,exports){
+},{"./Object.assign":110,"./ReactUpdates":163,"./Transaction":179,"./emptyFunction":192}],133:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -14868,7 +17182,7 @@ module.exports = {
 };
 
 }).call(this,require('_process'))
-},{"./BeforeInputEventPlugin":57,"./ChangeEventPlugin":61,"./ClientReactRootIndex":62,"./CompositionEventPlugin":63,"./DefaultEventPluginOrder":68,"./EnterLeaveEventPlugin":69,"./ExecutionEnvironment":76,"./HTMLDOMPropertyConfig":77,"./MobileSafariClickEventPlugin":80,"./ReactBrowserComponentMixin":84,"./ReactComponentBrowserEnvironment":88,"./ReactDOMButton":93,"./ReactDOMComponent":94,"./ReactDOMForm":95,"./ReactDOMImg":97,"./ReactDOMInput":98,"./ReactDOMOption":99,"./ReactDOMSelect":100,"./ReactDOMTextarea":102,"./ReactDefaultBatchingStrategy":103,"./ReactDefaultPerf":105,"./ReactEventListener":112,"./ReactInjection":113,"./ReactInstanceHandles":115,"./ReactMount":118,"./SVGDOMPropertyConfig":135,"./SelectEventPlugin":136,"./ServerReactRootIndex":137,"./SimpleEventPlugin":138,"./createFullPageComponent":158,"_process":7}],105:[function(require,module,exports){
+},{"./BeforeInputEventPlugin":86,"./ChangeEventPlugin":90,"./ClientReactRootIndex":91,"./CompositionEventPlugin":92,"./DefaultEventPluginOrder":97,"./EnterLeaveEventPlugin":98,"./ExecutionEnvironment":105,"./HTMLDOMPropertyConfig":106,"./MobileSafariClickEventPlugin":109,"./ReactBrowserComponentMixin":113,"./ReactComponentBrowserEnvironment":117,"./ReactDOMButton":122,"./ReactDOMComponent":123,"./ReactDOMForm":124,"./ReactDOMImg":126,"./ReactDOMInput":127,"./ReactDOMOption":128,"./ReactDOMSelect":129,"./ReactDOMTextarea":131,"./ReactDefaultBatchingStrategy":132,"./ReactDefaultPerf":134,"./ReactEventListener":141,"./ReactInjection":142,"./ReactInstanceHandles":144,"./ReactMount":147,"./SVGDOMPropertyConfig":164,"./SelectEventPlugin":165,"./ServerReactRootIndex":166,"./SimpleEventPlugin":167,"./createFullPageComponent":187,"_process":36}],134:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -15128,7 +17442,7 @@ var ReactDefaultPerf = {
 
 module.exports = ReactDefaultPerf;
 
-},{"./DOMProperty":65,"./ReactDefaultPerfAnalysis":106,"./ReactMount":118,"./ReactPerf":123,"./performanceNow":195}],106:[function(require,module,exports){
+},{"./DOMProperty":94,"./ReactDefaultPerfAnalysis":135,"./ReactMount":147,"./ReactPerf":152,"./performanceNow":224}],135:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -15334,7 +17648,7 @@ var ReactDefaultPerfAnalysis = {
 
 module.exports = ReactDefaultPerfAnalysis;
 
-},{"./Object.assign":81}],107:[function(require,module,exports){
+},{"./Object.assign":110}],136:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -15580,7 +17894,7 @@ ReactElement.isValidElement = function(object) {
 module.exports = ReactElement;
 
 }).call(this,require('_process'))
-},{"./ReactContext":90,"./ReactCurrentOwner":91,"./warning":201,"_process":7}],108:[function(require,module,exports){
+},{"./ReactContext":119,"./ReactCurrentOwner":120,"./warning":230,"_process":36}],137:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -15862,7 +18176,7 @@ var ReactElementValidator = {
 module.exports = ReactElementValidator;
 
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":91,"./ReactElement":107,"./ReactPropTypeLocations":126,"./monitorCodeUse":192,"./warning":201,"_process":7}],109:[function(require,module,exports){
+},{"./ReactCurrentOwner":120,"./ReactElement":136,"./ReactPropTypeLocations":155,"./monitorCodeUse":221,"./warning":230,"_process":36}],138:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -15939,7 +18253,7 @@ var ReactEmptyComponent = {
 module.exports = ReactEmptyComponent;
 
 }).call(this,require('_process'))
-},{"./ReactElement":107,"./invariant":182,"_process":7}],110:[function(require,module,exports){
+},{"./ReactElement":136,"./invariant":211,"_process":36}],139:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -15971,7 +18285,7 @@ var ReactErrorUtils = {
 
 module.exports = ReactErrorUtils;
 
-},{}],111:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -16021,7 +18335,7 @@ var ReactEventEmitterMixin = {
 
 module.exports = ReactEventEmitterMixin;
 
-},{"./EventPluginHub":72}],112:[function(require,module,exports){
+},{"./EventPluginHub":101}],141:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -16205,7 +18519,7 @@ var ReactEventListener = {
 
 module.exports = ReactEventListener;
 
-},{"./EventListener":71,"./ExecutionEnvironment":76,"./Object.assign":81,"./PooledClass":82,"./ReactInstanceHandles":115,"./ReactMount":118,"./ReactUpdates":134,"./getEventTarget":173,"./getUnboundedScrollPosition":178}],113:[function(require,module,exports){
+},{"./EventListener":100,"./ExecutionEnvironment":105,"./Object.assign":110,"./PooledClass":111,"./ReactInstanceHandles":144,"./ReactMount":147,"./ReactUpdates":163,"./getEventTarget":202,"./getUnboundedScrollPosition":207}],142:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -16245,7 +18559,7 @@ var ReactInjection = {
 
 module.exports = ReactInjection;
 
-},{"./DOMProperty":65,"./EventPluginHub":72,"./ReactBrowserEventEmitter":85,"./ReactComponent":87,"./ReactCompositeComponent":89,"./ReactEmptyComponent":109,"./ReactNativeComponent":121,"./ReactPerf":123,"./ReactRootIndex":130,"./ReactUpdates":134}],114:[function(require,module,exports){
+},{"./DOMProperty":94,"./EventPluginHub":101,"./ReactBrowserEventEmitter":114,"./ReactComponent":116,"./ReactCompositeComponent":118,"./ReactEmptyComponent":138,"./ReactNativeComponent":150,"./ReactPerf":152,"./ReactRootIndex":159,"./ReactUpdates":163}],143:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -16381,7 +18695,7 @@ var ReactInputSelection = {
 
 module.exports = ReactInputSelection;
 
-},{"./ReactDOMSelection":101,"./containsNode":156,"./focusNode":167,"./getActiveElement":169}],115:[function(require,module,exports){
+},{"./ReactDOMSelection":130,"./containsNode":185,"./focusNode":196,"./getActiveElement":198}],144:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -16716,7 +19030,7 @@ var ReactInstanceHandles = {
 module.exports = ReactInstanceHandles;
 
 }).call(this,require('_process'))
-},{"./ReactRootIndex":130,"./invariant":182,"_process":7}],116:[function(require,module,exports){
+},{"./ReactRootIndex":159,"./invariant":211,"_process":36}],145:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -16963,7 +19277,7 @@ ReactLegacyElementFactory._isLegacyCallWarningEnabled = true;
 module.exports = ReactLegacyElementFactory;
 
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":91,"./invariant":182,"./monitorCodeUse":192,"./warning":201,"_process":7}],117:[function(require,module,exports){
+},{"./ReactCurrentOwner":120,"./invariant":211,"./monitorCodeUse":221,"./warning":230,"_process":36}],146:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -17011,7 +19325,7 @@ var ReactMarkupChecksum = {
 
 module.exports = ReactMarkupChecksum;
 
-},{"./adler32":153}],118:[function(require,module,exports){
+},{"./adler32":182}],147:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -17709,7 +20023,7 @@ ReactMount.renderComponent = deprecated(
 module.exports = ReactMount;
 
 }).call(this,require('_process'))
-},{"./DOMProperty":65,"./ReactBrowserEventEmitter":85,"./ReactCurrentOwner":91,"./ReactElement":107,"./ReactInstanceHandles":115,"./ReactLegacyElement":116,"./ReactPerf":123,"./containsNode":156,"./deprecated":162,"./getReactRootElementInContainer":176,"./instantiateReactComponent":181,"./invariant":182,"./shouldUpdateReactComponent":198,"./warning":201,"_process":7}],119:[function(require,module,exports){
+},{"./DOMProperty":94,"./ReactBrowserEventEmitter":114,"./ReactCurrentOwner":120,"./ReactElement":136,"./ReactInstanceHandles":144,"./ReactLegacyElement":145,"./ReactPerf":152,"./containsNode":185,"./deprecated":191,"./getReactRootElementInContainer":205,"./instantiateReactComponent":210,"./invariant":211,"./shouldUpdateReactComponent":227,"./warning":230,"_process":36}],148:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -18137,7 +20451,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 
-},{"./ReactComponent":87,"./ReactMultiChildUpdateTypes":120,"./flattenChildren":166,"./instantiateReactComponent":181,"./shouldUpdateReactComponent":198}],120:[function(require,module,exports){
+},{"./ReactComponent":116,"./ReactMultiChildUpdateTypes":149,"./flattenChildren":195,"./instantiateReactComponent":210,"./shouldUpdateReactComponent":227}],149:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -18170,7 +20484,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 
 module.exports = ReactMultiChildUpdateTypes;
 
-},{"./keyMirror":188}],121:[function(require,module,exports){
+},{"./keyMirror":217}],150:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -18243,7 +20557,7 @@ var ReactNativeComponent = {
 module.exports = ReactNativeComponent;
 
 }).call(this,require('_process'))
-},{"./Object.assign":81,"./invariant":182,"_process":7}],122:[function(require,module,exports){
+},{"./Object.assign":110,"./invariant":211,"_process":36}],151:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -18399,7 +20713,7 @@ var ReactOwner = {
 module.exports = ReactOwner;
 
 }).call(this,require('_process'))
-},{"./emptyObject":164,"./invariant":182,"_process":7}],123:[function(require,module,exports){
+},{"./emptyObject":193,"./invariant":211,"_process":36}],152:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -18483,7 +20797,7 @@ function _noMeasure(objName, fnName, func) {
 module.exports = ReactPerf;
 
 }).call(this,require('_process'))
-},{"_process":7}],124:[function(require,module,exports){
+},{"_process":36}],153:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -18650,7 +20964,7 @@ var ReactPropTransferer = {
 module.exports = ReactPropTransferer;
 
 }).call(this,require('_process'))
-},{"./Object.assign":81,"./emptyFunction":163,"./invariant":182,"./joinClasses":187,"./warning":201,"_process":7}],125:[function(require,module,exports){
+},{"./Object.assign":110,"./emptyFunction":192,"./invariant":211,"./joinClasses":216,"./warning":230,"_process":36}],154:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -18678,7 +20992,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = ReactPropTypeLocationNames;
 
 }).call(this,require('_process'))
-},{"_process":7}],126:[function(require,module,exports){
+},{"_process":36}],155:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -18702,7 +21016,7 @@ var ReactPropTypeLocations = keyMirror({
 
 module.exports = ReactPropTypeLocations;
 
-},{"./keyMirror":188}],127:[function(require,module,exports){
+},{"./keyMirror":217}],156:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -19056,7 +21370,7 @@ function getPreciseType(propValue) {
 
 module.exports = ReactPropTypes;
 
-},{"./ReactElement":107,"./ReactPropTypeLocationNames":125,"./deprecated":162,"./emptyFunction":163}],128:[function(require,module,exports){
+},{"./ReactElement":136,"./ReactPropTypeLocationNames":154,"./deprecated":191,"./emptyFunction":192}],157:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -19112,7 +21426,7 @@ PooledClass.addPoolingTo(ReactPutListenerQueue);
 
 module.exports = ReactPutListenerQueue;
 
-},{"./Object.assign":81,"./PooledClass":82,"./ReactBrowserEventEmitter":85}],129:[function(require,module,exports){
+},{"./Object.assign":110,"./PooledClass":111,"./ReactBrowserEventEmitter":114}],158:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -19288,7 +21602,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 
-},{"./CallbackQueue":60,"./Object.assign":81,"./PooledClass":82,"./ReactBrowserEventEmitter":85,"./ReactInputSelection":114,"./ReactPutListenerQueue":128,"./Transaction":150}],130:[function(require,module,exports){
+},{"./CallbackQueue":89,"./Object.assign":110,"./PooledClass":111,"./ReactBrowserEventEmitter":114,"./ReactInputSelection":143,"./ReactPutListenerQueue":157,"./Transaction":179}],159:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -19319,7 +21633,7 @@ var ReactRootIndex = {
 
 module.exports = ReactRootIndex;
 
-},{}],131:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -19399,7 +21713,7 @@ module.exports = {
 };
 
 }).call(this,require('_process'))
-},{"./ReactElement":107,"./ReactInstanceHandles":115,"./ReactMarkupChecksum":117,"./ReactServerRenderingTransaction":132,"./instantiateReactComponent":181,"./invariant":182,"_process":7}],132:[function(require,module,exports){
+},{"./ReactElement":136,"./ReactInstanceHandles":144,"./ReactMarkupChecksum":146,"./ReactServerRenderingTransaction":161,"./instantiateReactComponent":210,"./invariant":211,"_process":36}],161:[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -19512,7 +21826,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 
-},{"./CallbackQueue":60,"./Object.assign":81,"./PooledClass":82,"./ReactPutListenerQueue":128,"./Transaction":150,"./emptyFunction":163}],133:[function(require,module,exports){
+},{"./CallbackQueue":89,"./Object.assign":110,"./PooledClass":111,"./ReactPutListenerQueue":157,"./Transaction":179,"./emptyFunction":192}],162:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -19618,7 +21932,7 @@ ReactTextComponentFactory.type = ReactTextComponent;
 
 module.exports = ReactTextComponentFactory;
 
-},{"./DOMPropertyOperations":66,"./Object.assign":81,"./ReactComponent":87,"./ReactElement":107,"./escapeTextForBrowser":165}],134:[function(require,module,exports){
+},{"./DOMPropertyOperations":95,"./Object.assign":110,"./ReactComponent":116,"./ReactElement":136,"./escapeTextForBrowser":194}],163:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -19908,7 +22222,7 @@ var ReactUpdates = {
 module.exports = ReactUpdates;
 
 }).call(this,require('_process'))
-},{"./CallbackQueue":60,"./Object.assign":81,"./PooledClass":82,"./ReactCurrentOwner":91,"./ReactPerf":123,"./Transaction":150,"./invariant":182,"./warning":201,"_process":7}],135:[function(require,module,exports){
+},{"./CallbackQueue":89,"./Object.assign":110,"./PooledClass":111,"./ReactCurrentOwner":120,"./ReactPerf":152,"./Transaction":179,"./invariant":211,"./warning":230,"_process":36}],164:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20000,7 +22314,7 @@ var SVGDOMPropertyConfig = {
 
 module.exports = SVGDOMPropertyConfig;
 
-},{"./DOMProperty":65}],136:[function(require,module,exports){
+},{"./DOMProperty":94}],165:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20195,7 +22509,7 @@ var SelectEventPlugin = {
 
 module.exports = SelectEventPlugin;
 
-},{"./EventConstants":70,"./EventPropagators":75,"./ReactInputSelection":114,"./SyntheticEvent":142,"./getActiveElement":169,"./isTextInputElement":185,"./keyOf":189,"./shallowEqual":197}],137:[function(require,module,exports){
+},{"./EventConstants":99,"./EventPropagators":104,"./ReactInputSelection":143,"./SyntheticEvent":171,"./getActiveElement":198,"./isTextInputElement":214,"./keyOf":218,"./shallowEqual":226}],166:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20226,7 +22540,7 @@ var ServerReactRootIndex = {
 
 module.exports = ServerReactRootIndex;
 
-},{}],138:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -20654,7 +22968,7 @@ var SimpleEventPlugin = {
 module.exports = SimpleEventPlugin;
 
 }).call(this,require('_process'))
-},{"./EventConstants":70,"./EventPluginUtils":74,"./EventPropagators":75,"./SyntheticClipboardEvent":139,"./SyntheticDragEvent":141,"./SyntheticEvent":142,"./SyntheticFocusEvent":143,"./SyntheticKeyboardEvent":145,"./SyntheticMouseEvent":146,"./SyntheticTouchEvent":147,"./SyntheticUIEvent":148,"./SyntheticWheelEvent":149,"./getEventCharCode":170,"./invariant":182,"./keyOf":189,"./warning":201,"_process":7}],139:[function(require,module,exports){
+},{"./EventConstants":99,"./EventPluginUtils":103,"./EventPropagators":104,"./SyntheticClipboardEvent":168,"./SyntheticDragEvent":170,"./SyntheticEvent":171,"./SyntheticFocusEvent":172,"./SyntheticKeyboardEvent":174,"./SyntheticMouseEvent":175,"./SyntheticTouchEvent":176,"./SyntheticUIEvent":177,"./SyntheticWheelEvent":178,"./getEventCharCode":199,"./invariant":211,"./keyOf":218,"./warning":230,"_process":36}],168:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20700,7 +23014,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 
-},{"./SyntheticEvent":142}],140:[function(require,module,exports){
+},{"./SyntheticEvent":171}],169:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20746,7 +23060,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticCompositionEvent;
 
 
-},{"./SyntheticEvent":142}],141:[function(require,module,exports){
+},{"./SyntheticEvent":171}],170:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20785,7 +23099,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
 
-},{"./SyntheticMouseEvent":146}],142:[function(require,module,exports){
+},{"./SyntheticMouseEvent":175}],171:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20943,7 +23257,7 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.threeArgumentPooler);
 
 module.exports = SyntheticEvent;
 
-},{"./Object.assign":81,"./PooledClass":82,"./emptyFunction":163,"./getEventTarget":173}],143:[function(require,module,exports){
+},{"./Object.assign":110,"./PooledClass":111,"./emptyFunction":192,"./getEventTarget":202}],172:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -20982,7 +23296,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
 
-},{"./SyntheticUIEvent":148}],144:[function(require,module,exports){
+},{"./SyntheticUIEvent":177}],173:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  * All rights reserved.
@@ -21029,7 +23343,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticInputEvent;
 
 
-},{"./SyntheticEvent":142}],145:[function(require,module,exports){
+},{"./SyntheticEvent":171}],174:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21116,7 +23430,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
 
-},{"./SyntheticUIEvent":148,"./getEventCharCode":170,"./getEventKey":171,"./getEventModifierState":172}],146:[function(require,module,exports){
+},{"./SyntheticUIEvent":177,"./getEventCharCode":199,"./getEventKey":200,"./getEventModifierState":201}],175:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21199,7 +23513,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
 
-},{"./SyntheticUIEvent":148,"./ViewportMetrics":151,"./getEventModifierState":172}],147:[function(require,module,exports){
+},{"./SyntheticUIEvent":177,"./ViewportMetrics":180,"./getEventModifierState":201}],176:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21247,7 +23561,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
 
-},{"./SyntheticUIEvent":148,"./getEventModifierState":172}],148:[function(require,module,exports){
+},{"./SyntheticUIEvent":177,"./getEventModifierState":201}],177:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21309,7 +23623,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
 
-},{"./SyntheticEvent":142,"./getEventTarget":173}],149:[function(require,module,exports){
+},{"./SyntheticEvent":171,"./getEventTarget":202}],178:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21370,7 +23684,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
 
-},{"./SyntheticMouseEvent":146}],150:[function(require,module,exports){
+},{"./SyntheticMouseEvent":175}],179:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -21611,7 +23925,7 @@ var Transaction = {
 module.exports = Transaction;
 
 }).call(this,require('_process'))
-},{"./invariant":182,"_process":7}],151:[function(require,module,exports){
+},{"./invariant":211,"_process":36}],180:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21643,7 +23957,7 @@ var ViewportMetrics = {
 
 module.exports = ViewportMetrics;
 
-},{"./getUnboundedScrollPosition":178}],152:[function(require,module,exports){
+},{"./getUnboundedScrollPosition":207}],181:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -21709,7 +24023,7 @@ function accumulateInto(current, next) {
 module.exports = accumulateInto;
 
 }).call(this,require('_process'))
-},{"./invariant":182,"_process":7}],153:[function(require,module,exports){
+},{"./invariant":211,"_process":36}],182:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21743,7 +24057,7 @@ function adler32(data) {
 
 module.exports = adler32;
 
-},{}],154:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21775,7 +24089,7 @@ function camelize(string) {
 
 module.exports = camelize;
 
-},{}],155:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -21817,7 +24131,7 @@ function camelizeStyleName(string) {
 
 module.exports = camelizeStyleName;
 
-},{"./camelize":154}],156:[function(require,module,exports){
+},{"./camelize":183}],185:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21861,7 +24175,7 @@ function containsNode(outerNode, innerNode) {
 
 module.exports = containsNode;
 
-},{"./isTextNode":186}],157:[function(require,module,exports){
+},{"./isTextNode":215}],186:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -21947,7 +24261,7 @@ function createArrayFrom(obj) {
 
 module.exports = createArrayFrom;
 
-},{"./toArray":199}],158:[function(require,module,exports){
+},{"./toArray":228}],187:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -22008,7 +24322,7 @@ function createFullPageComponent(tag) {
 module.exports = createFullPageComponent;
 
 }).call(this,require('_process'))
-},{"./ReactCompositeComponent":89,"./ReactElement":107,"./invariant":182,"_process":7}],159:[function(require,module,exports){
+},{"./ReactCompositeComponent":118,"./ReactElement":136,"./invariant":211,"_process":36}],188:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -22098,7 +24412,7 @@ function createNodesFromMarkup(markup, handleScript) {
 module.exports = createNodesFromMarkup;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":76,"./createArrayFrom":157,"./getMarkupWrap":174,"./invariant":182,"_process":7}],160:[function(require,module,exports){
+},{"./ExecutionEnvironment":105,"./createArrayFrom":186,"./getMarkupWrap":203,"./invariant":211,"_process":36}],189:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22137,7 +24451,7 @@ function cx(classNames) {
 
 module.exports = cx;
 
-},{}],161:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22195,7 +24509,7 @@ function dangerousStyleValue(name, value) {
 
 module.exports = dangerousStyleValue;
 
-},{"./CSSProperty":58}],162:[function(require,module,exports){
+},{"./CSSProperty":87}],191:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -22246,7 +24560,7 @@ function deprecated(namespace, oldName, newName, ctx, fn) {
 module.exports = deprecated;
 
 }).call(this,require('_process'))
-},{"./Object.assign":81,"./warning":201,"_process":7}],163:[function(require,module,exports){
+},{"./Object.assign":110,"./warning":230,"_process":36}],192:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22280,7 +24594,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],164:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -22304,7 +24618,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = emptyObject;
 
 }).call(this,require('_process'))
-},{"_process":7}],165:[function(require,module,exports){
+},{"_process":36}],194:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22345,7 +24659,7 @@ function escapeTextForBrowser(text) {
 
 module.exports = escapeTextForBrowser;
 
-},{}],166:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -22414,7 +24728,7 @@ function flattenChildren(children) {
 module.exports = flattenChildren;
 
 }).call(this,require('_process'))
-},{"./ReactTextComponent":133,"./traverseAllChildren":200,"./warning":201,"_process":7}],167:[function(require,module,exports){
+},{"./ReactTextComponent":162,"./traverseAllChildren":229,"./warning":230,"_process":36}],196:[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -22443,7 +24757,7 @@ function focusNode(node) {
 
 module.exports = focusNode;
 
-},{}],168:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22474,7 +24788,7 @@ var forEachAccumulated = function(arr, cb, scope) {
 
 module.exports = forEachAccumulated;
 
-},{}],169:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22503,7 +24817,7 @@ function getActiveElement() /*?DOMElement*/ {
 
 module.exports = getActiveElement;
 
-},{}],170:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22555,7 +24869,7 @@ function getEventCharCode(nativeEvent) {
 
 module.exports = getEventCharCode;
 
-},{}],171:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22660,7 +24974,7 @@ function getEventKey(nativeEvent) {
 
 module.exports = getEventKey;
 
-},{"./getEventCharCode":170}],172:[function(require,module,exports){
+},{"./getEventCharCode":199}],201:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  * All rights reserved.
@@ -22707,7 +25021,7 @@ function getEventModifierState(nativeEvent) {
 
 module.exports = getEventModifierState;
 
-},{}],173:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22738,7 +25052,7 @@ function getEventTarget(nativeEvent) {
 
 module.exports = getEventTarget;
 
-},{}],174:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -22855,7 +25169,7 @@ function getMarkupWrap(nodeName) {
 module.exports = getMarkupWrap;
 
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":76,"./invariant":182,"_process":7}],175:[function(require,module,exports){
+},{"./ExecutionEnvironment":105,"./invariant":211,"_process":36}],204:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22930,7 +25244,7 @@ function getNodeForCharacterOffset(root, offset) {
 
 module.exports = getNodeForCharacterOffset;
 
-},{}],176:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -22965,7 +25279,7 @@ function getReactRootElementInContainer(container) {
 
 module.exports = getReactRootElementInContainer;
 
-},{}],177:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23002,7 +25316,7 @@ function getTextContentAccessor() {
 
 module.exports = getTextContentAccessor;
 
-},{"./ExecutionEnvironment":76}],178:[function(require,module,exports){
+},{"./ExecutionEnvironment":105}],207:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23042,7 +25356,7 @@ function getUnboundedScrollPosition(scrollable) {
 
 module.exports = getUnboundedScrollPosition;
 
-},{}],179:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23075,7 +25389,7 @@ function hyphenate(string) {
 
 module.exports = hyphenate;
 
-},{}],180:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23116,7 +25430,7 @@ function hyphenateStyleName(string) {
 
 module.exports = hyphenateStyleName;
 
-},{"./hyphenate":179}],181:[function(require,module,exports){
+},{"./hyphenate":208}],210:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -23230,7 +25544,7 @@ function instantiateReactComponent(element, parentCompositeType) {
 module.exports = instantiateReactComponent;
 
 }).call(this,require('_process'))
-},{"./ReactElement":107,"./ReactEmptyComponent":109,"./ReactLegacyElement":116,"./ReactNativeComponent":121,"./warning":201,"_process":7}],182:[function(require,module,exports){
+},{"./ReactElement":136,"./ReactEmptyComponent":138,"./ReactLegacyElement":145,"./ReactNativeComponent":150,"./warning":230,"_process":36}],211:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -23287,7 +25601,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":7}],183:[function(require,module,exports){
+},{"_process":36}],212:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23352,7 +25666,7 @@ function isEventSupported(eventNameSuffix, capture) {
 
 module.exports = isEventSupported;
 
-},{"./ExecutionEnvironment":76}],184:[function(require,module,exports){
+},{"./ExecutionEnvironment":105}],213:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23380,7 +25694,7 @@ function isNode(object) {
 
 module.exports = isNode;
 
-},{}],185:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23424,7 +25738,7 @@ function isTextInputElement(elem) {
 
 module.exports = isTextInputElement;
 
-},{}],186:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23449,7 +25763,7 @@ function isTextNode(object) {
 
 module.exports = isTextNode;
 
-},{"./isNode":184}],187:[function(require,module,exports){
+},{"./isNode":213}],216:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23490,7 +25804,7 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],188:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -23545,7 +25859,7 @@ var keyMirror = function(obj) {
 module.exports = keyMirror;
 
 }).call(this,require('_process'))
-},{"./invariant":182,"_process":7}],189:[function(require,module,exports){
+},{"./invariant":211,"_process":36}],218:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23581,7 +25895,7 @@ var keyOf = function(oneKeyObj) {
 
 module.exports = keyOf;
 
-},{}],190:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23634,7 +25948,7 @@ function mapObject(object, callback, context) {
 
 module.exports = mapObject;
 
-},{}],191:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23668,7 +25982,7 @@ function memoizeStringOnly(callback) {
 
 module.exports = memoizeStringOnly;
 
-},{}],192:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -23702,7 +26016,7 @@ function monitorCodeUse(eventName, data) {
 module.exports = monitorCodeUse;
 
 }).call(this,require('_process'))
-},{"./invariant":182,"_process":7}],193:[function(require,module,exports){
+},{"./invariant":211,"_process":36}],222:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -23742,7 +26056,7 @@ function onlyChild(children) {
 module.exports = onlyChild;
 
 }).call(this,require('_process'))
-},{"./ReactElement":107,"./invariant":182,"_process":7}],194:[function(require,module,exports){
+},{"./ReactElement":136,"./invariant":211,"_process":36}],223:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23770,7 +26084,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = performance || {};
 
-},{"./ExecutionEnvironment":76}],195:[function(require,module,exports){
+},{"./ExecutionEnvironment":105}],224:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23798,7 +26112,7 @@ var performanceNow = performance.now.bind(performance);
 
 module.exports = performanceNow;
 
-},{"./performance":194}],196:[function(require,module,exports){
+},{"./performance":223}],225:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23876,7 +26190,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = setInnerHTML;
 
-},{"./ExecutionEnvironment":76}],197:[function(require,module,exports){
+},{"./ExecutionEnvironment":105}],226:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23920,7 +26234,7 @@ function shallowEqual(objA, objB) {
 
 module.exports = shallowEqual;
 
-},{}],198:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -23958,7 +26272,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 
 module.exports = shouldUpdateReactComponent;
 
-},{}],199:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -24030,7 +26344,7 @@ function toArray(obj) {
 module.exports = toArray;
 
 }).call(this,require('_process'))
-},{"./invariant":182,"_process":7}],200:[function(require,module,exports){
+},{"./invariant":211,"_process":36}],229:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014, Facebook, Inc.
@@ -24213,7 +26527,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 }).call(this,require('_process'))
-},{"./ReactElement":107,"./ReactInstanceHandles":115,"./invariant":182,"_process":7}],201:[function(require,module,exports){
+},{"./ReactElement":136,"./ReactInstanceHandles":144,"./invariant":211,"_process":36}],230:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014, Facebook, Inc.
@@ -24258,10 +26572,10 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":163,"_process":7}],202:[function(require,module,exports){
+},{"./emptyFunction":192,"_process":36}],231:[function(require,module,exports){
 module.exports = require('./lib/React');
 
-},{"./lib/React":83}],203:[function(require,module,exports){
+},{"./lib/React":112}],232:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -25344,7 +27658,7 @@ request.put = function(url, data, fn){
 
 module.exports = request;
 
-},{"emitter":204,"reduce":205}],204:[function(require,module,exports){
+},{"emitter":233,"reduce":234}],233:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -25510,7 +27824,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],205:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 
 /**
  * Reduce `arr` with `fn`.
@@ -25535,7 +27849,7 @@ module.exports = function(arr, fn, initial){
   
   return curr;
 };
-},{}],206:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 /*
  * node-timeago
  * Cam Pedersen
@@ -25648,2350 +27962,4 @@ function distance (date) {
   return (new Date().getTime() - date.getTime());
 }
 
-},{}],207:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-
-module.exports = {
-
-  loadChores: function() {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_CHORES
-    });
-    WebAPIUtils.loadChores();
-  },
-
-  loadChore: function(choreId) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_CHORE,
-      choreId: choreId
-    });
-    WebAPIUtils.loadChore(choreId);
-  },
-
-  createChore: function(task) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.CREATE_CHORE,
-      task: task
-    });
-    WebAPIUtils.createChore(task);
-  }
-
-};
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235}],208:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-
-module.exports = {
-
-  loadEvents: function() {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_EVENTS
-    });
-    WebAPIUtils.loadEvents();
-  },
-
-  loadEvent: function(eventId) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_EVENT,
-      eventId: eventId
-    });
-    WebAPIUtils.loadEvent(eventId);
-  },
-
-
-  createEvent: function(name, date, description) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.CREATE_EVENT,
-      name: name,
-      date: date,
-      description: description
-    });
-    WebAPIUtils.createEvent(name, date, description);
-  }
-
-};
-
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235}],209:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-
-module.exports = {
-
-  loadItems: function() {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_ITEMS
-    });
-    WebAPIUtils.loadItems();
-  },
-
-  loadItem: function(itemId) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_ITEM,
-      itemId: itemId
-    });
-    WebAPIUtils.loadItem(itemId);
-  },
-
-
-  createItem: function(name, brand, quantity, stock_level) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.CREATE_ITEM,
-      name: name,
-      brand: brand,
-      quantity: quantity,
-      stock_level: stock_level
-    });
-    WebAPIUtils.createItem(name, brand, quantity, stock_level);
-  }
-
-};
-
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235}],210:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-
-module.exports = {
-
-  loadMessages: function() {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_MESSAGES
-    });
-    WebAPIUtils.loadMessages();
-  },
-
-  loadMessage: function(messageId) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_MESSAGE,
-      messageId: messageId
-    });
-    WebAPIUtils.loadMessage(messageId);
-  },
-
-  createMessage: function(content) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.CREATE_MESSAGE,
-      content: content
-    });
-    WebAPIUtils.createMessage(content);
-  }
-
-};
-
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235}],211:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-
-module.exports = {
-
-  loadRules: function() {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_RULES
-    });
-    WebAPIUtils.loadRules();
-  },
-
-  loadRule: function(ruleId) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_RULE,
-      ruleId: ruleId
-    });
-    WebAPIUtils.loadRule(ruleId);
-  },
-
-  createRule: function(content) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.CREATE_RULE,
-      content: content
-    });
-    WebAPIUtils.createRule(content);
-  }
-
-};
-
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235}],212:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-
-module.exports = {
-
-  receiveLogin: function(json, errors) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.LOGIN_RESPONSE,
-      json: json,
-      errors: errors
-    });
-  },
-
-  receiveMessages: function(json) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_MESSAGES,
-      json: json
-    });
-  },
-
-  receiveMessage: function(json) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_MESSAGE,
-      json: json
-    });
-  },
-
-  receiveCreatedMessage: function(json, errors) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_CREATED_MESSAGE,
-      json: json,
-      errors: errors
-    });
-  },
-
-  receiveRules: function(json) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_RULES,
-      json: json
-    });
-  },
-
-  receiveRule: function(json) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_RULE,
-      json: json
-    });
-  },
-
-  receiveCreatedRule: function(json, errors) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_CREATED_RULE,
-      json: json,
-      errors: errors
-    });
-  },
-
-  receiveEvents: function(json) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_EVENTS,
-      json: json
-    });
-  },
-
-  receiveEvent: function(json) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_EVENT,
-      json: json
-    });
-  },
-
-  receiveCreatedEvent: function(json, errors) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_CREATED_EVENT,
-      json: json,
-      errors: errors
-    });
-  },
-
-  receiveItems: function(json) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_ITEMS,
-      json: json
-    });
-  },
-
-  receiveItem: function(json) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_ITEM,
-      json: json
-    });
-  },
-
-  receiveCreatedItem: function(json, errors) {
-    HouseRulesAPIDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_CREATED_ITEM,
-      json: json,
-      errors: errors
-    });
-  }
-
-};
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226}],213:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-
-module.exports = {
-
-  signup: function(username, email, password, passwordConfirmation, firstName, lastName, phone)  {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.SIGNUP_REQUEST,
-      username: username,
-      firstName: firstName,
-      lastName: lastName,
-      phone: phone,
-      email: email, 
-      password: password,
-      passwordConfirmation: passwordConfirmation
-    });
-    WebAPIUtils.signup(username, firstName, lastName, phone, email, password, passwordConfirmation);
-  },
-
-  login: function(email, password) {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOGIN_REQUEST,
-      email: email,
-      password: password
-    });
-    WebAPIUtils.login(email, password);
-  },
-
-  logout: function() {
-    HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOGOUT
-    });
-  }
-
-};
-
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235}],214:[function(require,module,exports){
-var React = require('react');
-var Router = require('react-router');
-var Link = Router.Link;
-var ReactPropTypes = React.PropTypes;
-var SessionActionCreators = require('../actions/SessionActionCreators.react.jsx');
-
-var Menu = React.createClass({displayName: "Menu",
-
-  getInitialState: function() {
-    return {
-      visible: false
-    };
-  },
-
-  show: function() {
-    this.setState({ visible: true });
-    document.addEventListener("click", this.hide.bind(this));
-  },
-
-  hide: function() {
-    document.removeEventListener("click", this.hide.bind(this));
-    this.setState({ visible: false });
-  },
-
-  render: function() {
-    return React.createElement("div", {className: "menu"}, 
-      React.createElement("div", {className: (this.state.visible ? "menu-visible " : "") + "menu-" + this.props.alignment}, this.props.children)
-    );
-  }
-});
-
-var MenuItem = React.createClass({displayName: "MenuItem",
-  navigate: function(hash) {
-    window.location.hash = hash;
-  },
-
-  render: function() {
-    return React.createElement("div", {className: "menu-item", onClick: this.navigate.bind(this, this.props.hash)}, this.props.children);
-  }
-});
-
-var Header = React.createClass({displayName: "Header",
-
-  propTypes: {
-    isLoggedIn: ReactPropTypes.bool,
-    email: ReactPropTypes.string,
-    houseName: ReactPropTypes.string
-  },
-
-  logout: function(e) {
-    e.preventDefault();
-    SessionActionCreators.logout();
-  },
-
-  showLeft: function() {
-    this.refs.left.show();
-  },
-
-  hideLeft: function() {
-    this.refs.left.hide();
-  },
-
-  render: function() {
-    var rightNav = this.props.isLoggedIn ? (
-      React.createElement("ul", {className: "right"}, 
-        React.createElement("li", {className: "has-dropdown"}, 
-          React.createElement("a", {href: "#"}, this.props.email), 
-          React.createElement("ul", {className: "dropdown"}, 
-            React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.logout}, "Logout"))
-          )
-        )
-      )
-    ) : (
-      React.createElement("ul", {className: "right"}, 
-        React.createElement("li", null, React.createElement(Link, {to: "login"}, "Login")), 
-        React.createElement("li", null, React.createElement(Link, {to: "signup"}, "Sign up"))
-      )
-    );
-
-console.log(this.props)
-    var leftNav = this.props.isLoggedIn ? (
-      React.createElement("ul", {className: "left"}, 
-        React.createElement("div", null, 
-          React.createElement("button", {className: "menu-button", onMouseOver: this.showLeft, onClick: this.showLeft}, this.props.houseName), 
-
-          React.createElement(Menu, {ref: "left", alignment: "left"}, 
-            React.createElement(MenuItem, {hash: "first-page"}, "Fridge"), 
-            React.createElement(MenuItem, {hash: "second-page"}, "Chores"), 
-            React.createElement(MenuItem, {hash: "third-page"}, "Events"), 
-            React.createElement(MenuItem, {hash: "third-page"}, "Inventory"), 
-            React.createElement(MenuItem, {hash: "third-page"}, "Bills"), 
-            React.createElement(MenuItem, {hash: "third-page"}, "Rules"), 
-            React.createElement(MenuItem, {hash: "third-page"}, "Roommates"), 
-            React.createElement(MenuItem, {hash: "third-page"}, "House Info"), 
-            React.createElement(MenuItem, {hash: "third-page"}, "Profile")
-          )
-        )
-      )
-    ) : (
-      React.createElement("div", null)
-    );
-
-    return (
-      React.createElement("nav", {className: "top-bar", "data-topbar": true, role: "navigation"}, 
-        React.createElement("section", {className: "top-bar-section"}, 
-          leftNav, 
-          rightNav, 
-          React.createElement("div", {className: "top-logo"}, "House Rules")
-        )
-      )
-    );
-  }
-});
-
-module.exports = Header;
-
-
-},{"../actions/SessionActionCreators.react.jsx":213,"react":202,"react-router":22}],215:[function(require,module,exports){
-var React = require('react');
-var RouteHandler = require('react-router').RouteHandler;
-var Header = require('../components/Header.react.jsx');
-var SessionStore = require('../stores/SessionStore.react.jsx');
-var RouteStore = require('../stores/RouteStore.react.jsx');
-
-function getStateFromStores() {
-  return {
-    isLoggedIn: SessionStore.isLoggedIn(),
-    email: SessionStore.getEmail()
-  };
-}
-
-var HouseRules = React.createClass({displayName: "HouseRules",
-
-  getInitialState: function() {
-    return getStateFromStores();
-  },
-
-  componentDidMount: function() {
-    SessionStore.addChangeListener(this._onChange);
-  },
-
-  componentWillUnmount: function() {
-    SessionStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState(getStateFromStores());
-  },
-
-  render: function() {
-    return (
-      React.createElement("div", {className: "app"}, 
-        React.createElement(Header, {
-          isLoggedIn: this.state.isLoggedIn, 
-          email: this.state.email, 
-          houseName: this.state.houseName}), 
-        React.createElement(RouteHandler, null)
-      )
-    );
-  }
-
-});
-
-module.exports = HouseRules;
-
-
-},{"../components/Header.react.jsx":214,"../stores/RouteStore.react.jsx":232,"../stores/SessionStore.react.jsx":234,"react":202,"react-router":22}],216:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var ChoreStore = require('../../stores/ChoreStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var ChoreActionCreators = require('../../actions/ChoreActionCreators.react.jsx');
-var Router = require('react-router');
-var Link = Router.Link;
-var timeago = require('timeago');
-
-var ChoreBox = React.createClass({displayName: "ChoreBox",
-
-  getInitialState: function() {
-    return {
-      messages: ChoreStore.getAllChores(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    ChoreStore.addChangeListener(this._onChange);
-    ChoreActionCreators.loadChores();
-  },
-
-  componentWillUnmount: function() {
-    ChoreStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      messages: ChoreStore.loadChores(),
-      errors: ChoreStore.getErrors()
-    });
-  },
-
-  render: function () {
-    return (
-      React.createElement("div", {className: "chore-box"}, 
-      React.createElement("div", {className: "row"}, 
-        React.createElement("div", {className: "large-3 columns"}, React.createElement("br", null)), 
-        React.createElement("div", {className: "large-6 columns"}, 
-        React.createElement("h1", null, "House Chore "), 
-        React.createElement(ChoreList, {chores:  this.state.chores}), 
-        React.createElement(ChoreForm, {form:  this.state.form, onChoreSubmit:  this.handleChoreSubmit})
-        ), 
-        React.createElement("div", {className: "large-3 columns"}, React.createElement("br", null))
-      )
-
-      )
-    );
-  }
-});
-
-var ChoreList = React.createClass({displayName: "ChoreList",
-  render: function () {
-    var choreNodes = this.props.chores.map(function ( chore ) {
-      return React.createElement(Chore, {chore: chore, key:  chore.id})
-    });
-
-    return (
-      React.createElement("div", {className: "chore-list row"}, 
-        choreNodes 
-      )
-    )
-  }
-});
-
-var Chore = React.createClass({displayName: "Chore",
-  render: function () {
-    return (
-      React.createElement("div", null, 
-      React.createElement("p", null,  this.props.chore.task)
-      )
-    )
-  }
-});
-
-var ChoreForm = React.createClass({displayName: "ChoreForm",
-  handleSubmit: function ( event ) {
-    event.preventDefault();
-    var task = this.refs.task.getDOMNode().value.trim();
-
-    // validate
-    if (!task) {
-      return false;
-    }
-
-    // submit
-    var formData = $( this.refs.form.getDOMNode() ).serialize();
-    this.props.onChoreSubmit( formData, this.props.form.action );
-
-    // reset form
-    this.refs.task.getDOMNode().value = "";
-  },
-  render: function () {
-    return (
-      React.createElement("form", {ref: "form", className: "chore-form", method: "post", onSubmit:  this.handleSubmit}, 
-        React.createElement("fieldset", null, 
-          React.createElement("legend", null, "Create a Chore"), 
-          React.createElement("p", null, React.createElement("textarea", {ref: "task", name: "chore[task]", placeholder: "What's your chore?"})), 
-          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Create Chore"))
-        )
-      )
-    )
-  }
-});
-
-module.exports = ChoreBox;
-
-},{"../../actions/ChoreActionCreators.react.jsx":207,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/ChoreStore.react.jsx":228,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],217:[function(require,module,exports){
-var React = require('react');
-
-var ErrorNotice = React.createClass({displayName: "ErrorNotice",
-  render: function() {
-    return (
-      React.createElement("div", {className: "error-notice"}, 
-        React.createElement("ul", null, 
-          this.props.errors.map(function(error, index){
-            return React.createElement("li", {className: "error-notice__error", key: "error-"+index}, error);
-          })
-        )
-      )
-      );
-  }
-});
-
-module.exports = ErrorNotice;
-
-
-},{"react":202}],218:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var EventStore = require('../../stores/EventStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var EventActionCreators = require('../../actions/EventActionCreators.react.jsx');
-var Router = require('react-router');
-var Link = Router.Link;
-var timeago = require('timeago');
-var APIRoot = "http://localhost:3002";
-
-var Event = React.createClass({displayName: "Event",
-  render: function () {
-    return (
-      React.createElement("li", {className: "story"}, 
-        React.createElement("div", {className: "story__body"}, this.props.event.name), 
-        React.createElement("div", {className: "story__date"}, this.props.event.date), 
-        React.createElement("div", {className: "story__description"}, this.props.event.description)
-      )
-    )
-  }
-});
-
-var EventList = React.createClass({displayName: "EventList",
-  render: function () {
-    var eventNodes = this.props.events.map(function ( event ) {
-      return React.createElement(Event, {event: event, key:  event.id})
-    });
-
-    return (
-      React.createElement("div", {className: "event-list"}, 
-        eventNodes 
-      )
-    )
-  }
-});
-
-var EventBox = React.createClass({displayName: "EventBox",
-
-  getInitialState: function() {
-    return {
-      events: EventStore.getAllEvents(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    EventStore.addChangeListener(this._onChange);
-    EventActionCreators.loadEvents();
-  },
-
-  componentWillUnmount: function() {
-    EventStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      events: EventStore.getAllEvents(),
-      errors: EventStore.getErrors()
-    });
-  },
-
-  render: function () {
-    return (
-      React.createElement("div", {className: "event-box"}, 
-        React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
-        React.createElement(EventList, {events:  this.state.events}), 
-        React.createElement("hr", null), 
-        React.createElement("h4", null, "Create an Event"), 
-        React.createElement(EventForm, {form:  this.state.form})
-        )
-    );
-  }
-});
-
-var EventForm = React.createClass({displayName: "EventForm",
-  handleSubmit: function ( event ) {
-    event.preventDefault();
-    var name = this.refs.name.getDOMNode().value;
-    var date = this.refs.date.getDOMNode().value;
-    var description = this.refs.description.getDOMNode().value;
-    EventActionCreators.createEvent(name, date, description);
-
-    // var formData = $( this.refs.form.getDOMNode() ).serialize();
-    // ItemActionCreators.createItem(formData)
-    if (!name) {
-      return false;
-    }
-    if (!date) {
-      return false;
-    }
-
-    // reset form
-    this.refs.name.getDOMNode().value = "";
-    this.refs.date.getDOMNode().value = "";
-    this.refs.description.getDOMNode().value = "";
-
-  },
-  render: function () {
-    return (
-      React.createElement("form", {ref: "form", className: "event-form", method: "post", onSubmit:  this.handleSubmit}, 
-        React.createElement("fieldset", null, 
-          React.createElement("legend", null, "Create an Event"), 
-          React.createElement("p", null, React.createElement("textarea", {ref: "name", name: "event[name]", placeholder: "What's the event name?"})), 
-          React.createElement("p", null, React.createElement("textarea", {ref: "date", name: "event[date]", placeholder: "What date?"})), 
-          React.createElement("p", null, React.createElement("textarea", {ref: "description", name: "event[description]", placeholder: "What description?"})), 
-          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post Event"))
-        )
-      )
-    )
-  }
-});
-
-module.exports = EventBox;
-
-},{"../../actions/EventActionCreators.react.jsx":208,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/EventStore.react.jsx":229,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],219:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var ItemStore = require('../../stores/ItemStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var ItemActionCreators = require('../../actions/ItemActionCreators.react.jsx');
-var Router = require('react-router');
-var Link = Router.Link;
-var timeago = require('timeago');
-var APIRoot = "http://localhost:3002";
-
-var ItemBox = React.createClass({displayName: "ItemBox",
-
-  getInitialState: function() {
-    return {
-      items: ItemStore.getAllItems(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    ItemStore.addChangeListener(this._onChange);
-    ItemActionCreators.loadItems();
-  },
-
-  componentWillUnmount: function() {
-    ItemStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      items: ItemStore.getAllItems(),
-      errors: ItemStore.getErrors()
-    });
-  },
-
-  handleItemSubmit: function ( formData, action ) {
-    $.ajax({
-      data: formData,
-      url: APIRoot + "/houses/1/communal_items",
-      type: "POST",
-      dataType: "json",
-      success: function ( data ) {
-        console.log("^^^^^^^");
-        console.log(data);
-        this.setState({ items: data });
-      }.bind(this)
-    });
-  },
-
-  render: function () {
-    console.log("state");
-    console.log(this.state.form);
-    return (
-      React.createElement("div", {className: "item-box"}, 
-        React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
-        React.createElement(ItemList, {items:  this.state.items}), 
-        React.createElement("hr", null), 
-        React.createElement(ItemForm, {form:  this.state.form, onItemSubmit:  this.handleItemSubmit})
-      )
-    );
-  }
-});
-
-var Item = React.createClass({displayName: "Item",
-  render: function () {
-    return (
-      React.createElement("li", {className: "story"}, 
-        React.createElement("div", {className: "story__name"}, this.props.item.name), 
-        React.createElement("div", {className: "story__brand"}, this.props.item.brand), 
-        React.createElement("div", {className: "story__quantity"}, this.props.item.quantity), 
-        React.createElement("div", {className: "story__stock"}, this.props.item.stock_level)
-      )
-    )
-  }
-});
-
-
-var ItemList = React.createClass({displayName: "ItemList",
-
-  render: function () {
-    var itemNodes = this.props.items.map(function ( item ) {
-      return React.createElement(Item, {item: item })
-    });
-
-    return (
-      React.createElement("div", {className: "item-list"}, 
-        React.createElement("h2", null, "Communal Items"), 
-        itemNodes 
-      )
-    )
-  }
-});
-
-
-var ItemForm = React.createClass({displayName: "ItemForm",
-  handleSubmit: function ( event ) {
-    event.preventDefault();
-
-    // var content = this.refs.content.getDOMNode().value.trim();
-
-    var name = this.refs.name.getDOMNode().value;
-    ItemActionCreators.createItem(name);
-    var brand = this.refs.stock.getDOMNode().value;
-    ItemActionCreators.createItem(brand);
-    var quantity = this.refs.stock.getDOMNode().value;
-    ItemActionCreators.createItem(quantity);
-    var stock_level = this.refs.stock.getDOMNode().value;
-    ItemActionCreators.createItem(stock_level);
-
-    // validate
-    if (!name) {
-      return false;
-    }
-    if (!stock_level) {
-      return false;
-    }
-
-    // submit
-    var formData = $( this.refs.form.getDOMNode() ).serialize();
-    this.props.onItemSubmit( formData, APIRoot + "/houses/1/communal_items" );
-
-    // reset form
-    this.refs.name.getDOMNode().value = "";
-    this.refs.brand.getDOMNode().value = "";
-    this.refs.quantity.getDOMNode().value = "";
-    this.refs.stock.getDOMNode().value = "";
-  },
-  render: function () {
-    return (
-      React.createElement("form", {ref: "form", className: "item-form", action:  APIRoot + "/houses/1/communal_items", acceptCharset: "UTF-8", method: "post", onSubmit:  this.handleSubmit}, 
-        React.createElement("p", null, React.createElement("input", {ref: "name", name: "item[name]", placeholder: "What's the communal item?"})), 
-        React.createElement("p", null, React.createElement("input", {ref: "brand", name: "item[brand]", placeholder: "What's the brand?"})), 
-        React.createElement("p", null, React.createElement("input", {ref: "quantity", name: "item[quantity]", placeholder: "How many?"})), 
-        React.createElement("p", null, React.createElement("input", {ref: "stock", name: "item[stock_level]", placeholder: "What's the stock status?"})), 
-        React.createElement("p", null, React.createElement("button", {type: "submit"}, "post item"))
-      )
-    )
-  }
-});
-
-module.exports = ItemBox;
-
-},{"../../actions/ItemActionCreators.react.jsx":209,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/ItemStore.react.jsx":230,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],220:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var MessageStore = require('../../stores/MessageStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var MessageActionCreators = require('../../actions/MessageActionCreators.react.jsx');
-var Router = require('react-router');
-var Link = Router.Link;
-var timeago = require('timeago');
-var RouteHandler = Router.RouteHandler
-
-var MessageBox = React.createClass({displayName: "MessageBox",
-
-  // handleMessageSubmit: function(message) {
-  //   $.ajax({
-  //     url: this.props.url,
-  //     dataType: 'json',
-  //     type: 'POST',
-  //     data: message,
-  //     success: function(data) {
-  //       console.log("YAYYYA!")
-
-  //     }.bind(this),
-  //     error: function(xhr, status err) {
-  //       console.error(this.props.url status, err.toString());
-  //     }.bind(this)
-  //   });
-  // },
-
-  getInitialState: function() {
-    return {
-      messages: MessageStore.getAllMessages(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    MessageStore.addChangeListener(this._onChange);
-    MessageActionCreators.loadMessages();
-  },
-
-  componentWillUnmount: function() {
-    MessageStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      messages: MessageStore.getAllMessages(),
-      errors: MessageStore.getErrors()
-    });
-  },
-
-  render: function () {
-    console.log(this.state);
-    console.log("state");
-    return (
-      React.createElement("div", {className: "message-box"}, 
-      React.createElement("div", {className: "row"}, 
-      React.createElement("div", {class: "small-6 large-2 columns"}, React.createElement("br", null)), 
-      React.createElement("div", {class: "small-6 large-8 columns"}, 
-      React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
-      React.createElement(MessageList, {messages:  this.state.messages}), 
-      React.createElement("hr", null), 
-      React.createElement("h2", null, "talk to your roomies"), 
-      React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit, form:  this.state.form}), 
-      React.createElement(RouteHandler, null)
-      ), 
-      React.createElement("div", {className: "large-3 columns"}, React.createElement("br", null))
-      ))
-      );
-  }
-});
-
-var MessageList = React.createClass({displayName: "MessageList",
-
-  render: function () {
-    var messageNodes = this.props.messages.map(function ( message ) {
-      return React.createElement(Message, {message: message, key:  message.id})
-    });
-
-    return (
-      React.createElement("div", {className: "message-list"}, 
-      messageNodes 
-      )
-      )
-  }
-});
-
-var Message = React.createClass({displayName: "Message",
-  render: function () {
-    return (
-      React.createElement("li", {className: "story"}, 
-      React.createElement("div", {className: "story__body"}, this.props.message.content), 
-
-      console.log(this.props.message.content), 
-      console.log(this), 
-
-      React.createElement("span", {className: "story__user"}, this.props.message.author), 
-      React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.message.created_at))
-      )
-      )
-  }
-});
-
-
-var MessageForm = React.createClass({displayName: "MessageForm",
-
-  handleSubmit: function ( event ) {
-    event.preventDefault();
-    var content = this.refs.content.getDOMNode().value;
-    MessageActionCreators.createMessage(content);
-
-    // validate
-    if (!content) {
-      return false;
-    }
-
-    // reset form
-    this.refs.content.getDOMNode().value = "";
-  },
-
-  render: function () {
-    return (
-      React.createElement("form", {ref: "form", className: "message-form", method: "post", onSubmit:  this.handleSubmit}, 
-        React.createElement("fieldset", null, 
-          React.createElement("legend", null, "Create a Message"), 
-          React.createElement("p", null, React.createElement("textarea", {ref: "content", name: "message[content]", placeholder: "Say something..."})), 
-          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post message"))
-        )
-      )
-      )
-  }
-});
-
-
-
-
-module.exports = MessageBox;
-
-},{"../../actions/MessageActionCreators.react.jsx":210,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/MessageStore.react.jsx":231,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],221:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var RuleStore = require('../../stores/RuleStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
-var Router = require('react-router');
-var Link = Router.Link;
-var timeago = require('timeago');
-
-var RuleBox = React.createClass({displayName: "RuleBox",
-
-  getInitialState: function() {
-    return {
-      rules: RuleStore.getAllRules(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    RuleStore.addChangeListener(this._onChange);
-    RuleActionCreators.loadRules();
-  },
-
-  componentWillUnmount: function() {
-    RuleStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      rules: RuleStore.getAllRules(),
-      errors: RuleStore.getErrors()
-    });
-  },
-
-  render: function () {
-    return (
-      React.createElement("div", {className: "rule-box"}, 
-        React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
-        React.createElement(RuleList, {rules:  this.state.rules}), 
-        React.createElement("hr", null), 
-        React.createElement("h4", null, "Create a Rule"), 
-        React.createElement(RuleForm, {form:  this.state.form})
-        )
-    );
-  }
-});
-
-var Rule = React.createClass({displayName: "Rule",
-  render: function () {
-    return (
-      React.createElement("li", {className: "story"}, 
-        React.createElement("div", {className: "story__body"}, this.props.rule.content)
-      )
-    )
-  }
-});
-
-var RuleList = React.createClass({displayName: "RuleList",
-  render: function () {
-    var ruleNodes = this.props.rules.map(function ( rule ) {
-      return React.createElement(Rule, {rule: rule, key:  rule.id})
-    });
-
-    return (
-      React.createElement("div", {className: "rule-list"}, 
-        ruleNodes 
-      )
-    )
-  }
-});
-
-var RuleForm = React.createClass({displayName: "RuleForm",
-  handleSubmit: function ( event ) {
-    event.preventDefault();
-    var content = this.refs.content.getDOMNode().value;
-    RuleActionCreators.createRule(content);
-
-    // validate
-    if (!content) {
-      return false;
-    }
-
-    // reset form
-    this.refs.content.getDOMNode().value = "";
-  },
-  render: function () {
-    return (
-      React.createElement("form", {ref: "form", className: "rule-form", method: "post", onSubmit:  this.handleSubmit}, 
-        React.createElement("fieldset", null, 
-          React.createElement("legend", null, "Create a Message"), 
-          React.createElement("p", null, React.createElement("textarea", {ref: "content", name: "rule[content]", placeholder: "Create a rule..."})), 
-          React.createElement("p", null, React.createElement("button", {type: "submit"}, "Post rule"))
-        )
-      )
-    )
-  }
-});
-
-
-module.exports = RuleBox;
-
-},{"../../actions/RuleActionCreators.react.jsx":211,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/RuleStore.react.jsx":233,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],222:[function(require,module,exports){
-var React = require('react');
-var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
-var SessionStore = require('../../stores/SessionStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-
-var LoginPage = React.createClass({displayName: "LoginPage",
-
-  getInitialState: function() {
-    return { errors: [] };
-  },
- 
-  componentDidMount: function() {
-    SessionStore.addChangeListener(this._onChange);
-  },
-
-  componentWillUnmount: function() {
-    SessionStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({ errors: SessionStore.getErrors() });
-  },
-
-  _onSubmit: function(e) {
-    e.preventDefault();
-    this.setState({ errors: [] });
-    var email = this.refs.email.getDOMNode().value;
-    var password = this.refs.password.getDOMNode().value;
-    SessionActionCreators.login(email, password);
-  },
-
-  render: function() {
-    var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
-    return (
-      React.createElement("div", null, 
-        errors, 
-        React.createElement("div", {className: "row"}, 
-          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
-            React.createElement("form", {onSubmit: this._onSubmit}, 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "email"}, "Email"), 
-                React.createElement("input", {type: "text", name: "email", ref: "email"})
-              ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "password"}, "Password"), 
-                React.createElement("input", {type: "password", name: "password", ref: "password"})
-              ), 
-              React.createElement("button", {type: "submit", className: "card--login__submit"}, "Login")
-            )
-          )
-        )
-      )
-    );
-  }
-});
-
-module.exports = LoginPage;
-
-
-},{"../../actions/SessionActionCreators.react.jsx":213,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/SessionStore.react.jsx":234,"react":202}],223:[function(require,module,exports){
-var React = require('react');
-var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
-var SessionStore = require('../../stores/SessionStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-
-var SignupPage = React.createClass({displayName: "SignupPage",
-
-  getInitialState: function() {
-    return { errors: [] };
-  },
- 
-  componentDidMount: function() {
-    SessionStore.addChangeListener(this._onChange);
-  },
-
-  componentWillUnmount: function() {
-    SessionStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({ errors: SessionStore.getErrors() });
-  },
-
-  _onSubmit: function(e) {
-    e.preventDefault();
-    this.setState({ errors: [] });
-    var username = this.refs.username.getDOMNode().value;
-    var email = this.refs.email.getDOMNode().value;
-    var password = this.refs.password.getDOMNode().value;
-    var passwordConfirmation = this.refs.passwordConfirmation.getDOMNode().value;
-    var firstName = this.refs.firstName.getDOMNode().value;
-    var lastName = this.refs.lastName.getDOMNode().value;
-    var phone = this.refs.phone.getDOMNode().value;    
-    if (password !== passwordConfirmation) {
-      this.setState({ errors: ['Password and password confirmation should match']});
-    } else {
-      SessionActionCreators.signup(username, email, password, passwordConfirmation, firstName, lastName, phone);
-    }
-  },
-
-  render: function() {
-    var errors = (this.state.errors.length > 0) ? React.createElement(ErrorNotice, {errors: this.state.errors}) : React.createElement("div", null);
-    return (
-      React.createElement("div", null, 
-        errors, 
-        React.createElement("div", {className: "row"}, 
-          React.createElement("div", {className: "card card--login small-10 medium-6 large-4 columns small-centered"}, 
-            React.createElement("form", {onSubmit: this._onSubmit}, 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "first-name"}, "First Name"), 
-                React.createElement("input", {type: "text", name: "first-name", ref: "firstName"})
-                ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "email"}, "Email"), 
-                React.createElement("input", {type: "text", name: "email", ref: "email"})
-                ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "password"}, "Password"), 
-                React.createElement("input", {type: "password", name: "password", ref: "password"})
-                ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "password-confirmation"}, "Password Confirmation"), 
-                React.createElement("input", {type: "password-confrimation", name: "password-confirmation", ref: "passwordConfirmation"})
-              ), 
-               React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "username"}, "Username"), 
-                React.createElement("input", {type: "text", name: "username", ref: "username"})
-                ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "last-name"}, "Last Name"), 
-                React.createElement("input", {type: "test", name: "last-name", ref: "lastName"})
-              ), 
-              React.createElement("div", {className: "card--login__field"}, 
-                React.createElement("label", {name: "phone"}, "Phone"), 
-                React.createElement("input", {type: "text", name: "phone", ref: "phone"})
-              ), 
-              React.createElement("button", {type: "submit", className: "card--login__submit"}, "Signup")
-            )
-          )
-        )
-      )
-    );
-  }
-});
-
-module.exports = SignupPage;
-
-
-},{"../../actions/SessionActionCreators.react.jsx":213,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/SessionStore.react.jsx":234,"react":202}],224:[function(require,module,exports){
-var React = require('react');
-var WebAPIUtils = require('../../utils/WebAPIUtils.js');
-var RuleStore = require('../../stores/RuleStore.react.jsx');
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var RuleActionCreators = require('../../actions/RuleActionCreators.react.jsx');
-var Router = require('react-router');
-var Link = Router.Link;
-var timeago = require('timeago');
-
-var UserBox = React.createClass({displayName: "UserBox",
-
-  getInitialState: function() {
-    return {
-      rules: UserStore.getUser(),
-      errors: []
-    };
-  },
-
-  componentDidMount: function() {
-    UserStore.addChangeListener(this._onChange);
-    UserActionCreators.loadUser();
-  },
-
-  componentWillUnmount: function() {
-    UserStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({
-      user: UserStore.getUser(),
-      errors: UserStore.getErrors()
-    });
-  },
-
-  render: function () {
-    return (
-      React.createElement("div", {className: "user-box"}, 
-        React.createElement("img", {src:  this.props.imgSrc, alt:  this.props.imgAlt}), 
-        React.createElement(User, {user:  this.state.user}), 
-        React.createElement("hr", null)
-      )
-    );
-  }
-});
-
-var User = React.createClass({displayName: "User",
-  render: function () {
-    return (
-      React.createElement("li", {className: "story"}, 
-        React.createElement("div", {className: "story__body"}, this.props.user.first_name, " ", this.props.user.last_name)
-      )
-    )
-  }
-});
-
-
-module.exports = UserBox;
-
-},{"../../actions/RuleActionCreators.react.jsx":211,"../../components/common/ErrorNotice.react.jsx":217,"../../stores/RuleStore.react.jsx":233,"../../utils/WebAPIUtils.js":235,"react":202,"react-router":22,"timeago":206}],225:[function(require,module,exports){
-var keyMirror = require('keymirror');
-
-var APIRoot = "http://localhost:3002";
-
-module.exports = {
-
-  APIEndpoints: {
-    LOGIN:          APIRoot + "/login",
-    REGISTRATION:   APIRoot + "/users",
-    MESSAGES:       APIRoot + "/houses/1/messages",
-    RULES:          APIRoot + "/houses/1/rules",
-    CHORES:         APIRoot + "/houses/1/chores",
-    EVENTS:          APIRoot + "/houses/1/events",
-    ITEMS:          APIRoot + "/houses/1/communal_items"
-  },
-
-  PayloadSources: keyMirror({
-    SERVER_ACTION: null,
-    VIEW_ACTION: null
-  }),
-
-  ActionTypes: keyMirror({
-
-    LOGIN_REQUEST: null,
-    LOGIN_RESPONSE: null,
-
-    REDIRECT: null,
-
-    LOAD_MESSAGES: null,
-    RECEIVE_MESSAGES: null,
-    LOAD_MESSAGE: null,
-    RECEIVE_MESSAGE: null,
-    CREATE_MESSAGE: null,
-    RECEIVE_CREATED_MESSAGE: null,
-
-    LOAD_RULES: null,
-    RECEIVE_RULES: null,
-    LOAD_RULE: null,
-    RECEIVE_RULE: null,
-    CREATE_RULE: null,
-    RECEIVE_CREATED_RULE: null,
-
-    LOAD_CHORES: null,
-    RECEIVE_CHORES: null,
-    LOAD_CHORE: null,
-    RECEIVE_CHORE: null,
-    CREATE_CHORE: null,
-    RECEIVE_CREATED_CHORE: null,
-
-    LOAD_EVENTS: null,
-    RECEIVE_EVENTS: null,
-    LOAD_EVENT: null,
-    RECEIVE_EVENT: null,
-    CREATE_EVENT: null,
-    RECEIVE_CREATED_EVENT: null,
-
-    LOAD_ITEMS: null,
-    RECEIVE_ITEMS: null,
-    LOAD_ITEM: null,
-    RECEIVE_ITEM: null,
-    CREATE_ITEM: null,
-    RECEIVE_CREATED_ITEM: null,
-
-    LOAD_USER: null,
-    RECEIVE_USER: null,
-  })
-
-};
-
-},{"keymirror":11}],226:[function(require,module,exports){
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var Dispatcher = require('flux').Dispatcher;
-var assign = require('object-assign');
-
-var PayloadSources = HouseRulesConstants.PayloadSources;
-
-var HouseRulesAPIDispatcher = assign(new Dispatcher(), {
-
-  handleServerAction: function(action) {
-    var payload = {
-      source: PayloadSources.SERVER_ACTION,
-      action: action
-    };
-    this.dispatch(payload);
-  },
-
-  handleViewAction: function(action) {
-    var payload = {
-      source: PayloadSources.VIEW_ACTION,
-      action: action
-    };
-    this.dispatch(payload);
-  }
-});
-
-module.exports = HouseRulesAPIDispatcher;
-
-},{"../constants/HouseRulesConstants.js":225,"flux":8,"object-assign":12}],227:[function(require,module,exports){
-var React = require('react');
-var Router = require('react-router');
-var Route = Router.Route;
-var DefaultRoute = Router.DefaultRoute;
-var RouteHandler = Router.RouteHandler;
-
-var HouseRules = require('./components/HouseRules.react.jsx');
-var LoginPage = require('./components/session/LoginPage.react.jsx');
-var MessageBox = require('./components/messages/_message_box.react.jsx');
-var RuleBox = require('./components/rules/_rule_box.react.jsx');
-var SignupPage = require('./components/session/SignupPage.react.jsx');
-var ChoreBox = require('./components/chores/ChoreBox.react.jsx');
-var ItemBox = require('./components/items/_item_box.react.jsx');
-var EventBox = require('./components/events/_event_box.react.jsx');
-var UserBox = require('./components/users/UserBox.react.jsx');
-
-
-module.exports = (
-  React.createElement(Route, {name: "app", path: "/", handler: HouseRules}, 
-    React.createElement(DefaultRoute, {handler: MessageBox}), 
-    React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}), 
-    React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}), 
-    React.createElement(Route, {name: "rules", path: "/houses/:house_id/rules", handler: RuleBox}), 
-    React.createElement(Route, {name: "messages", path: "/houses/:house_id/messages", handler: MessageBox}), 
-    React.createElement(Route, {name: "chores", path: "/houses/:house_id/chores", handler: ChoreBox}), 
-    React.createElement(Route, {name: "items", path: "/houses/:house_id/items", handler: ItemBox}), 
-    React.createElement(Route, {name: "events", path: "/houses/:house_id/events", handler: EventBox}), 
-    React.createElement(Route, {name: "user", path: "/users/:user_id", handler: UserBox})
-  )
-);
-
-},{"./components/HouseRules.react.jsx":215,"./components/chores/ChoreBox.react.jsx":216,"./components/events/_event_box.react.jsx":218,"./components/items/_item_box.react.jsx":219,"./components/messages/_message_box.react.jsx":220,"./components/rules/_rule_box.react.jsx":221,"./components/session/LoginPage.react.jsx":222,"./components/session/SignupPage.react.jsx":223,"./components/users/UserBox.react.jsx":224,"react":202,"react-router":22}],228:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-var CHANGE_EVENT = 'change';
-
-var _chores = [];
-var _errors = [];
-var _chore = { task: "" };
-
-var ChoreStore = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-  },
-
-  getAllChores: function() {
-    return _chores;
-  },
-
-  getChore: function() {
-    return _chore;
-  },
-
-  getErrors: function() {
-    return _errors;
-  }
-
-});
-
-ChoreStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
-  var action = payload.action;
-
-  switch(action.type) {
-
-    case ActionTypes.RECEIVE_CHORES:
-      _chores = action.json.chores;
-      ChoreStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_CHORE:
-      if (action.json) {
-        _mchores.unshift(action.json.chore);
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      ChoreStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_CHORE:
-      if (action.json) {
-        _chore = action.json.chore;
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      ChoreStore.emitChange();
-      break;
-  }
-
-  return true;
-});
-
-module.exports = ChoreStore;
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],229:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-var CHANGE_EVENT = 'change';
-
-var _events = [];
-var _errors = [];
-var _event = { content: ""};
-
-var EventStore = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-  },
-
-  getAllEvents: function() {
-    return _events;
-  },
-
-  getEvent: function() {
-    return _event;
-  },
-
-  getErrors: function() {
-    return _errors;
-  }
-
-});
-
-EventStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
-  var action = payload.action;
-
-  switch(action.type) {
-
-    case ActionTypes.RECEIVE_EVENTS:
-      _events = action.json.events;
-      EventStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_EVENT:
-      if (action.json) {
-        _events.push(action.json);
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      EventStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_EVENT:
-      if (action.json) {
-        _event = action.json.event;
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      EventStore.emitChange();
-      break;
-  }
-
-  return true;
-});
-
-module.exports = EventStore;
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],230:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-var CHANGE_EVENT = 'change';
-
-var _items = [];
-var _errors = [];
-var _item = { content: "", author: { first_name: "" } };
-
-var ItemStore = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-  },
-
-  getAllItems: function() {
-    return _items;
-  },
-
-  getItem: function() {
-    return _item;
-  },
-
-  getErrors: function() {
-    return _errors;
-  }
-
-});
-
-ItemStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
-  var action = payload.action;
-
-  switch(action.type) {
-
-    case ActionTypes.RECEIVE_ITEMS:
-      _items = action.json.communal_items;
-      ItemStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_ITEM:
-      if (action.json) {
-        _items.unshift(action.json.communal_item);
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      ItemStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_ITEM:
-      if (action.json) {
-        _item = action.json.communal_items;
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      ItemStore.emitChange();
-      break;
-  }
-
-  return true;
-});
-
-module.exports = ItemStore;
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],231:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-var CHANGE_EVENT = 'change';
-
-var _messages = [];
-var _errors = [];
-var _message = { content: "", author: { first_name: "" } };
-
-var MessageStore = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-  },
-
-  getAllMessages: function() {
-    return _messages;
-  },
-
-  getMessage: function() {
-    return _message;
-  },
-
-  getErrors: function() {
-    return _errors;
-  }
-
-});
-
-MessageStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
-  var action = payload.action;
-  switch(action.type) {
-
-    case ActionTypes.RECEIVE_MESSAGES:
-      _messages = action.json.messages;
-      MessageStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_MESSAGE:
-      if (action.json) {
-        //ALTERED TO MAKE FUNCTIONAL!!!
-        //API MODIFIED TO SENT ONE MESSAGE!!!
-        _messages.push(action.json);
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      MessageStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_MESSAGE:
-      if (action.json) {
-        _message = action.json.message;
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      MessageStore.emitChange();
-      break;
-  }
-
-  return true;
-});
-
-module.exports = MessageStore;
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],232:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var SessionStore = require('../stores/SessionStore.react.jsx');
-var MessageStore = require('../stores/MessageStore.react.jsx');
-var RuleStore = require('../stores/RuleStore.react.jsx');
-var EventStore = require('../stores/EventStore.react.jsx');
-var ItemStore = require('../stores/ItemStore.react.jsx');
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-
-var Router = require('react-router');
-var routes = require('../routes.jsx');
-
-var router = Router.create({
-  routes: routes,
-  location: null // Router.HistoryLocation
-});
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-var CHANGE_EVENT = 'change';
-
-var RouteStore = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function() {
-    this.removeListener(CHANGE_EVENT, callback);
-  },
-
-  getRouter: function() {
-    return router;
-  },
-
-  redirectHome: function() {
-    router.transitionTo('app');
-  }
-});
-
-RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
-  HouseRulesAPIDispatcher.waitFor([
-    SessionStore.dispatchToken,
-    MessageStore.dispatchToken,
-    RuleStore.dispatchToken,
-    EventStore.dispatchToken,
-    ItemStore.dispatchToken
-  ]);
-
-  var action = payload.action;
-
-  switch(action.type) {
-
-    case ActionTypes.REDIRECT:
-      router.transitionTo(action.route);
-      break;
-
-    case ActionTypes.LOGIN_RESPONSE:
-      if (SessionStore.isLoggedIn()) {
-        router.transitionTo('app');
-        // Dirty hack, need to figure this out
-      }
-      break;
-
-    case ActionTypes.CREATE_MESSAGE:
-      break;
-      //THIS IS HOW YOU MAINTAIN THE HOUSE_ID
-    case ActionTypes.RECEIVE_CREATED_MESSAGE:
-      debugger;
-      router.transitionTo('messages', action.json );
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_RULE:
-      router.transitionTo('rules');
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_COMMUNAL_ITEM:
-      router.transitionTo('items');
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_EVENT:
-      router.transitionTo('events');
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_CHORE:
-      router.transitionTo('chores');
-      break;
-
-    default:
-  }
-
-  return true;
-});
-
-module.exports = RouteStore;
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../routes.jsx":227,"../stores/EventStore.react.jsx":229,"../stores/ItemStore.react.jsx":230,"../stores/MessageStore.react.jsx":231,"../stores/RuleStore.react.jsx":233,"../stores/SessionStore.react.jsx":234,"events":6,"object-assign":12,"react-router":22}],233:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-var CHANGE_EVENT = 'change';
-
-var _rules = [];
-var _errors = [];
-var _rule = { content: ""};
-
-var RuleStore = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-  },
-
-  getAllRules: function() {
-    return _rules;
-  },
-
-  getRule: function() {
-    return _rule;
-  },
-
-  getErrors: function() {
-    return _errors;
-  }
-
-});
-
-RuleStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
-  var action = payload.action;
-
-  switch(action.type) {
-
-    case ActionTypes.RECEIVE_RULES:
-      _rules = action.json.rules;
-      RuleStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_CREATED_RULE:
-      if (action.json) {
-        _rules.push(action.json);
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      RuleStore.emitChange();
-      break;
-
-    case ActionTypes.RECEIVE_RULE:
-      if (action.json) {
-        _rule = action.json.rule;
-        _errors = [];
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      RuleStore.emitChange();
-      break;
-  }
-
-  return true;
-});
-
-module.exports = RuleStore;
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"../utils/WebAPIUtils.js":235,"events":6,"object-assign":12}],234:[function(require,module,exports){
-var HouseRulesAPIDispatcher = require('../dispatcher/HouseRulesAPIDispatcher.js');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-
-var ActionTypes = HouseRulesConstants.ActionTypes;
-var CHANGE_EVENT = 'change';
-
-// Load an access token from the session storage, you might want to implement
-// a 'remember me' using localSgorage
-var _accessToken = sessionStorage.getItem('accessToken');
-var _email = sessionStorage.getItem('email');
-var _houseName = sessionStorage.getItem('houseName');
-var _errors = [];
-
-var SessionStore = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-  },
-
-  isLoggedIn: function() {
-    return _accessToken ? true : false;
-  },
-
-  getAccessToken: function() {
-    return _accessToken;
-  },
-
-  getEmail: function() {
-    return _email;
-  },
-
-  getHouseName: function() {
-    return _houseName;
-  },
-
-  getErrors: function() {
-    return _errors;
-  }
-
-});
-
-SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
-  var action = payload.action;
-
-  switch(action.type) {
-
-    case ActionTypes.LOGIN_RESPONSE:
-      if (action.json && action.json.access_token) {
-        _accessToken = action.json.access_token;
-        _email = action.json.email;
-        _houseName = action.json.house_name;
-        // Token will always live in the session, so that the API can grab it with no hassle
-        sessionStorage.setItem('accessToken', _accessToken);
-        sessionStorage.setItem('email', _email);
-        sessionStorage.setItem('houseName', _houseName);
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
-      SessionStore.emitChange();
-      break;
-
-    case ActionTypes.LOGOUT:
-      _accessToken = null;
-      _email = null;
-      _houseName = null;
-      sessionStorage.removeItem('accessToken');
-      sessionStorage.removeItem('email');
-      sessionStorage.removeItem('houseName');
-      SessionStore.emitChange();
-      break;
-
-    default:
-  }
-
-  return true;
-});
-
-module.exports = SessionStore;
-
-
-},{"../constants/HouseRulesConstants.js":225,"../dispatcher/HouseRulesAPIDispatcher.js":226,"events":6,"object-assign":12}],235:[function(require,module,exports){
-var ServerActionCreators = require('../actions/ServerActionCreators.react.jsx');
-var HouseRulesConstants = require('../constants/HouseRulesConstants.js');
-var request = require('superagent');
-
-function _getErrors(res) {
-  var errorMsgs = ["Something went wrong, please try again"];
-  if ((json = JSON.parse(res.text))) {
-    if (json['errors']) {
-      errorMsgs = json['errors'];
-    } else if (json['error']) {
-      errorMsgs = [json['error']];
-    }
-  }
-  return errorMsgs;
-}
-
-var APIEndpoints = HouseRulesConstants.APIEndpoints;
-
-module.exports = {
-
-  signup: function(username, firstName, lastName, phone, email, password, passwordConfirmation) {
-    request.post(APIEndpoints.REGISTRATION)
-      .send({ user: {
-        email: email,
-        username: username,
-        first_name: firstName,
-        last_name: lastName,
-        phone: phone,
-        email: email,
-        password: password,
-        password_confirmation: passwordConfirmation
-      }})
-      .set('Accept', 'application/json')
-      .end(function(error, res) {
-        if (res) {
-          if (res.error) {
-            var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveLogin(null, errorMsgs);
-          } else {
-            json = JSON.parse(res.text);
-            ServerActionCreators.receiveLogin(json, null);
-          }
-        }
-      });
-  },
-
-  login: function(email, password) {
-    request.post(APIEndpoints.LOGIN)
-      .send({ email: email, password: password, grant_type: 'password' })
-      .set('Accept', 'application/json')
-      .end(function(error, res){
-        if (res) {
-          if (res.error) {
-            var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveLogin(null, errorMsgs);
-          } else {
-            json = JSON.parse(res.text);
-            ServerActionCreators.receiveLogin(json, null);
-          }
-        }
-      });
-  },
-
-  loadMessages: function() {
-    request.get(APIEndpoints.MESSAGES)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveMessages(json);
-        }
-      });
-  },
-
-  loadMessage: function(messageId) {
-    request.get(APIEndpoints.MESSAGES + '/' + messageId)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveMessage(json);
-        }
-      });
-  },
-
-  createMessage: function(content) {
-    request.post(APIEndpoints.MESSAGES)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ message: { content: content } })
-      .end(function(error, res){
-        if (res) {
-          if (res.error) {
-            var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveCreatedMessage(null, errorMsgs);
-          } else {
-            json = JSON.parse(res.text);
-            ServerActionCreators.receiveCreatedMessage(json, null);
-          }
-        }
-      });
-  },
-
-  loadRules: function() {
-    request.get(APIEndpoints.RULES)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveRules(json);
-        }
-      });
-  },
-
-  loadRule: function(ruleId) {
-    request.get(APIEndpoints.RULES + '/' + ruleId)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveRule(json);
-        }
-      });
-  },
-
-  createRule: function(content) {
-    request.post(APIEndpoints.RULES)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ rule: { content: content } })
-      .end(function(error, res){
-        if (res) {
-          if (res.error) {
-            var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveCreatedRule(null, errorMsgs);
-          } else {
-            json = JSON.parse(res.text);
-            ServerActionCreators.receiveCreatedRule(json, null);
-          }
-        }
-      });
-  },
-
-  loadEvents: function() {
-    request.get(APIEndpoints.EVENTS)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveEvents(json);
-        }
-      });
-  },
-
-  loadEvent: function(eventId) {
-    request.get(APIEndpoints.EVENTS + '/' + eventId)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveEvent(json);
-        }
-      });
-  },
-
-  createEvent: function(name, date, description) {
-    request.post(APIEndpoints.EVENTS)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ evnet: { name: name, date: date, description: description } })
-      .end(function(error, res){
-        if (res) {
-          if (res.error) {
-            var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveCreatedEvent(null, errorMsgs);
-          } else {
-            json = JSON.parse(res.text);
-            ServerActionCreators.receiveCreatedEvent(json, null);
-          }
-        }
-      });
-  },
-
-  loadItems: function() {
-    request.get(APIEndpoints.ITEMS)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveItems(json);
-        }
-      });
-  },
-
-  loadItem: function(itemId) {
-    request.get(APIEndpoints.ITEMS + '/' + itemId)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveItem(json);
-        }
-      });
-  },
-
-  createItem: function(name, brand, quantity, stock_level) {
-    request.post(APIEndpoints.ITEMS)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ item: { name: name, brand: brand, quantity: quantity, stock_level: stock_level } })
-      .end(function(error, res){
-        if (res) {
-          if (res.error) {
-            var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveCreatedItem(null, errorMsgs);
-          } else {
-            console.log("*******");
-            console.log(res);
-            json = JSON.parse(res.name);
-            console.log(json);
-            ServerActionCreators.receiveCreatedItem(json, null);
-          }
-        }
-      });
-  },
-
-  loadChores: function() {
-    request.get(APIEndpoints.CHORES)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveChores(json);
-        }
-      });
-  },
-
-  loadChore: function(choreId) {
-    request.get(APIEndpoints.CHORES + '/' + choreId)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveChore(json);
-        }
-      });
-  },
-
-  createChore: function(task) {
-    request.post(APIEndpoints.CHORES)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ chore: { task: task } })
-      .end(function(error, res){
-        if (res) {
-          if (res.error) {
-            var errorMsgs = _getErrors(res);
-            ServerActionCreators.receiveCreatedChore(null, errorMsgs);
-          } else {
-            json = JSON.parse(res.text);
-            ServerActionCreators.receiveCreatedChore(json, null);
-          }
-        }
-      });
-  },
-
-  loadUser: function(userId) {
-    request.get(APIEndpoints.USERS + '/' + userId)
-      .set('Accept', 'application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
-      .end(function(error, res){
-        if (res) {
-          json = JSON.parse(res.text);
-          ServerActionCreators.receiveUser(json);
-        }
-      });
-  },
-
-};
-
-},{"../actions/ServerActionCreators.react.jsx":212,"../constants/HouseRulesConstants.js":225,"superagent":203}]},{},[1]);
+},{}]},{},[1]);
