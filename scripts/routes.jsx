@@ -19,7 +19,7 @@ module.exports = (
     <Route name="signup" path="/signup" handler={SignupPage}/>
     <Route name="rules" path="/houses/:house_id/rules" handler={RuleBox}/>
     <Route name="messages" path="/houses/:house_id/messages" handler={MessageBox}/>
-    <Route name="chores" path="/houses/:houseId/chores" handler={ChoreBox}/>
-    <Route name="items" path="/houses/:houseId/items" handler={ItemBox}/>
+    <Route name="chores" path="/houses/:house_id/chores" handler={ChoreBox}/>
+    <Route name="communal_items" path="/houses/1/communal_items" handler={ItemBox}/>
   </Route>
 );

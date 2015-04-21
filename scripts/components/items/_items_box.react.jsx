@@ -11,8 +11,8 @@ var APIRoot = "http://localhost:3002";
 var Item = React.createClass({
   render: function () {
     return (
-      <li className="story">
-        <div className="story__body">{this.props.item.name}</div>
+      <li className="communal_item">
+        <div className="communal_item__body">{this.props.item.name}</div>
       </li>
     )
   }
@@ -25,7 +25,7 @@ var ItemList = React.createClass({
     });
 
     return (
-      <div className="item-list">
+      <div className="communal_item__list">
         { itemNodes }
       </div>
     )
@@ -59,7 +59,7 @@ var ItemBox = React.createClass({
 
   render: function () {
     return (
-      <div className="item-box">
+      <div className="communal_item__box">
         <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
         <ItemList items={ this.state.items } />
         <hr />
@@ -90,7 +90,7 @@ var ItemForm = React.createClass({
   },
   render: function () {
     return (
-      <form ref="form" className="item-form" method="post" onSubmit={ this.handleSubmit }>
+      <form ref="form" className="communal_item__form" method="post" onSubmit={ this.handleSubmit }>
         <fieldset>
           <legend>Create an Item</legend>
           <p><textarea ref="name" name="communal_item[name]" placeholder="What's the item?" /></p>
