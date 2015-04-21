@@ -99,6 +99,28 @@ module.exports = {
       json: json,
       errors: errors
     });
+  },
+
+  receiveChores: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CHORES,
+      json: json
+    });
+  },
+
+  receiveChore: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CHORE,
+      json: json
+    });
+  },
+
+  receiveCreatedChore: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_CHORE,
+      json: json,
+      errors: errors
+    });
   }
 
 };
