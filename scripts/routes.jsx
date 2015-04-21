@@ -12,10 +12,12 @@ var SignupPage = require('./components/session/SignupPage.react.jsx');
 var ChoreBox = require('./components/chores/ChoreBox.react.jsx');
 var ItemBox = require('./components/items/_item_box.react.jsx');
 var EventBox = require('./components/events/_event_box.react.jsx');
+var UserBox = require('./components/users/UserBox.react.jsx');
+
 
 module.exports = (
   <Route name="app" path="/" handler={HouseRules}>
-    <DefaultRoute handler={RuleBox} />
+    <DefaultRoute handler={MessageBox} />
     <Route name="login" path="/login" handler={LoginPage}/>
     <Route name="signup" path="/signup" handler={SignupPage}/>
     <Route name="rules" path="/houses/:house_id/rules" handler={RuleBox}/>
@@ -23,5 +25,6 @@ module.exports = (
     <Route name="chores" path="/houses/:houseId/chores" handler={ChoreBox}/>
     <Route name="items" path="/houses/:houseId/items" handler={ItemBox}/>
     <Route name="events" path="/houses/:houseId/events" handler={EventBox}/>
+    <Route name="user" path="/users/:user_id" handler={UserBox}/>
   </Route>
 );

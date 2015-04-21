@@ -10,10 +10,11 @@ var CHANGE_EVENT = 'change';
 // a 'remember me' using localSgorage
 var _accessToken = sessionStorage.getItem('accessToken');
 var _email = sessionStorage.getItem('email');
+var _houseName = sessionStorage.getItem('houseName');
 var _errors = [];
 
 var SessionStore = assign({}, EventEmitter.prototype, {
-  
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -27,7 +28,7 @@ var SessionStore = assign({}, EventEmitter.prototype, {
   },
 
   isLoggedIn: function() {
-    return _accessToken ? true : false;    
+    return _accessToken ? true : false;
   },
 
   getAccessToken: function() {
@@ -36,6 +37,10 @@ var SessionStore = assign({}, EventEmitter.prototype, {
 
   getEmail: function() {
     return _email;
+  },
+
+  getHouseName: function() {
+    return _houseName;
   },
 
   getErrors: function() {
@@ -53,9 +58,11 @@ SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
       if (action.json && action.json.access_token) {
         _accessToken = action.json.access_token;
         _email = action.json.email;
+        _houseName = action.json.house_name;
         // Token will always live in the session, so that the API can grab it with no hassle
         sessionStorage.setItem('accessToken', _accessToken);
         sessionStorage.setItem('email', _email);
+        sessionStorage.setItem('houseName', _houseName);
       }
       if (action.errors) {
         _errors = action.errors;
@@ -66,14 +73,16 @@ SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
     case ActionTypes.LOGOUT:
       _accessToken = null;
       _email = null;
+      _houseName = null;
       sessionStorage.removeItem('accessToken');
       sessionStorage.removeItem('email');
+      sessionStorage.removeItem('houseName');
       SessionStore.emitChange();
       break;
 
     default:
   }
-  
+
   return true;
 });
 
