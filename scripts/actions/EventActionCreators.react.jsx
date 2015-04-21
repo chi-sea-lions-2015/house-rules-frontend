@@ -6,31 +6,30 @@ var ActionTypes = HouseRulesConstants.ActionTypes;
 
 module.exports = {
 
-  loadItems: function() {
+  loadEvents: function() {
     HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_ITEMS
+      type: ActionTypes.LOAD_EVENTS
     });
-    WebAPIUtils.loadItems();
+    WebAPIUtils.loadEvents();
   },
 
-  loadItem: function(itemId) {
+  loadEvent: function(eventId) {
     HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.LOAD_ITEM,
-      itemId: itemId
+      type: ActionTypes.LOAD_EVENT,
+      eventId: eventId
     });
-    WebAPIUtils.loadItem(itemId);
+    WebAPIUtils.loadEvent(eventId);
   },
 
 
-  createItem: function(name, brand, quantity, stock_level) {
+  createEvent: function(name, date, description) {
     HouseRulesAPIDispatcher.handleViewAction({
-      type: ActionTypes.CREATE_ITEM,
+      type: ActionTypes.CREATE_EVENT,
       name: name,
-      brand: brand,
-      quantity: quantity,
-      stock_level: stock_level
+      date: date,
+      description: description
     });
-    WebAPIUtils.createItem(name, brand, quantity, stock_level);
+    WebAPIUtils.createEvent(name, date, description);
   }
 
 };

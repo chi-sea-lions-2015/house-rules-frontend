@@ -57,6 +57,28 @@ module.exports = {
     });
   },
 
+  receiveEvents: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_EVENTS,
+      json: json
+    });
+  },
+
+  receiveEvent: function(json) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_EVENT,
+      json: json
+    });
+  },
+
+  receiveCreatedEvent: function(json, errors) {
+    HouseRulesAPIDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_CREATED_EVENT,
+      json: json,
+      errors: errors
+    });
+  },
+
   receiveItems: function(json) {
     HouseRulesAPIDispatcher.handleServerAction({
       type: ActionTypes.RECEIVE_ITEMS,

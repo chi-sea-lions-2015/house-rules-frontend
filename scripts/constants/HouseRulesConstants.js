@@ -10,6 +10,7 @@ module.exports = {
     MESSAGES:       APIRoot + "/houses/1/messages",
     RULES:          APIRoot + "/houses/1/rules",
     CHORES:         APIRoot + "/houses/1/chores",
+    EVENTS:          APIRoot + "/houses/1/events",
     ITEMS:          APIRoot + "/houses/1/communal_items"
   },
 
@@ -46,12 +47,22 @@ module.exports = {
     CREATE_CHORE: null,
     RECEIVE_CREATED_CHORE: null,
 
+    LOAD_EVENTS: null,
+    RECEIVE_EVENTS: null,
+    LOAD_EVENT: null,
+    RECEIVE_EVENT: null,
+    CREATE_EVENT: null,
+    RECEIVE_CREATED_EVENT: null,
+
     LOAD_ITEMS: null,
     RECEIVE_ITEMS: null,
     LOAD_ITEM: null,
     RECEIVE_ITEM: null,
     CREATE_ITEM: null,
-    RECEIVE_CREATED_ITEM: null
+    RECEIVE_CREATED_ITEM: null,
+
+    LOAD_USER: null,
+    RECEIVE_USER: null,
   })
 
 };

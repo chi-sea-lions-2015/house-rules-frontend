@@ -7,7 +7,9 @@ var RouteStore = require('../stores/RouteStore.react.jsx');
 function getStateFromStores() {
   return {
     isLoggedIn: SessionStore.isLoggedIn(),
-    email: SessionStore.getEmail()
+    email: SessionStore.getEmail(),
+    houseName: SessionStore.getHouseName(),
+    houseID: SessionStore.getHouseID()
   };
 }
 
@@ -34,7 +36,9 @@ var HouseRules = React.createClass({
       <div className="app">
         <Header
           isLoggedIn={this.state.isLoggedIn}
-          email={this.state.email} />
+          email={this.state.email}
+          houseName={this.state.houseName}
+          houseID={this.state.houseID} />
         <RouteHandler/>
       </div>
     );
