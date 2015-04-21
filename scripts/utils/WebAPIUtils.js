@@ -96,7 +96,7 @@ module.exports = {
             var errorMsgs = _getErrors(res);
             ServerActionCreators.receiveCreatedMessage(null, errorMsgs);
           } else {
-            json = JSON.parse(res.content);
+            json = JSON.parse(res.text);
             ServerActionCreators.receiveCreatedMessage(json, null);
           }
         }
@@ -140,6 +140,48 @@ module.exports = {
           } else {
             json = JSON.parse(res.text);
             ServerActionCreators.receiveCreatedRule(json, null);
+          }
+        }
+      });
+  },
+
+    loadItems: function() {
+    request.get(APIEndpoints.ITEMS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveItems(json);
+        }
+      });
+  },
+
+  loadItem: function(itemId) {
+    request.get(APIEndpoints.ITEMS + '/' + itemId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveItem(json);
+        }
+      });
+  },
+
+  createItem: function(name) {
+    request.post(APIEndpoints.ITEMS)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .send({ item: { name: name } })
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = _getErrors(res);
+            ServerActionCreators.receiveCreatedItem(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ServerActionCreators.receiveCreatedItem(json, null);
           }
         }
       });
