@@ -17,7 +17,7 @@ var UserBox = require('./components/users/UserBox.react.jsx');
 
 module.exports = (
   <Route name="app" path="/" handler={HouseRules}>
-    <DefaultRoute handler={MessageBox} />
+    <DefaultRoute handler={LoginPage} />
     <Route name="login" path="/login" handler={LoginPage}/>
     <Route name="signup" path="/signup" handler={SignupPage}/>
     <Route name="rules" path="/houses/:house_id/rules" handler={RuleBox}/>

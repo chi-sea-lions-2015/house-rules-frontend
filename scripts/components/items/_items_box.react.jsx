@@ -57,6 +57,7 @@ var ItemBox = React.createClass({
     });
   },
 
+
   render: function () {
     return (
       <div className="item-box">
