@@ -13,18 +13,14 @@ var Item = React.createClass({
     return (
       <li className="story">
         <div className="story__body">{this.props.item.name}</div>
-        <span className="story__user">{this.props.item.author}</span>
-        <span className="story__date"> - {timeago(this.props.item.created_at)}</span>
       </li>
     )
   }
 });
 
-
 var ItemList = React.createClass({
   render: function () {
-    var msgs = ( Array.isArray(this.props.items) ? this.props.items : this.props.items.items )
-    var itemNodes = msgs.map(function ( item ) {
+    var itemNodes = this.props.items.map(function ( item ) {
       return <Item item={ item } key={ item.id } />
     });
 
@@ -61,26 +57,15 @@ var ItemBox = React.createClass({
     });
   },
 
-  handleItemSubmit: function ( formData, action ) {
-    $.ajax({
-      data: formData,
-      url: APIRoot + "/houses/1/communal_items",
-      type: "POST",
-      dataType: "json",
-      success: function ( data ) {
-        this.setState({ items: data });
-      }.bind(this)
-    });
-  },
-
   render: function () {
     return (
       <div className="item-box">
         <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
         <ItemList items={ this.state.items } />
         <hr />
-        <ItemForm form={ this.state.form } onItemSubmit={ this.handleItemSubmit } />
-      </div>
+        <h4>Create an Item</h4>
+        <ItemForm form={ this.state.form } />
+        </div>
     );
   }
 });
@@ -88,30 +73,36 @@ var ItemBox = React.createClass({
 var ItemForm = React.createClass({
   handleSubmit: function ( event ) {
     event.preventDefault();
-
-    // var content = this.refs.content.getDOMNode().value.trim();
-
     var name = this.refs.name.getDOMNode().value;
-    ItemActionCreators.createItem(name);
+    var brand = this.refs.brand.getDOMNode().value;
+    var quantity = this.refs.quantity.getDOMNode().value;
+    var stock_level = this.refs.stock_level.getDOMNode().value;
+    ItemActionCreators.createItem(name, brand, quantity, stock_level);
 
-
-    // validate
+    // var formData = $( this.refs.form.getDOMNode() ).serialize();
+    // ItemActionCreators.createItem(formData)
     if (!name) {
       return false;
     }
-
-    // submit
-    var formData = $( this.refs.form.getDOMNode() ).serialize();
-    this.props.onItemSubmit( formData, APIRoot + "/houses/1/communal_items" );
 
     // reset form
     this.refs.name.getDOMNode().value = "";
   },
   render: function () {
     return (
-      <form ref="form" className="item-form" action={ APIRoot + "/houses/1/communal_items" } acceptCharset="UTF-8" method="post" onSubmit={ this.handleSubmit }>
-        <p><textarea ref="name" name="item[name]" placeholder="What's the communal item?" /></p>
-        <p><button type="submit">post item</button></p>
+      <form ref="form" className="item-form" method="post" onSubmit={ this.handleSubmit }>
+        <fieldset>
+          <legend>Create an Item</legend>
+          <p><textarea ref="name" name="communal_item[name]" placeholder="What's the item?" /></p>
+          <p><textarea ref="brand" name="communal_item[brand]" placeholder="What brand?" /></p>
+          <p><textarea ref="quantity" name="communal_item[quantity]" placeholder="What quantity?" /></p>
+          <p><select ref="stock_level" name="communal_item[stock_level]">
+              <option value="high">High</option>
+              <option value="low">Low</option>
+              <option value="out">Out</option>
+              </select></p>
+          <p><button type="submit">Post item</button></p>
+        </fieldset>
       </form>
     )
   }

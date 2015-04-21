@@ -45,13 +45,13 @@ ItemStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   switch(action.type) {
 
     case ActionTypes.RECEIVE_ITEMS:
-      _items = action.json.items;
+      _items = action.json.communal_items;
       ItemStore.emitChange();
       break;
 
     case ActionTypes.RECEIVE_CREATED_ITEM:
       if (action.json) {
-        _items.unshift(action.json.item);
+        _items.unshift(action.json.communal_item);
         _errors = [];
       }
       if (action.errors) {
@@ -62,7 +62,7 @@ ItemStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
     case ActionTypes.RECEIVE_ITEM:
       if (action.json) {
-        _item = action.json.item;
+        _item = action.json.communal_items;
         _errors = [];
       }
       if (action.errors) {
