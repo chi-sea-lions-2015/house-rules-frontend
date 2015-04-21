@@ -43,7 +43,8 @@ var Header = React.createClass({
 
   propTypes: {
     isLoggedIn: ReactPropTypes.bool,
-    email: ReactPropTypes.string
+    email: ReactPropTypes.string,
+    houseName: ReactPropTypes.string
   },
 
   logout: function(e) {
@@ -76,10 +77,11 @@ var Header = React.createClass({
       </ul>
     );
 
+console.log(this.props)
     var leftNav = this.props.isLoggedIn ? (
       <ul className="left">
         <div>
-          <button className="menu-button" onMouseOver={this.showLeft} onClick={this.showLeft}>my hizz-ous</button>
+          <button className="menu-button" onMouseOver={this.showLeft} onClick={this.showLeft}>{this.props.houseName}</button>
 
           <Menu ref="left" alignment="left">
             <MenuItem hash="first-page">Fridge</MenuItem>

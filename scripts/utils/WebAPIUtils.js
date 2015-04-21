@@ -227,6 +227,18 @@ module.exports = {
           }
         }
       });
-  }
+  },
+
+  loadUser: function(userId) {
+    request.get(APIEndpoints.USERS + '/' + userId)
+      .set('Accept', 'application/json')
+      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .end(function(error, res){
+        if (res) {
+          json = JSON.parse(res.text);
+          ServerActionCreators.receiveUser(json);
+        }
+      });
+  },
 
 };
