@@ -55,12 +55,13 @@ var MessageBox = React.createClass({
     return (
       <div className="message-box">
       <div className="row">
-      <div class="small-6 large-2 columns"><br /></div>
-      <div class="small-6 large-8 columns">
+      <div className="large-3 columns"><br /></div>
+      <div className="large-6 columns">
+      <h3>House Messages:</h3>
       <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
       <MessageList messages={ this.state.messages } />
       <hr />
-      <h2>talk to your roomies</h2>
+      <h2>Talk to your roomies</h2>
       <MessageForm onMessageSubmit={this.handleMessageSubmit} form={ this.state.form } />
       <RouteHandler/>
       </div>
@@ -90,10 +91,6 @@ var Message = React.createClass({
     return (
       <li className="story">
       <div className="story__body">{this.props.message.content}</div>
-
-      {console.log(this.props.message.content)}
-      {console.log(this)}
-
       <span className="story__user">{this.props.message.author}</span>
       <span className="story__date"> - {timeago(this.props.message.created_at)}</span>
       </li>

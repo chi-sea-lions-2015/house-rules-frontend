@@ -11,7 +11,7 @@ var ChoreBox = React.createClass({
 
   getInitialState: function() {
     return {
-      messages: ChoreStore.getAllChores(),
+      chores: ChoreStore.getAllChores(),
       errors: []
     };
   },
@@ -27,7 +27,7 @@ var ChoreBox = React.createClass({
 
   _onChange: function() {
     this.setState({
-      messages: ChoreStore.loadChores(),
+      chores: ChoreStore.getAllChores(),
       errors: ChoreStore.getErrors()
     });
   },
@@ -38,7 +38,7 @@ var ChoreBox = React.createClass({
       <div className="row">
         <div className="large-3 columns"><br /></div>
         <div className="large-6 columns">
-        <h1>House Chore </h1>
+        <h4>House Chores: </h4>
         <ChoreList chores={ this.state.chores } />
         <ChoreForm form={ this.state.form } onChoreSubmit={ this.handleChoreSubmit } />
         </div>
@@ -78,6 +78,8 @@ var ChoreForm = React.createClass({
   handleSubmit: function ( event ) {
     event.preventDefault();
     var task = this.refs.task.getDOMNode().value.trim();
+    ChoreActionCreators.createChore(task);
+
 
     // validate
     if (!task) {
@@ -85,8 +87,6 @@ var ChoreForm = React.createClass({
     }
 
     // submit
-    var formData = $( this.refs.form.getDOMNode() ).serialize();
-    this.props.onChoreSubmit( formData, this.props.form.action );
 
     // reset form
     this.refs.task.getDOMNode().value = "";

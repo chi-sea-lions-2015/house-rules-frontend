@@ -14,7 +14,6 @@ var ItemBox = require('./components/items/_items_box.react.jsx');
 var EventBox = require('./components/events/_event_box.react.jsx');
 var UserBox = require('./components/users/UserBox.react.jsx');
 
-
 module.exports = (
   <Route name="app" path="/" handler={HouseRules}>
     <DefaultRoute handler={LoginPage} />

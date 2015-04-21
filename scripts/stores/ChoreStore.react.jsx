@@ -51,7 +51,7 @@ ChoreStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
     case ActionTypes.RECEIVE_CREATED_CHORE:
       if (action.json) {
-        _mchores.unshift(action.json.chore);
+        _chores.unshift(action.json.chore);
         _errors = [];
       }
       if (action.errors) {

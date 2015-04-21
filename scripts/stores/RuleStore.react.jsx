@@ -51,7 +51,8 @@ RuleStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
     case ActionTypes.RECEIVE_CREATED_RULE:
       if (action.json) {
-        _rules.push(action.json);
+      debugger;
+        _rules.unshift(action.json.rule);
         _errors = [];
       }
       if (action.errors) {

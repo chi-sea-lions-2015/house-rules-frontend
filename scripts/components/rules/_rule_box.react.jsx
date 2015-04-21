@@ -35,12 +35,18 @@ var RuleBox = React.createClass({
   render: function () {
     return (
       <div className="rule-box">
+      <div className="row">
+      <div className="large-3 columns"><br /></div>
+      <div className="large-6 columns">
+        <h3>House Rules:</h3>
         <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
         <RuleList rules={ this.state.rules } />
         <hr />
-        <h4>Create a Rule</h4>
+        <h4>Be a Dictator!</h4>
         <RuleForm form={ this.state.form } />
         </div>
+        <div className="large-3 columns"><br /></div>
+        </div></div>
     );
   }
 });
@@ -48,8 +54,8 @@ var RuleBox = React.createClass({
 var Rule = React.createClass({
   render: function () {
     return (
-      <li className="story">
-        <div className="story__body">{this.props.rule.content}</div>
+      <li>
+        {this.props.rule.content}
       </li>
     )
   }
@@ -87,7 +93,7 @@ var RuleForm = React.createClass({
     return (
       <form ref="form" className="rule-form" method="post" onSubmit={ this.handleSubmit }>
         <fieldset>
-          <legend>Create a Message</legend>
+          <legend>Create a Rule</legend>
           <p><textarea ref="content" name="rule[content]" placeholder="Create a rule..." /></p>
           <p><button type="submit">Post rule</button></p>
         </fieldset>
