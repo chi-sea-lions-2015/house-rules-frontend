@@ -22,9 +22,9 @@ module.exports = (
     <Route name="signup" path="/signup" handler={SignupPage}/>
     <Route name="rules" path="/houses/:house_id/rules" handler={RuleBox}/>
     <Route name="messages" path="/houses/:house_id/messages" handler={MessageBox}/>
-    <Route name="chores" path="/houses/:houseId/chores" handler={ChoreBox}/>
-    <Route name="items" path="/houses/:houseId/items" handler={ItemBox}/>
-    <Route name="events" path="/houses/:houseId/events" handler={EventBox}/>
+    <Route name="chores" path="/houses/:house_id/chores" handler={ChoreBox}/>
+    <Route name="items" path="/houses/:house_id/items" handler={ItemBox}/>
+    <Route name="events" path="/houses/:house_id/events" handler={EventBox}/>
     <Route name="user" path="/users/:user_id" handler={UserBox}/>
   </Route>
 );
