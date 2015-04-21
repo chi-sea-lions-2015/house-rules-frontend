@@ -21,12 +21,17 @@ module.exports = {
     WebAPIUtils.loadItem(itemId);
   },
 
-  createItem: function(name) {
+
+  createItem: function(name, brand, quantity, stock_level) {
     HouseRulesAPIDispatcher.handleViewAction({
       type: ActionTypes.CREATE_ITEM,
-      name: name
+      name: name,
+      brand: brand,
+      quantity: quantity,
+      stock_level: stock_level
     });
-    WebAPIUtils.createItem(name);
+    WebAPIUtils.createItem(name, brand, quantity, stock_level);
   }
 
 };
+

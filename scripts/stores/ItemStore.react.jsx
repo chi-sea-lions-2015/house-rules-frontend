@@ -51,8 +51,7 @@ ItemStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
     case ActionTypes.RECEIVE_CREATED_ITEM:
       if (action.json) {
-        debugger;
-        _items.unshift(action.json.item);
+        _items.unshift(action.json.communal_item);
         _errors = [];
       }
       if (action.errors) {
@@ -63,7 +62,7 @@ ItemStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
     case ActionTypes.RECEIVE_ITEM:
       if (action.json) {
-        _item = action.json.item;
+        _item = action.json.communal_items;
         _errors = [];
       }
       if (action.errors) {

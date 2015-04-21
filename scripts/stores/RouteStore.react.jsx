@@ -61,20 +61,26 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       if (SessionStore.isLoggedIn()) {
         router.transitionTo('app');
         // Dirty hack, need to figure this out
-        $(document).foundation();
       }
       break;
 
+    case ActionTypes.CREATE_MESSAGE:
+      break;
+      //THIS IS HOW YOU MAINTAIN THE HOUSE_ID
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
-      router.transitionTo('app');
+      router.transitionTo('messages', action.json );
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:
       router.transitionTo('rules');
       break;
 
-    case ActionTypes.RECEIVE_CREATED_ITEM:
+    case ActionTypes.RECEIVE_CREATED_COMMUNAL_ITEM:
       router.transitionTo('items');
+      break;
+
+    case ActionTypes.RECEIVE_CREATED_CHORE:
+      router.transitionTo('chores');
       break;
 
     default:

@@ -58,7 +58,6 @@ module.exports = {
   },
 
   receiveItems: function(json) {
-    console.log(json);
     HouseRulesAPIDispatcher.handleServerAction({
       type: ActionTypes.RECEIVE_ITEMS,
       json: json

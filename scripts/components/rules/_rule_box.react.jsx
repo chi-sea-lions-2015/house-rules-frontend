@@ -40,12 +40,7 @@ var RuleBox = React.createClass({
         <hr />
         <h4>Create a Rule</h4>
         <RuleForm form={ this.state.form } />
-        <div className="messages_link">
-          <Link to="messages" params={ {houseId: 1}}>
-          <p>Messages</p>
-          </Link>
         </div>
-      </div>
     );
   }
 });
@@ -91,8 +86,11 @@ var RuleForm = React.createClass({
   render: function () {
     return (
       <form ref="form" className="rule-form" method="post" onSubmit={ this.handleSubmit }>
-        <p><textarea ref="content" name="rule[content]" placeholder="Create a rule..." /></p>
-        <p><button type="submit">Post rule</button></p>
+        <fieldset>
+          <legend>Create a Message</legend>
+          <p><textarea ref="content" name="rule[content]" placeholder="Create a rule..." /></p>
+          <p><button type="submit">Post rule</button></p>
+        </fieldset>
       </form>
     )
   }
