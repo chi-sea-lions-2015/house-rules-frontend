@@ -173,7 +173,7 @@ module.exports = {
     request.post(APIEndpoints.EVENTS)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ evnet: { name: name, date: date, description: description } })
+      .send({ event: { name: name, date: date, description: description } })
       .end(function(error, res){
         if (res) {
           if (res.error) {
