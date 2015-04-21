@@ -64,7 +64,7 @@ var ItemBox = React.createClass({
   handleItemSubmit: function ( formData, action ) {
     $.ajax({
       data: formData,
-      url: APIRoot + "/houses/1/communal_items",
+
       type: "POST",
       dataType: "json",
       success: function ( data ) {

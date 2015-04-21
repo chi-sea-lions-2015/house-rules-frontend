@@ -11,6 +11,7 @@ var CHANGE_EVENT = 'change';
 var _accessToken = sessionStorage.getItem('accessToken');
 var _email = sessionStorage.getItem('email');
 var _houseName = sessionStorage.getItem('houseName');
+var _houseID = sessionStorage.getItem('houseID');
 var _errors = [];
 
 var SessionStore = assign({}, EventEmitter.prototype, {
@@ -43,6 +44,10 @@ var SessionStore = assign({}, EventEmitter.prototype, {
     return _houseName;
   },
 
+  getHouseID: function() {
+    return _houseID;
+  },
+
   getErrors: function() {
     return _errors;
   }
@@ -59,10 +64,12 @@ SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
         _accessToken = action.json.access_token;
         _email = action.json.email;
         _houseName = action.json.house_name;
+        _houseID = action.json.house_id;
         // Token will always live in the session, so that the API can grab it with no hassle
         sessionStorage.setItem('accessToken', _accessToken);
         sessionStorage.setItem('email', _email);
         sessionStorage.setItem('houseName', _houseName);
+        sessionStorage.setItem('houseID', _houseID);
       }
       if (action.errors) {
         _errors = action.errors;
@@ -77,6 +84,7 @@ SessionStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) 
       sessionStorage.removeItem('accessToken');
       sessionStorage.removeItem('email');
       sessionStorage.removeItem('houseName');
+      sessionStorage.removeItem('houseID');
       SessionStore.emitChange();
       break;
 
