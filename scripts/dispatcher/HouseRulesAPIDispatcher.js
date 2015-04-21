@@ -7,6 +7,7 @@ var PayloadSources = HouseRulesConstants.PayloadSources;
 var HouseRulesAPIDispatcher = assign(new Dispatcher(), {
 
   handleServerAction: function(action) {
+    debugger;
     var payload = {
       source: PayloadSources.SERVER_ACTION,
       action: action
@@ -15,6 +16,7 @@ var HouseRulesAPIDispatcher = assign(new Dispatcher(), {
   },
 
   handleViewAction: function(action) {
+    debugger;
     var payload = {
       source: PayloadSources.VIEW_ACTION,
       action: action

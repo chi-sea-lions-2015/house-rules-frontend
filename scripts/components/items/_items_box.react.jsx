@@ -11,8 +11,11 @@ var APIRoot = "http://localhost:3002";
 var Item = React.createClass({
   render: function () {
     return (
-      <li className="story">
-        <div className="story__body">{this.props.item.name}</div>
+      <li>
+        <div className="story__body">&nbsp;{this.props.item.name}</div>
+        <span className="story__user">&nbsp;@{this.props.item.brand}</span>
+        <span className="story__date">&nbsp;&nbsp;-{this.props.item.quantity}</span>
+        <div className="story__stock_level">{this.props.item.stock_level}</div>
       </li>
     )
   }
@@ -26,7 +29,9 @@ var ItemList = React.createClass({
 
     return (
       <div className="item-list">
+      <ol>
         { itemNodes }
+      </ol>
       </div>
     )
   }
@@ -64,7 +69,6 @@ var ItemBox = React.createClass({
         <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
         <ItemList items={ this.state.items } />
         <hr />
-        <h4>Create an Item</h4>
         <ItemForm form={ this.state.form } />
         </div>
     );
@@ -88,6 +92,8 @@ var ItemForm = React.createClass({
 
     // reset form
     this.refs.name.getDOMNode().value = "";
+    this.refs.brand.getDOMNode().value = "";
+    this.refs.quantity.getDOMNode().value = "";
   },
   render: function () {
     return (

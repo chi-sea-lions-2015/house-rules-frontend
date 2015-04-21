@@ -26,6 +26,8 @@ var EventStore = assign({}, EventEmitter.prototype, {
   },
 
   getAllEvents: function() {
+        console.log("_events");
+    console.log(_events);
     return _events;
   },
 
@@ -42,6 +44,7 @@ var EventStore = assign({}, EventEmitter.prototype, {
 EventStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
   var action = payload.action;
 
+
   switch(action.type) {
 
     case ActionTypes.RECEIVE_EVENTS:
@@ -51,7 +54,7 @@ EventStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 
     case ActionTypes.RECEIVE_CREATED_EVENT:
       if (action.json) {
-        _events.push(action.json);
+        _events.push(action.json.event);
         _errors = [];
       }
       if (action.errors) {

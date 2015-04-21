@@ -8,34 +8,7 @@ var Link = Router.Link;
 var timeago = require('timeago');
 var APIRoot = "http://localhost:3002";
 
-var Event = React.createClass({
-  render: function () {
-    return (
-      <li className="story">
-        <div className="story__body">{this.props.event.name}</div>
-        <div className="story__date">{this.props.event.date}</div>
-        <div className="story__description">{this.props.event.description}</div>
-      </li>
-    )
-  }
-});
-
-var EventList = React.createClass({
-  render: function () {
-    var eventNodes = this.props.events.map(function ( event ) {
-      return <Event event={ event } key={ event.id } />
-    });
-
-    return (
-      <div className="event-list">
-        { eventNodes }
-      </div>
-    )
-  }
-});
-
 var EventBox = React.createClass({
-
   getInitialState: function() {
     return {
       events: EventStore.getAllEvents(),
@@ -53,10 +26,13 @@ var EventBox = React.createClass({
   },
 
   _onChange: function() {
+    console.log("come here?");
     this.setState({
       events: EventStore.getAllEvents(),
       errors: EventStore.getErrors()
     });
+    console.log("state");
+    console.log(this.state);
   },
 
   render: function () {
@@ -71,6 +47,37 @@ var EventBox = React.createClass({
     );
   }
 });
+
+var EventList = React.createClass({
+
+  render: function () {
+    var eventNodes = this.props.events.map(function ( event ) {
+      return <Event event={ event } key={ event.id } />
+    });
+    
+    return (
+      <div className="event-list">
+        { eventNodes }
+      </div>
+    )
+  }
+});
+
+
+var Event = React.createClass({
+  render: function () {
+    console.log("event");
+    console.log(this.props.event.name);
+    return (
+      <li className="story">
+        <div className="story__body">{this.props.event.name}</div>
+        <div className="story__date">{this.props.event.date}</div>
+        <div className="story__user">{this.props.event.description}</div>
+      </li>
+    )
+  }
+});
+
 
 var EventForm = React.createClass({
   handleSubmit: function ( event ) {
@@ -100,8 +107,8 @@ var EventForm = React.createClass({
       <form ref="form" className="event-form" method="post" onSubmit={ this.handleSubmit }>
         <fieldset>
           <legend>Create an Event</legend>
-          <p><textarea ref="name" name="event[name]" placeholder="What's the event name?" /></p>
-          <p><textarea ref="date" name="event[date]" placeholder="What date?" /></p>
+          <p><input ref="name" name="event[name]" placeholder="What's the event name?" /></p>
+          <p><input type="datetime-local" ref="date" name="event[date]" placeholder="What's going to happen?" /></p>
           <p><textarea ref="description" name="event[description]" placeholder="What description?" /></p>
           <p><button type="submit">Post Event</button></p>
         </fieldset>

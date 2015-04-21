@@ -173,7 +173,7 @@ module.exports = {
     request.post(APIEndpoints.EVENTS)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
-      .send({ evnet: { name: name, date: date, description: description } })
+      .send({ event: { name: name, date: date, description: description } })
       .end(function(error, res){
         if (res) {
           if (res.error) {
@@ -200,7 +200,6 @@ module.exports = {
   },
 
   loadItem: function(itemId) {
-    debugger;
     request.get(APIEndpoints.ITEMS + '/' + itemId)
       .set('Accept', 'application/json')
       .set('Authorization', sessionStorage.getItem('accessToken'))
@@ -223,7 +222,7 @@ module.exports = {
             var errorMsgs = _getErrors(res);
             ServerActionCreators.receiveCreatedItem(null, errorMsgs);
           } else {
-            json = JSON.parse(res.name);
+            json = JSON.parse(res.text);
             ServerActionCreators.receiveCreatedItem(json, null);
           }
         }
@@ -282,6 +281,6 @@ module.exports = {
           ServerActionCreators.receiveUser(json);
         }
       });
-  },
+  }
 
 };
