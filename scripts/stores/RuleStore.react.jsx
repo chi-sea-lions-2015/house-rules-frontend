@@ -71,6 +71,28 @@ RuleStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       }
       RuleStore.emitChange();
       break;
+
+    case ActionTypes.RECEIVE_EDIT_RULE:
+      if (action.json) {
+        _rule = action.json.rule;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      RuleStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_EDITED_RULE:
+      if (action.json) {
+        _rule = action.json.rule;
+        _errors = [];
+      }
+      if (action.errors) {
+        _errors = action.errors;
+      }
+      RuleStore.emitChange();
+      break;
   }
 
   return true;

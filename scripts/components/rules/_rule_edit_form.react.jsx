@@ -11,7 +11,7 @@ var RuleBox = React.createClass({
 
   getInitialState: function() {
     return {
-      rules: RuleStore.getRule(),
+      rule: RuleStore.getAllRules(),
       errors: []
     };
   },
@@ -38,12 +38,8 @@ var RuleBox = React.createClass({
       <div className="row">
       <div className="large-3 columns"><br /></div>
       <div className="large-6 columns">
-        <h3>House Rules:</h3>
-        <img src={ this.props.imgSrc } alt={ this.props.imgAlt } />
-        <RuleList rules={ this.state.rules } />
-        <hr />
         <h4>Be a Dictator!</h4>
-        <RuleForm form={ this.state.form } />
+        <RuleEditForm form={ this.state.form } />
         </div>
         <div className="large-3 columns"><br /></div>
         </div></div>
@@ -51,35 +47,11 @@ var RuleBox = React.createClass({
   }
 });
 
-var Rule = React.createClass({
-  render: function () {
-    return (
-      <li>
-        {this.props.rule.content}
-      </li>
-    )
-  }
-});
-
-var RuleList = React.createClass({
-  render: function () {
-    var ruleNodes = this.props.rules.map(function ( rule ) {
-      return <Rule rule={ rule } key={ rule.id } />
-    });
-
-    return (
-      <div className="rule-list">
-        { ruleNodes }
-      </div>
-    )
-  }
-});
-
-var RuleForm = React.createClass({
+var RuleEditForm = React.createClass({
   handleSubmit: function ( event ) {
     event.preventDefault();
     var content = this.refs.content.getDOMNode().value;
-    RuleActionCreators.createRule(content);
+    RuleActionCreators.editRule(content);
 
     // validate
     if (!content) {
@@ -92,15 +64,13 @@ var RuleForm = React.createClass({
   render: function () {
     return (
       <form ref="form" className="rule-form" method="post" onSubmit={ this.handleSubmit }>
+      <input type="hidden" name="_method" value="PUT"/>
         <fieldset>
           <legend>Create a Rule</legend>
-          <p><textarea ref="content" name="rule[content]" placeholder="Create a rule..." /></p>
+          <p><textarea ref="content" name="rule[content]"/></p>
           <p><button type="submit">Post rule</button></p>
         </fieldset>
       </form>
     )
   }
 });
-
-
-module.exports = RuleBox;

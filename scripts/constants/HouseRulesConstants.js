@@ -7,11 +7,11 @@ module.exports = {
   APIEndpoints: {
     LOGIN:          APIRoot + "/login",
     REGISTRATION:   APIRoot + "/users",
-    MESSAGES:       APIRoot + "/houses/1/messages",
-    RULES:          APIRoot + "/houses/1/rules",
-    CHORES:         APIRoot + "/houses/1/chores",
-    EVENTS:          APIRoot + "/houses/1/events",
-    ITEMS:          APIRoot + "/houses/1/communal_items"
+    MESSAGES:       APIRoot + "/houses/:house_id/messages",
+    RULES:          APIRoot + "/houses/:house_id/rules",
+    CHORES:         APIRoot + "/houses/:house_id/chores",
+    EVENTS:          APIRoot + "/houses/:house_id/events",
+    ITEMS:          APIRoot + "/houses/:house_id/communal_items"
   },
 
   PayloadSources: keyMirror({
@@ -39,6 +39,8 @@ module.exports = {
     RECEIVE_RULE: null,
     CREATE_RULE: null,
     RECEIVE_CREATED_RULE: null,
+    UPDATE_RULE: null,
+    DELETE_RULE: null,
 
     LOAD_CHORES: null,
     RECEIVE_CHORES: null,

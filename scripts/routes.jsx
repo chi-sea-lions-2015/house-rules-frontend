@@ -13,6 +13,8 @@ var ChoreBox = require('./components/chores/ChoreBox.react.jsx');
 var ItemBox = require('./components/items/_items_box.react.jsx');
 var EventBox = require('./components/events/_event_box.react.jsx');
 var UserBox = require('./components/users/UserBox.react.jsx');
+var RulePage = require('./components/rules/_rule.react.jsx');
+
 
 module.exports = (
   <Route name="app" path="/" handler={HouseRules}>
@@ -20,9 +22,10 @@ module.exports = (
     <Route name="login" path="/login" handler={LoginPage}/>
     <Route name="signup" path="/signup" handler={SignupPage}/>
     <Route name="rules" path="/houses/:house_id/rules" handler={RuleBox}/>
+    <Route name="rule" path="houses/house/:house_id/rules/:id" handler={RulePage}/>
     <Route name="messages" path="/houses/:house_id/messages" handler={MessageBox}/>
     <Route name="chores" path="/houses/:house_id/chores" handler={ChoreBox}/>
-    <Route name="items" path="/houses/:house_id/items" handler={ItemBox}/>
+    <Route name="items" path="/houses/:house_id/communal_items" handler={ItemBox}/>
     <Route name="events" path="/houses/:house_id/events" handler={EventBox}/>
     <Route name="user" path="/users/:user_id" handler={UserBox}/>
   </Route>
