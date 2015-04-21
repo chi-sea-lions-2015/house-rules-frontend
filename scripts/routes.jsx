@@ -10,9 +10,8 @@ var MessageBox = require('./components/messages/_message_box.react.jsx');
 var RuleBox = require('./components/rules/_rule_box.react.jsx');
 var SignupPage = require('./components/session/SignupPage.react.jsx');
 var ChoreBox = require('./components/chores/ChoreBox.react.jsx');
-var ItemBox = require('./components/items/_items_box.react.jsx');
-
 var ItemBox = require('./components/items/_item_box.react.jsx');
+var EventBox = require('./components/events/_event_box.react.jsx');
 
 module.exports = (
   <Route name="app" path="/" handler={HouseRules}>
@@ -23,5 +22,6 @@ module.exports = (
     <Route name="messages" path="/houses/:house_id/messages" handler={MessageBox}/>
     <Route name="chores" path="/houses/:houseId/chores" handler={ChoreBox}/>
     <Route name="items" path="/houses/:houseId/items" handler={ItemBox}/>
+    <Route name="events" path="/houses/:houseId/events" handler={EventBox}/>
   </Route>
 );
