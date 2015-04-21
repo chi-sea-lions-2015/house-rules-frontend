@@ -62,8 +62,11 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       }
       break;
 
+    case ActionTypes.CREATE_MESSAGE:
+      break;
+      //THIS IS HOW YOU MAINTAIN THE HOUSE_ID
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
-      router.transitionTo('messages');
+      router.transitionTo('messages', action.json );
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:
@@ -85,4 +88,3 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
 });
 
 module.exports = RouteStore;
-

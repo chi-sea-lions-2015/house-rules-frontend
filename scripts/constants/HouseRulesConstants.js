@@ -51,7 +51,10 @@ module.exports = {
     LOAD_ITEM: null,
     RECEIVE_ITEM: null,
     CREATE_ITEM: null,
-    RECEIVE_CREATED_ITEM: null
+    RECEIVE_CREATED_ITEM: null,
+
+    LOAD_USER: null,
+    RECEIVE_USER: null,
   })
 
 };

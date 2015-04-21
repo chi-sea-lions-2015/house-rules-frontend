@@ -34,7 +34,8 @@ var HouseRules = React.createClass({
       <div className="app">
         <Header
           isLoggedIn={this.state.isLoggedIn}
-          email={this.state.email} />
+          email={this.state.email}
+          houseName={this.state.houseName} />
         <RouteHandler/>
       </div>
     );
