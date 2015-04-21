@@ -26261,6 +26261,10 @@ var Message = React.createClass({displayName: "Message",
     return (
       React.createElement("li", {className: "story"}, 
       React.createElement("div", {className: "story__body"}, this.props.message.content), 
+
+      console.log(this.props.message.content), 
+      console.log(this), 
+
       React.createElement("span", {className: "story__user"}, this.props.message.author), 
       React.createElement("span", {className: "story__date"}, " - ", timeago(this.props.message.created_at))
       )
@@ -26660,8 +26664,8 @@ module.exports = (
     React.createElement(DefaultRoute, {handler: RuleBox}), 
     React.createElement(Route, {name: "login", path: "/login", handler: LoginPage}), 
     React.createElement(Route, {name: "signup", path: "/signup", handler: SignupPage}), 
-    React.createElement(Route, {name: "rules", path: "/houses/:houseId/rules", handler: RuleBox}), 
-    React.createElement(Route, {name: "messages", path: "/houses/:houseId/messages", handler: MessageBox}), 
+    React.createElement(Route, {name: "rules", path: "/houses/:house_id/rules", handler: RuleBox}), 
+    React.createElement(Route, {name: "messages", path: "/houses/:house_id/messages", handler: MessageBox}), 
     React.createElement(Route, {name: "chores", path: "/houses/:houseId/chores", handler: ChoreBox})
   )
 );
@@ -26892,8 +26896,11 @@ RouteStore.dispatchToken = HouseRulesAPIDispatcher.register(function(payload) {
       }
       break;
 
+    case ActionTypes.CREATE_MESSAGE:
+      break;
+      //THIS IS HOW YOU MAINTAIN THE HOUSE_ID
     case ActionTypes.RECEIVE_CREATED_MESSAGE:
-      router.transitionTo('messages');
+      router.transitionTo('messages', action.json );
       break;
 
     case ActionTypes.RECEIVE_CREATED_RULE:
@@ -27179,7 +27186,11 @@ module.exports = {
             var errorMsgs = _getErrors(res);
             ServerActionCreators.receiveCreatedMessage(null, errorMsgs);
           } else {
-            json = JSON.parse(res.content);
+            console.log(res);
+            console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            json = JSON.parse(res.text);
+            console.log(json);
+            console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             ServerActionCreators.receiveCreatedMessage(json, null);
           }
         }

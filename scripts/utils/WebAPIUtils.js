@@ -96,7 +96,11 @@ module.exports = {
             var errorMsgs = _getErrors(res);
             ServerActionCreators.receiveCreatedMessage(null, errorMsgs);
           } else {
-            json = JSON.parse(res.content);
+            console.log(res);
+            console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            json = JSON.parse(res.text);
+            console.log(json);
+            console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             ServerActionCreators.receiveCreatedMessage(json, null);
           }
         }

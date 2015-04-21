@@ -88,6 +88,10 @@ var Message = React.createClass({
     return (
       <li className="story">
       <div className="story__body">{this.props.message.content}</div>
+
+      {console.log(this.props.message.content)}
+      {console.log(this)}
+
       <span className="story__user">{this.props.message.author}</span>
       <span className="story__date"> - {timeago(this.props.message.created_at)}</span>
       </li>

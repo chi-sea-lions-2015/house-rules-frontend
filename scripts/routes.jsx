@@ -16,8 +16,8 @@ module.exports = (
     <DefaultRoute handler={RuleBox} />
     <Route name="login" path="/login" handler={LoginPage}/>
     <Route name="signup" path="/signup" handler={SignupPage}/>
-    <Route name="rules" path="/houses/:houseId/rules" handler={RuleBox}/>
-    <Route name="messages" path="/houses/:houseId/messages" handler={MessageBox}/>
+    <Route name="rules" path="/houses/:house_id/rules" handler={RuleBox}/>
+    <Route name="messages" path="/houses/:house_id/messages" handler={MessageBox}/>
     <Route name="chores" path="/houses/:houseId/chores" handler={ChoreBox}/>
   </Route>
 );
